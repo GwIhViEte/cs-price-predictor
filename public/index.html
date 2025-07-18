@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS饰品价格预测系统</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 CS饰品价格预测系统</h1>
+            <p>基于AI大模型的智能价格分析</p>
+        </header>
+
+        <main>
+            <!-- 搜索区域 -->
+            <section class="search-section">
+                <div class="search-box">
+                    <input type="text" id="itemSearch" placeholder="输入饰品名称或ID进行搜索..." />
+                    <button id="searchBtn">🔍 搜索</button>
+                </div>
+    
+                <!-- 新增：饰品选择下拉列表 -->
+                <div class="item-selector" id="itemSelector" style="display: none;">
+                    <label for="itemDropdown">选择具体饰品：</label>
+                    <select id="itemDropdown">
+                        <option value="">请选择...</option>
+                    </select>
+                    <button id="selectItemBtn">📊 查看价格</button>
+                </div>
+            </section>
+
+
+            <!-- 结果显示区域 -->
+            <section class="results-section">
+                <!-- 价格数据展示 -->
+                <div class="price-data-card" id="priceDataCard" style="display: none;">
+                    <h2>📊 价格数据</h2>
+                    <div class="price-info">
+                        <div class="current-price">
+                            <span class="label">当前价格:</span>
+                            <span class="price" id="currentPrice">-</span>
+                        </div>
+                        <div class="price-change">
+                            <span class="label">涨跌幅:</span>
+                            <span class="change" id="priceChange">-</span>
+                        </div>
+                    </div>
+                    <div class="price-chart" id="priceChart">
+                        <!-- 这里将显示价格图表 -->
+                    </div>
+                </div>
+
+                <!-- AI预测结果 -->
+                <div class="prediction-card" id="predictionCard" style="display: none;">
+                    <h2>🤖 AI价格预测</h2>
+                    <div class="prediction-content">
+                        <div class="loading" id="loadingSpinner" style="display: none;">
+                            <div class="spinner"></div>
+                            <p>AI正在分析价格数据...</p>
+                        </div>
+                        <div class="prediction-result" id="predictionResult"></div>
+                    </div>
+                    <button id="predictBtn" class="predict-button">🔮 开始预测</button>
+                </div>
+            </section>
+
+            <!-- 热门饰品推荐 -->
+            <section class="recommendations">
+                <h2>🔥 热门饰品</h2>
+                <div class="item-grid" id="hotItems">
+                    <!-- 这里将显示热门饰品 -->
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2025 CS饰品价格预测系统</p>
+            <p>数据来源: CSQAQ | 分析引擎: OPENAI</p>
+            <p>本站仅供学习交流使用，所有数据及分析仅供参考，不构成任何投资建议</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
