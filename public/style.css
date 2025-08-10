@@ -5,39 +5,37 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    background: #f5f5f5;
     min-height: 100vh;
     color: #333;
+    line-height: 1.6;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0 20px;
 }
 
 /* 头部样式 */
 header {
     text-align: center;
-    margin-bottom: 40px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    margin: 30px 0;
+    padding: 20px 0;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 header h1 {
-    font-size: 2.5rem;
-    color: white;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: 28px;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+    font-weight: 600;
 }
 
 header p {
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    color: #666;
 }
 
 /* 搜索区域样式 */
@@ -54,61 +52,60 @@ header p {
 
 #itemSearch {
     flex: 1;
-    padding: 15px 20px;
-    border: none;
-    border-radius: 25px;
-    font-size: 16px;
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 10px 15px;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    font-size: 14px;
+    background: #fff;
     outline: none;
+    transition: border-color 0.2s;
 }
 
 #itemSearch:focus {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    transform: translateY(-2px);
+    border-color: #666;
 }
 
 #searchBtn {
-    padding: 15px 30px;
-    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+    padding: 10px 25px;
+    background: #2c3e50;
     color: white;
     border: none;
-    border-radius: 25px;
-    font-size: 16px;
+    border-radius: 4px;
+    font-size: 14px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: background 0.2s;
 }
 
 #searchBtn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background: #34495e;
+}
+
+#searchBtn:active {
+    background: #1a252f;
 }
 
 /* 结果卡片样式 */
 .results-section {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    margin-bottom: 40px;
+    gap: 20px;
+    margin-bottom: 30px;
 }
 
 .price-data-card, .prediction-card {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.price-data-card:hover, .prediction-card:hover {
-    transform: translateY(-5px);
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 20px;
 }
 
 .price-data-card h2, .prediction-card h2 {
-    color: #333;
-    margin-bottom: 20px;
-    font-size: 1.5rem;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 /* 价格信息样式 */
@@ -121,69 +118,78 @@ header p {
 .current-price, .price-change {
     text-align: center;
     padding: 15px;
-    border-radius: 10px;
-    background: rgba(102, 126, 234, 0.1);
+    background: #fafafa;
+    border: 1px solid #f0f0f0;
+    border-radius: 3px;
+    flex: 1;
+}
+
+.current-price {
+    margin-right: 10px;
 }
 
 .label {
     display: block;
-    font-size: 0.9rem;
+    font-size: 12px;
     color: #666;
     margin-bottom: 5px;
 }
 
 .price {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #2c3e50;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1a1a;
 }
 
 .change {
-    font-size: 1.2rem;
-    font-weight: bold;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .change.positive {
-    color: #27ae60;
+    color: #16a34a;
 }
 
 .change.negative {
-    color: #e74c3c;
+    color: #dc2626;
 }
 
 /* 预测按钮样式 */
 .predict-button {
     width: 100%;
-    padding: 15px;
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    padding: 12px;
+    background: #2c3e50;
     color: white;
     border: none;
-    border-radius: 10px;
-    font-size: 16px;
+    border-radius: 4px;
+    font-size: 14px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 20px;
+    transition: background 0.2s;
+    margin-top: 15px;
 }
 
 .predict-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background: #34495e;
+}
+
+.predict-button:active {
+    background: #1a252f;
 }
 
 /* 加载动画 */
 .loading {
     text-align: center;
-    padding: 40px;
+    padding: 30px;
 }
 
 .spinner {
-    width: 40px;
-    height: 40px;
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #667eea;
+    width: 30px;
+    height: 30px;
+    border: 3px solid #f0f0f0;
+    border-top: 3px solid #2c3e50;
     border-radius: 50%;
     animation: spin 1s linear infinite;
-    margin: 0 auto 20px;
+    margin: 0 auto 15px;
 }
 
 @keyframes spin {
@@ -191,49 +197,61 @@ header p {
     100% { transform: rotate(360deg); }
 }
 
+.loading p {
+    font-size: 14px;
+    color: #666;
+}
+
 /* 预测结果样式 */
 .prediction-result {
-    background: #f8f9fa;
-    border-radius: 10px;
-    padding: 20px;
-    margin-top: 20px;
-    line-height: 1.6;
+    background: #fafafa;
+    border: 1px solid #f0f0f0;
+    border-radius: 3px;
+    padding: 15px;
+    margin-top: 15px;
+    line-height: 1.8;
     white-space: pre-wrap;
+    font-size: 14px;
 }
 
 /* 热门饰品网格 */
 .recommendations {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 30px;
 }
 
 .recommendations h2 {
-    color: #333;
-    margin-bottom: 20px;
-    text-align: center;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .item-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+    gap: 15px;
 }
 
 .item-card {
-    background: white;
-    border-radius: 10px;
+    background: #fafafa;
+    border: 1px solid #e8e8e8;
+    border-radius: 3px;
     padding: 15px;
     text-align: center;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    font-size: 14px;
 }
 
 .item-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    background: #f0f0f0;
+    border-color: #d0d0d0;
 }
 
 /* 响应式设计 */
@@ -246,22 +264,36 @@ header p {
         flex-direction: column;
     }
     
+    #searchBtn {
+        width: 100%;
+    }
+    
     .price-info {
         flex-direction: column;
         gap: 10px;
     }
     
+    .current-price {
+        margin-right: 0;
+    }
+    
     header h1 {
-        font-size: 2rem;
+        font-size: 24px;
     }
 }
 
 /* 页脚样式 */
 footer {
     text-align: center;
-    margin-top: 40px;
-    padding: 20px;
-    color: rgba(255, 255, 255, 0.8);
+    margin-top: 50px;
+    padding: 30px 0;
+    border-top: 1px solid #e0e0e0;
+    color: #666;
+    font-size: 13px;
+}
+
+footer p {
+    margin-bottom: 5px;
 }
 
 /* 价格图表样式 */
@@ -269,19 +301,21 @@ footer {
     margin-top: 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    gap: 15px;
 }
 
 .price-trend, .platform-prices {
-    background: #f8f9fa;
-    border-radius: 10px;
+    background: #fafafa;
+    border: 1px solid #f0f0f0;
+    border-radius: 3px;
     padding: 15px;
 }
 
 .price-trend h4, .platform-prices h4 {
     margin-bottom: 10px;
-    color: #333;
-    font-size: 1rem;
+    color: #1a1a1a;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .trend-item, .platform-item {
@@ -289,7 +323,8 @@ footer {
     justify-content: space-between;
     margin-bottom: 8px;
     padding: 5px 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 13px;
 }
 
 .trend-item:last-child, .platform-item:last-child {
@@ -298,35 +333,36 @@ footer {
 }
 
 .positive {
-    color: #27ae60;
+    color: #16a34a;
 }
 
 .negative {
-    color: #e74c3c;
+    color: #dc2626;
 }
 
 /* 饰品选择器样式 */
 .item-selector {
     max-width: 600px;
     margin: 20px auto 0;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
 }
 
 .item-selector label {
     display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: #333;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #1a1a1a;
+    font-size: 14px;
 }
 
 #itemDropdown {
     width: 70%;
-    padding: 12px 15px;
-    border: 2px solid #ddd;
-    border-radius: 10px;
+    padding: 8px 12px;
+    border: 1px solid #d0d0d0;
+    border-radius: 3px;
     font-size: 14px;
     background: white;
     margin-right: 10px;
@@ -334,29 +370,167 @@ footer {
 }
 
 #itemDropdown:focus {
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: #666;
 }
 
 #selectItemBtn {
     width: 25%;
-    padding: 12px 20px;
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    padding: 8px 15px;
+    background: #2c3e50;
     color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 3px;
     font-size: 14px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background 0.2s;
 }
 
 #selectItemBtn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background: #34495e;
+}
+
+#selectItemBtn:active {
+    background: #1a252f;
 }
 
 #selectItemBtn:disabled {
     background: #ccc;
     cursor: not-allowed;
-    transform: none;
+}
+
+/* 多普勒选择器样式 */
+.doppler-selector {
+    margin-top: 15px;
+    padding: 12px;
+    background: #fafafa;
+    border: 1px solid #f0f0f0;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.doppler-selector label {
+    font-weight: 600;
+    color: #1a1a1a;
+    font-size: 14px;
+}
+
+#dopplerStyleDropdown {
+    flex: 1;
+    padding: 6px 10px;
+    border: 1px solid #d0d0d0;
+    border-radius: 3px;
+    background: white;
+    outline: none;
+    font-size: 14px;
+}
+
+#dopplerStyleDropdown:focus {
+    border-color: #666;
+}
+
+/* 额外的细节调整 */
+select {
+    cursor: pointer;
+}
+
+input[type="text"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* 按钮禁用状态 */
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* 链接样式 */
+a {
+    color: #2c3e50;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* 表格样式（如果需要） */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+th, td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+th {
+    background: #fafafa;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}
+
+/* 移动端优化 */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    header {
+        margin: 20px 0;
+        padding: 15px 0;
+    }
+    
+    .price-data-card, .prediction-card, .recommendations {
+        padding: 15px;
+    }
+    
+    .item-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 打印样式 */
+@media print {
+    body {
+        background: white;
+    }
+    
+    header, footer {
+        display: none;
+    }
+    
+    .search-section {
+        display: none;
+    }
+    
+    .price-data-card, .prediction-card {
+        border: 1px solid #000;
+        break-inside: avoid;
+    }
 }
