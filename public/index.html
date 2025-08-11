@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CS饰品价格预测系统</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -14,14 +15,12 @@
         </header>
 
         <main>
-            <!-- 搜索区域 -->
             <section class="search-section">
                 <div class="search-box">
                     <input type="text" id="itemSearch" placeholder="输入饰品名称进行搜索..." />
                     <button id="searchBtn">搜索</button>
                 </div>
     
-                <!-- 饰品选择下拉列表 -->
                 <div class="item-selector" id="itemSelector" style="display: none;">
                     <label for="itemDropdown">选择具体饰品：</label>
                     <select id="itemDropdown">
@@ -31,9 +30,7 @@
                 </div>
             </section>
 
-            <!-- 结果显示区域 -->
             <section class="results-section">
-                <!-- 价格数据展示 -->
                 <div class="price-data-card" id="priceDataCard" style="display: none;">
                     <h2>价格数据</h2>
                     <div class="price-info">
@@ -47,18 +44,24 @@
                         </div>
                     </div>
 
-                    <!-- 多普勒样式选择器 -->
-                    <div id="dopplerSelectorContainer" class="doppler-selector" style="display: none;">
-                        <label for="dopplerStyleDropdown">选择样式:</label>
-                        <select id="dopplerStyleDropdown"></select>
-                    </div>
-
                     <div class="price-chart" id="priceChart">
-                        <!-- 这里将显示价格图表 -->
+                        </div>
+                    <div class="sales-chart" id="salesChartContainer" style="display: none;">
+                        <div class="chart-header">
+                            <h4>供需趋势 (30天)</h4>
+                            <div class="platform-selector">
+                                <label for="salesPlatformSelector">平台选择:</label>
+                                <select id="salesPlatformSelector">
+                                    <option value="1">BUFF</option>
+                                    <option value="2">悠悠有品</option>
+                                    <option value="3">Steam</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="salesChart" style="width: 100%; height: 250px;"></div>
                     </div>
                 </div>
 
-                <!-- AI预测结果 -->
                 <div class="prediction-card" id="predictionCard" style="display: none;">
                     <h2>AI价格预测</h2>
                     <div class="prediction-content">
@@ -71,13 +74,11 @@
                     <button id="predictBtn" class="predict-button">开始预测</button>
                 </div>
             </section>
-
-            <!-- 热门饰品推荐 -->
+            
             <section class="recommendations">
                 <h2>热门饰品</h2>
                 <div class="item-grid" id="hotItems">
-                    <!-- 这里将显示热门饰品 -->
-                </div>
+                    </div>
             </section>
         </main>
 
