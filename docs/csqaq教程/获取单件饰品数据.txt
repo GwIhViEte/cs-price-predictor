@@ -1,0 +1,651 @@
+# 获取单件饰品数据
+
+## OpenAPI Specification
+
+```yaml
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /api/v1/info/good:
+    get:
+      summary: 获取单件饰品数据
+      deprecated: false
+      description: >-
+        🥇 获取单件饰品的详细数据接口，需用饰品good_id进行请求，good_id获取接口为
+        [获取饰品的ID信息](http://docs.csqaq.com/api-187131777)
+      operationId: __good_____api_v1_info_good_get
+      tags:
+        - 接口详情/2️⃣ 饰品详情
+        - api
+      parameters:
+        - name: id
+          in: query
+          description: 本站记录的饰品id
+          required: true
+          example: 7310
+          schema:
+            title: Id
+            type: integer
+        - name: ApiToken
+          in: header
+          description: 用户请求令牌（请自行申请）
+          required: true
+          example: '{{APITOKEN}}'
+          schema:
+            type: string
+            default: '{{APITOKEN}}'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    title: 响应状态码
+                  msg:
+                    type: string
+                    title: 响应信息
+                  data:
+                    type: object
+                    properties:
+                      goods_info:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            title: 饰品good_id
+                          turnover_number:
+                            type: integer
+                            title: steam成交量
+                          turnover_avg_price:
+                            type: integer
+                            title: steam成交均价
+                            description: 单位$
+                          period_at:
+                            type: string
+                            title: steam成交量所属时间段
+                          buff_id:
+                            type: integer
+                            title: buff平台饰品id
+                          yyyp_id:
+                            type: integer
+                            title: yyyp平台饰品id
+                          name:
+                            type: string
+                            title: 饰品中文名称
+                          market_hash_name:
+                            type: string
+                            title: steam市场唯一英文名称
+                          buff_sell_price:
+                            type: number
+                            title: buff在售价
+                          buff_buy_price:
+                            type: integer
+                            title: buff求购价
+                          buff_sell_num:
+                            type: integer
+                            title: buff在售数量
+                          buff_buy_num:
+                            type: integer
+                            title: buff求购数量
+                          yyyp_sell_price:
+                            type: integer
+                            title: yyyp在售价
+                          yyyp_lease_num:
+                            type: integer
+                            title: yyyp在租数量
+                          yyyp_transfer_price:
+                            type: integer
+                            title: yyyp过户底价
+                          yyyp_lease_price:
+                            type: number
+                            title: yyyp短租价格
+                          yyyp_long_lease_price:
+                            type: integer
+                            title: yyyp长租价格
+                          yyyp_lease_annual:
+                            type: number
+                            title: yyyp短租年收益率
+                          yyyp_long_lease_annual:
+                            type: number
+                            title: yyyp长租年收益率
+                          yyyp_sell_num:
+                            type: integer
+                            title: yyyp在售数量
+                          yyyp_steam_price:
+                            type: number
+                            title: yyyp的steam指导价
+                          yyyp_buy_num:
+                            type: integer
+                            title: yyyp求购数量
+                          yyyp_buy_price:
+                            type: integer
+                            title: yyyp求购价
+                          sell_price_rate_1:
+                            type: number
+                            title: 近1日涨跌幅
+                            description: 单位%
+                          sell_price_rate_7:
+                            type: number
+                            title: 近7日涨跌幅
+                            description: 单位%
+                          sell_price_rate_30:
+                            type: number
+                            title: 近30日涨跌幅
+                            description: 单位%
+                          sell_price_rate_180:
+                            type: number
+                            title: 近180日涨跌幅
+                            description: 单位%
+                          sell_price_1:
+                            type: number
+                            title: 近1日涨跌量
+                          sell_price_7:
+                            type: number
+                            title: 近7日涨跌量
+                          sell_price_30:
+                            type: number
+                            title: 近30日涨跌量
+                          sell_price_180:
+                            type: number
+                            title: 近180日涨跌量
+                          steam_sell_price:
+                            type: number
+                            title: steam在售价
+                          steam_sell_num:
+                            type: integer
+                            title: steam在售数量
+                          steam_buy_price:
+                            type: number
+                            title: steam求购价
+                          steam_buy_num:
+                            type: integer
+                            title: steam求购数量
+                          steam_buff_buy_conversion:
+                            type: number
+                            title: Steam求购挂刀比例
+                          steam_buff_sell_conversion:
+                            type: number
+                            title: Steam在售挂刀比例
+                          buff_steam_buy_conversion:
+                            type: number
+                            title: BUFF求购套现比例
+                          buff_steam_sell_conversion:
+                            type: number
+                            title: BUFF售价套现比例
+                          type_localized_name:
+                            type: string
+                            title: 饰品大类
+                            description: 手套、匕首、音乐盒等
+                          statistic:
+                            type: integer
+                            title: 存世量
+                          img:
+                            type: string
+                            title: 饰品图片
+                          updated_at:
+                            type: string
+                            title: 数据更新时间
+                          rarity_localized_name:
+                            type: string
+                            title: 饰品品质
+                            description: 普通级、受限、非凡、隐秘等
+                          quality_localized_name:
+                            type: string
+                            title: 饰品类别
+                            description: ★、普通、★ StatTrak™、纪念品等
+                          exterior_localized_name:
+                            type: string
+                            title: 饰品磨损
+                            description: 崭新出厂、略有磨损等
+                          group_hash_name:
+                            type: string
+                            title: 所属类型名称
+                        required:
+                          - id
+                          - turnover_number
+                          - turnover_avg_price
+                          - period_at
+                          - buff_id
+                          - yyyp_id
+                          - name
+                          - market_hash_name
+                          - buff_sell_price
+                          - buff_buy_price
+                          - buff_sell_num
+                          - buff_buy_num
+                          - yyyp_sell_price
+                          - yyyp_lease_num
+                          - yyyp_transfer_price
+                          - yyyp_lease_price
+                          - yyyp_long_lease_price
+                          - yyyp_lease_annual
+                          - yyyp_long_lease_annual
+                          - yyyp_sell_num
+                          - yyyp_steam_price
+                          - yyyp_buy_num
+                          - yyyp_buy_price
+                          - sell_price_rate_1
+                          - sell_price_rate_7
+                          - sell_price_rate_30
+                          - sell_price_rate_180
+                          - sell_price_1
+                          - sell_price_7
+                          - sell_price_30
+                          - sell_price_180
+                          - steam_sell_price
+                          - steam_sell_num
+                          - steam_buy_price
+                          - steam_buy_num
+                          - steam_buff_buy_conversion
+                          - steam_buff_sell_conversion
+                          - buff_steam_buy_conversion
+                          - buff_steam_sell_conversion
+                          - type_localized_name
+                          - statistic
+                          - img
+                          - updated_at
+                          - rarity_localized_name
+                          - quality_localized_name
+                          - exterior_localized_name
+                          - group_hash_name
+                        x-apifox-orders:
+                          - id
+                          - turnover_number
+                          - turnover_avg_price
+                          - period_at
+                          - buff_id
+                          - yyyp_id
+                          - name
+                          - market_hash_name
+                          - buff_sell_price
+                          - buff_buy_price
+                          - buff_sell_num
+                          - buff_buy_num
+                          - yyyp_sell_price
+                          - yyyp_lease_num
+                          - yyyp_transfer_price
+                          - yyyp_lease_price
+                          - yyyp_long_lease_price
+                          - yyyp_lease_annual
+                          - yyyp_long_lease_annual
+                          - yyyp_sell_num
+                          - yyyp_steam_price
+                          - yyyp_buy_num
+                          - yyyp_buy_price
+                          - sell_price_rate_1
+                          - sell_price_rate_7
+                          - sell_price_rate_30
+                          - sell_price_rate_180
+                          - sell_price_1
+                          - sell_price_7
+                          - sell_price_30
+                          - sell_price_180
+                          - steam_sell_price
+                          - steam_sell_num
+                          - steam_buy_price
+                          - steam_buy_num
+                          - steam_buff_buy_conversion
+                          - steam_buff_sell_conversion
+                          - buff_steam_buy_conversion
+                          - buff_steam_sell_conversion
+                          - type_localized_name
+                          - statistic
+                          - img
+                          - updated_at
+                          - rarity_localized_name
+                          - quality_localized_name
+                          - exterior_localized_name
+                          - group_hash_name
+                        title: 饰品信息
+                        x-apifox-ignore-properties: []
+                      button_list:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              title: 饰品good_id
+                            name:
+                              type: string
+                              title: 磨损名称
+                            current:
+                              type: boolean
+                              title: 是否为当前饰品
+                            switch:
+                              type: boolean
+                              title: 是否为切换类别的按钮
+                          required:
+                            - id
+                            - name
+                            - current
+                            - switch
+                          x-apifox-orders:
+                            - id
+                            - name
+                            - current
+                            - switch
+                          x-apifox-ignore-properties: []
+                        title: 按钮列表
+                        description: 同类饰品不同磨损类型的切换列表
+                      dpl:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            key:
+                              type: integer
+                              title: 多普勒id
+                            label:
+                              type: string
+                              title: 中文名称
+                            value:
+                              type: string
+                              title: 英文数值
+                          required:
+                            - key
+                            - label
+                            - value
+                          x-apifox-orders:
+                            - key
+                            - label
+                            - value
+                          x-apifox-ignore-properties: []
+                        title: 多普勒列表
+                      is_collection:
+                        type: array
+                        items:
+                          type: string
+                        title: 废弃
+                      statistic_list:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              title: 饰品类型名称
+                            statistic_at:
+                              type: string
+                              title: 最近统计日期
+                            statistic:
+                              type: integer
+                              title: 存世量
+                          required:
+                            - name
+                            - statistic_at
+                            - statistic
+                          x-apifox-orders:
+                            - name
+                            - statistic_at
+                            - statistic
+                          x-apifox-ignore-properties: []
+                        title: 存世量列表
+                        description: 存储同类型的不同饰品的存世量
+                      container:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              title: 收藏品id
+                            url:
+                              type: string
+                              title: 收藏品图片
+                            name:
+                              type: string
+                              title: 收藏品名称
+                            price:
+                              type: number
+                              title: 该武器箱当前价格
+                            comment:
+                              type: string
+                              title: 备注
+                              description: 包含大行动、稀有度、直售等信息
+                            created_at:
+                              type: string
+                              title: 上线时间
+                              description: 指游戏内的更新上线时间
+                          required:
+                            - id
+                            - url
+                            - name
+                            - price
+                            - comment
+                            - created_at
+                          x-apifox-orders:
+                            - id
+                            - url
+                            - name
+                            - price
+                            - comment
+                            - created_at
+                          x-apifox-ignore-properties: []
+                        title: 该饰品所属武器箱/收藏品
+                    required:
+                      - goods_info
+                      - button_list
+                      - dpl
+                      - is_collection
+                      - statistic_list
+                      - container
+                    x-apifox-orders:
+                      - goods_info
+                      - button_list
+                      - dpl
+                      - is_collection
+                      - statistic_list
+                      - container
+                    title: 响应数据
+                    x-apifox-ignore-properties: []
+                required:
+                  - code
+                  - data
+                  - msg
+                x-apifox-orders:
+                  - code
+                  - msg
+                  - data
+                x-apifox-ignore-properties: []
+              example:
+                code: 200
+                data:
+                  goods_info:
+                    id: 7310
+                    turnover_number: 0
+                    turnover_avg_price: 0
+                    period_at: '2024-06-26T00:00:00'
+                    buff_id: 43091
+                    yyyp_id: 754
+                    name: M9 刺刀（★） | 多普勒 (崭新出厂)
+                    market_hash_name: ★ M9 Bayonet | Doppler (Factory New)
+                    buff_sell_price: 8549.5
+                    buff_buy_price: 8260
+                    buff_sell_num: 1163
+                    buff_buy_num: 78
+                    yyyp_sell_price: 8458
+                    yyyp_lease_num: 274
+                    yyyp_transfer_price: 8560
+                    yyyp_lease_price: 3.25
+                    yyyp_long_lease_price: 3
+                    yyyp_lease_annual: 7.38
+                    yyyp_long_lease_annual: 9.36
+                    yyyp_sell_num: 855
+                    yyyp_steam_price: 10594.87
+                    yyyp_buy_num: 151
+                    yyyp_buy_price: 79220
+                    sell_price_rate_1: 0.29
+                    sell_price_rate_7: 2.39
+                    sell_price_rate_30: -3.94
+                    sell_price_rate_180: 26.47
+                    sell_price_1: 24.5
+                    sell_price_7: 199.5
+                    sell_price_30: -350.5
+                    sell_price_180: 1789.51
+                    steam_sell_price: 11777.87
+                    steam_sell_num: 5
+                    steam_buy_price: 11043.61
+                    steam_buy_num: 9108
+                    steam_buff_buy_conversion: 0.7
+                    steam_buff_sell_conversion: 0.73
+                    buff_steam_buy_conversion: 0.88
+                    buff_steam_sell_conversion: 0.83
+                    type_localized_name: 匕首
+                    statistic: 27715
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa9492eaa49f1631dbfe031hhfyOprC
+                    updated_at: '2024-06-27T16:52:13'
+                    rarity_localized_name: 隐秘
+                    quality_localized_name: ★
+                    exterior_localized_name: 崭新出厂
+                    group_hash_name: M9 Bayonet | Doppler
+                  button_list:
+                    - id: 7310
+                      name: 崭新出厂
+                      current: true
+                      switch: false
+                    - id: 7311
+                      name: 略有磨损
+                      current: false
+                      switch: false
+                    - id: 7895
+                      name: ★ StatTrak™
+                      current: false
+                      switch: true
+                  dpl:
+                    - key: 146
+                      label: Phase1
+                      value: Phase1
+                    - key: 147
+                      label: Phase2
+                      value: Phase2
+                    - key: 148
+                      label: Phase3
+                      value: Phase3
+                    - key: 149
+                      label: Phase4
+                      value: Phase4
+                    - key: 150
+                      label: 黑珍珠
+                      value: Black Pearl
+                    - key: 151
+                      label: 红宝石
+                      value: Ruby
+                    - key: 152
+                      label: 蓝宝石
+                      value: Sapphire
+                  is_collection: []
+                  statistic_list:
+                    - name: Phase1
+                      statistic_at: '2023-11-26T02:11:53'
+                      statistic: 6391
+                    - name: Phase2
+                      statistic_at: '2023-11-26T06:36:22'
+                      statistic: 6559
+                    - name: Phase3
+                      statistic_at: '2023-11-26T02:13:04'
+                      statistic: 6297
+                    - name: Phase4
+                      statistic_at: '2023-11-26T06:36:33'
+                      statistic: 6798
+                    - name: 黑珍珠
+                      statistic_at: '2023-11-26T02:14:09'
+                      statistic: 178
+                    - name: 红宝石
+                      statistic_at: '2023-11-26T06:36:44'
+                      statistic: 727
+                    - name: 蓝宝石
+                      statistic_at: '2023-11-26T02:15:12'
+                      statistic: 765
+                  container:
+                    - id: 3
+                      url: >-
+                        https://g.fp.ps.netease.com/market/file/5a9fd45169b21ae4e2268192XHxJ5hrs
+                      name: 幻彩 3 号武器箱
+                      price: 14.15
+                      comment: 稀有掉落
+                      created_at: '2016-04-27T00:00:00'
+                    - id: 16
+                      url: >-
+                        https://g.fp.ps.netease.com/market/file/5a9fd45302c9a18f3c9eca349z1RAAZ9
+                      name: 幻彩 2 号武器箱
+                      price: 15.15
+                      comment: 稀有掉落
+                      created_at: '2015-04-15T00:00:00'
+                    - id: 14
+                      url: >-
+                        https://g.fp.ps.netease.com/market/file/5a9fd44f6f0494db8b736a20wr58RkEJ
+                      name: 幻彩武器箱
+                      price: 17.7
+                      comment: 稀有掉落
+                      created_at: '2015-01-08T00:00:00'
+                msg: Success
+          headers: {}
+          x-apifox-name: 成功
+        '422':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          headers: {}
+          x-apifox-name: Validation Error
+      security: []
+      x-apifox-folder: 接口详情/2️⃣ 饰品详情
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4711104/apis/api-187131780-run
+components:
+  schemas:
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      x-apifox-orders:
+        - detail
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ValidationError:
+      title: ValidationError
+      required:
+        - loc
+        - msg
+        - type
+      type: object
+      properties:
+        loc:
+          title: Location
+          type: array
+          items:
+            type: string
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      x-apifox-orders:
+        - loc
+        - msg
+        - type
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers:
+  - url: https://api.csqaq.com
+    description: 正式环境
+security: []
+
+```

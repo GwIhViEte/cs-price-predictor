@@ -1,0 +1,352 @@
+# 获取库存监控任务列表
+
+## OpenAPI Specification
+
+```yaml
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /api/v1/monitor/get_task_list:
+    post:
+      summary: 获取库存监控任务列表
+      deprecated: false
+      description: >-
+        🥇 获取Steam库存监控的任务列表，支持模糊检索Steam用户名和ID（对应网站页面
+        [CSQAQ-库存变动监控](https://csqaq.com/monitor) ）
+      operationId: __________________api_v1_monitor_get_task_list_post
+      tags:
+        - 接口详情/6️⃣ 库存监控
+        - api
+      parameters:
+        - name: ApiToken
+          in: header
+          description: 用户请求令牌（请自行申请）
+          required: true
+          example: '{{APITOKEN}}'
+          schema:
+            type: string
+            default: '{{APITOKEN}}'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                page_index:
+                  title: 页码数
+                  minimum: 1
+                  type: integer
+                page_size:
+                  type: integer
+                  title: 每页记录数
+                  maximum: 500
+                order:
+                  type: string
+                  title: 排序方式
+                  default: HOT
+                  enum:
+                    - HOT
+                    - CREATE_TIME
+                    - COUNT
+                    - TREND_TIME
+                    - VALUE
+                  x-apifox-enum:
+                    - value: HOT
+                      name: 按热度
+                      description: ''
+                    - value: CREATE_TIME
+                      name: 按创建时间
+                      description: ''
+                    - value: COUNT
+                      name: 按库存数量
+                      description: ''
+                    - value: TREND_TIME
+                      name: 按变动时间
+                      description: ''
+                    - value: VALUE
+                      name: 按库存价值
+                      description: ''
+                search:
+                  title: 模糊搜索关键字
+                  type: string
+                  description: 搜索Steam名称、SteamID
+              x-apifox-refs: {}
+              x-apifox-orders:
+                - page_index
+                - page_size
+                - order
+                - search
+              required:
+                - page_index
+                - page_size
+                - order
+              x-apifox-ignore-properties: []
+            example:
+              page_index: 1
+              page_size: 50
+              order: HOT
+              search: xx
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    title: 响应状态码
+                  msg:
+                    type: string
+                    title: 响应信息
+                  data:
+                    type: object
+                    properties:
+                      res:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              title: 监控任务task_id
+                            steam_name:
+                              type: string
+                              title: steam用户名
+                            steam_id:
+                              type: string
+                              title: steam用户id
+                            amount:
+                              type: integer
+                              title: 库存记录数
+                            active_time:
+                              type: integer
+                              title: 有效天数
+                            state:
+                              type: integer
+                              description: ' 0-运行中 1-已暂停'
+                              title: 状态
+                            avatar:
+                              type: string
+                              title: 头像地址
+                            updated_at:
+                              type: string
+                              title: 上次有效时间
+                              description: 仅用于与有效天数判断是否过期
+                            traded_at:
+                              type: string
+                              title: 最新变动时间
+                              description: 库存更新时间
+                          required:
+                            - id
+                            - steam_name
+                            - steam_id
+                            - amount
+                            - active_time
+                            - state
+                            - avatar
+                            - updated_at
+                            - traded_at
+                          x-apifox-orders:
+                            - id
+                            - steam_name
+                            - steam_id
+                            - amount
+                            - active_time
+                            - state
+                            - avatar
+                            - updated_at
+                            - traded_at
+                          x-apifox-ignore-properties: []
+                        title: 数据列表
+                      total:
+                        type: integer
+                        title: 查询记录总数
+                    required:
+                      - res
+                      - total
+                    x-apifox-orders:
+                      - res
+                      - total
+                    title: 响应数据
+                    x-apifox-ignore-properties: []
+                required:
+                  - code
+                  - msg
+                  - data
+                x-apifox-orders:
+                  - code
+                  - msg
+                  - data
+                x-apifox-ignore-properties: []
+              example:
+                code: 200
+                msg: Success
+                data:
+                  res:
+                    - id: 3111
+                      steam_name: SF90XX
+                      steam_id: '76561198062642625'
+                      amount: 103
+                      active_time: 30
+                      state: 0
+                      avatar: >-
+                        https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/2598440/5bdec92696b30d8b1a7dd8e00e1af4ec4ddc9013.gif
+                      updated_at: '2024-06-21T16:50:49'
+                      traded_at: '2024-06-23T15:52:26'
+                    - id: 2669
+                      steam_name: BlakeXx
+                      steam_id: '76561198428529695'
+                      amount: 805
+                      active_time: 30
+                      state: 0
+                      avatar: >-
+                        https://avatars.cloudflare.steamstatic.com/15fb500d9e7510e0fc347e6c6b57a04a3c889cdd_full.jpg
+                      updated_at: '2024-06-16T13:38:36'
+                      traded_at: '2024-06-25T16:59:05'
+                    - id: 2378
+                      steam_name: xxxxxxuebi
+                      steam_id: '76561199047994703'
+                      amount: 660
+                      active_time: 30
+                      state: 0
+                      avatar: >-
+                        https://avatars.akamai.steamstatic.com/3c256c35d751f271de75436ca9fde34368d3fe38_full.jpg
+                      updated_at: '2024-06-16T10:46:52'
+                      traded_at: '2024-06-26T14:35:23'
+                    - id: 2242
+                      steam_name: xxXxx
+                      steam_id: '76561198807120109'
+                      amount: 704
+                      active_time: 30
+                      state: 0
+                      avatar: >-
+                        https://cdn.akamai.steamstatic.com/steamcommunity/public/images/items/1203220/6d95936e4701775bffd9e7eb0ee838b7360b8750.gif
+                      updated_at: '2024-06-16T13:05:47'
+                      traded_at: '2024-06-08T03:19:54'
+                    - id: 1785
+                      steam_name: Xxtion
+                      steam_id: '76561199206089010'
+                      amount: 62
+                      active_time: 30
+                      state: 0
+                      avatar: >-
+                        https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/1390700/28a30c70a999c0673453a417a9e5df1ab76bc72d.gif
+                      updated_at: '2024-06-16T11:45:43'
+                      traded_at: '2024-06-22T16:24:13'
+                    - id: 1536
+                      steam_name: Gleb66xx
+                      steam_id: '76561199185767076'
+                      amount: 134
+                      active_time: 30
+                      state: 0
+                      avatar: >-
+                        https://avatars.akamai.steamstatic.com/7eece8f924e3596c42f42ac3f630ad71d0116427_full.jpg
+                      updated_at: '2024-06-16T13:45:21'
+                      traded_at: '2024-06-20T02:20:07'
+                    - id: 1498
+                      steam_name: CS第一美人Magixx
+                      steam_id: '76561198967580134'
+                      amount: 227
+                      active_time: 30
+                      state: 0
+                      avatar: >-
+                        https://avatars.cloudflare.steamstatic.com/f235a19410c36b056d5d69067abc5f5622ef7c40_full.jpg
+                      updated_at: '2024-06-16T13:42:28'
+                      traded_at: '2024-06-22T16:20:47'
+                    - id: 1264
+                      steam_name: LLLLaoxxx
+                      steam_id: '76561198971211246'
+                      amount: 18
+                      active_time: 30
+                      state: 0
+                      avatar: >-
+                        https://avatars.akamai.steamstatic.com/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_full.jpg
+                      updated_at: '2024-06-16T13:27:53'
+                      traded_at: '2024-06-07T00:20:36'
+                    - id: 732
+                      steam_name: ZNLORXXX
+                      steam_id: '76561198798737725'
+                      amount: 72
+                      active_time: 30
+                      state: 0
+                      avatar: >-
+                        https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/1385730/9b963628af732a322561925cb43db0991ab098d1.gif
+                      updated_at: '2024-06-16T12:56:35'
+                      traded_at: '2024-04-26T15:24:51'
+                    - id: 223
+                      steam_name: kfivexx
+                      steam_id: '76561198925849111'
+                      amount: 866
+                      active_time: 30
+                      state: 0
+                      avatar: >-
+                        https://avatars.akamai.steamstatic.com/f2e55947d01a5e7a452ec50607ad29c895035160_full.jpg
+                      updated_at: '2024-06-16T11:46:44'
+                      traded_at: '2024-06-26T02:12:21'
+                  total: 10
+          headers: {}
+          x-apifox-name: 成功
+        '422':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          headers: {}
+          x-apifox-name: Validation Error
+      security: []
+      x-apifox-folder: 接口详情/6️⃣ 库存监控
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4711104/apis/api-187131810-run
+components:
+  schemas:
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      x-apifox-orders:
+        - detail
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ValidationError:
+      title: ValidationError
+      required:
+        - loc
+        - msg
+        - type
+      type: object
+      properties:
+        loc:
+          title: Location
+          type: array
+          items:
+            type: string
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      x-apifox-orders:
+        - loc
+        - msg
+        - type
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers:
+  - url: https://api.csqaq.com
+    description: 正式环境
+security: []
+
+```

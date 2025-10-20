@@ -1,0 +1,292 @@
+# 获取排行榜单信息接口
+
+## OpenAPI Specification
+
+```yaml
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /api/v1/info/get_rank_list:
+    post:
+      summary: 获取排行榜单信息接口
+      deprecated: false
+      description: |-
+        🥇 获取全站所有饰品的各个指标（价格、租赁、挂刀套现、成交量、存世量、饰品总市值、在售数量、求购数量、在租数量）的排行榜数据
+
+        对应网站页面 [CSQAQ-排行榜单](https://csqaq.com/rank) 
+      operationId: __rank_____api_v1_info_get_rank_list_post
+      tags:
+        - 接口详情/3️⃣ 涨跌/热门排行/获取排行榜信息
+        - api
+      parameters:
+        - name: ApiToken
+          in: header
+          description: 用户请求令牌（请自行申请）
+          required: true
+          example: '{{APITOKEN}}'
+          schema:
+            type: string
+            default: '{{APITOKEN}}'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                page_index:
+                  title: 查询页码
+                  minimum: 1
+                  type: integer
+                page_size:
+                  title: 每页的记录数
+                  maximum: 500
+                  minimum: 1
+                  type: integer
+                search:
+                  title: 模糊搜索
+                  type: string
+                filter:
+                  title: 饰品筛选
+                  type: object
+                  x-apifox-orders: []
+                  properties: {}
+                  description: >-
+                    ------------------
+
+                    :::tip
+
+                    因Body参数过多，本页展示内容有限，请跳转（
+                    [排行榜接口Body参数](http://docs.csqaq.com/doc-4619235) 文档中查看 ）
+
+                    :::
+                  x-apifox-ignore-properties: []
+              x-apifox-refs: {}
+              x-apifox-orders:
+                - page_index
+                - page_size
+                - search
+                - filter
+              required:
+                - page_index
+                - page_size
+              x-apifox-ignore-properties: []
+            example:
+              page_index: 1
+              page_size: 12
+              search: ''
+              filter:
+                在售最少: 100
+                价格最低价: 1
+                类别:
+                  - unusual
+                排序:
+                  - 价格-售价减求购价(百分比)-升序(BUFF)
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    title: 响应状态码
+                  msg:
+                    type: string
+                    title: 排序依赖的关键字段
+                  data:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        title: 当前页码
+                      data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              title: 饰品good_id
+                            name:
+                              type: string
+                              title: 饰品中文名
+                            buff_price_chg:
+                              type: number
+                            exterior_localized_name:
+                              type: string
+                            rarity_localized_name:
+                              type: string
+                            img:
+                              type: string
+                            buff_sell_price:
+                              type: integer
+                            buff_buy_price:
+                              type: integer
+                            yyyp_lease_price:
+                              type: number
+                            yyyp_long_lease_price:
+                              type: number
+                            yyyp_sell_price:
+                              type: integer
+                            yyyp_buy_price:
+                              type: integer
+                            created_at:
+                              type: string
+                            sell_price_rate_1:
+                              type: number
+                            sell_buy_diff_chg_buff:
+                              type: number
+                          required:
+                            - id
+                            - name
+                            - buff_price_chg
+                            - exterior_localized_name
+                            - rarity_localized_name
+                            - img
+                            - buff_sell_price
+                            - buff_buy_price
+                            - yyyp_lease_price
+                            - yyyp_long_lease_price
+                            - yyyp_sell_price
+                            - yyyp_buy_price
+                            - created_at
+                            - sell_price_rate_1
+                            - sell_buy_diff_chg_buff
+                          x-apifox-orders:
+                            - id
+                            - name
+                            - buff_price_chg
+                            - exterior_localized_name
+                            - rarity_localized_name
+                            - img
+                            - buff_sell_price
+                            - buff_buy_price
+                            - yyyp_lease_price
+                            - yyyp_long_lease_price
+                            - yyyp_sell_price
+                            - yyyp_buy_price
+                            - created_at
+                            - sell_price_rate_1
+                            - sell_buy_diff_chg_buff
+                          x-apifox-ignore-properties: []
+                    required:
+                      - current_page
+                      - data
+                    x-apifox-orders:
+                      - current_page
+                      - data
+                    title: 响应数据
+                    x-apifox-ignore-properties: []
+                required:
+                  - code
+                  - msg
+                  - data
+                x-apifox-orders:
+                  - code
+                  - msg
+                  - data
+                x-apifox-ignore-properties: []
+              example:
+                code: 200
+                msg: sell_buy_diff_chg_buff
+                data:
+                  current_page: 1
+                  data:
+                    - id: 6770
+                      name: 鲍伊猎刀（★） | 外表生锈 (战痕累累)
+                      buff_price_chg: -6.46
+                      exterior_localized_name: 战痕累累
+                      rarity_localized_name: 隐秘
+                      img: >-
+                        https://g.fp.ps.netease.com/market/file/5a9fbe9dee4c0f4ffd1a0c0dARBOV0MH
+                      buff_sell_price: 630
+                      buff_buy_price: 636
+                      yyyp_lease_price: 0.8
+                      yyyp_long_lease_price: 0.69
+                      yyyp_sell_price: 656
+                      yyyp_buy_price: 680
+                      created_at: '2024-06-28T13:58:44'
+                      sell_price_rate_1: -3.42
+                      sell_buy_diff_chg_buff: -0.94
+                    - id: 8238
+                      name: 裹手（★） | 防水布胶带 (久经沙场)
+                      buff_price_chg: -1.04
+                      exterior_localized_name: 久经沙场
+                      rarity_localized_name: 非凡
+                      img: >-
+                        https://g.fp.ps.netease.com/market/file/5a9fd0bcaa49f1013d00b5c6fg5RJ113
+                      buff_sell_price: 488.88
+                      buff_buy_price: 488
+                      yyyp_lease_price: 0.52
+                      yyyp_long_lease_price: 0.51
+                      yyyp_sell_price: 497
+                      yyyp_buy_price: 496
+                      created_at: '2024-06-28T13:58:44'
+                      sell_price_rate_1: -1.91
+                      sell_buy_diff_chg_buff: 0.18
+          headers: {}
+          x-apifox-name: 成功
+        '422':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          headers: {}
+          x-apifox-name: Validation Error
+      security: []
+      x-apifox-folder: 接口详情/3️⃣ 涨跌/热门排行/获取排行榜信息
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4711104/apis/api-187131776-run
+components:
+  schemas:
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      x-apifox-orders:
+        - detail
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ValidationError:
+      title: ValidationError
+      required:
+        - loc
+        - msg
+        - type
+      type: object
+      properties:
+        loc:
+          title: Location
+          type: array
+          items:
+            type: string
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      x-apifox-orders:
+        - loc
+        - msg
+        - type
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers:
+  - url: https://api.csqaq.com
+    description: 正式环境
+security: []
+
+```

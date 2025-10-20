@@ -1,0 +1,201 @@
+# 获取单件饰品全量图表数据 (暂停使用)
+
+## OpenAPI Specification
+
+```yaml
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /api/v1/info/chartAll:
+    post:
+      summary: 获取单件饰品全量图表数据 (暂停使用)
+      deprecated: false
+      description: >-
+        🥇 获取单件饰品的全量图表数据（仅包含在售价和在售数量）需用饰品good_id进行请求，good_id获取接口为
+        [获取饰品的ID信息](http://docs.csqaq.com/api-187131777)
+      operationId: ____good_____api_v1_info_chartAll_post
+      tags:
+        - 接口详情/2️⃣ 饰品详情
+        - api
+      parameters:
+        - name: ApiToken
+          in: header
+          description: 用户请求令牌（请自行申请）
+          required: true
+          example: '{{APITOKEN}}'
+          schema:
+            type: string
+            default: '{{APITOKEN}}'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                good_id:
+                  title: 饰品good_id
+                  type: integer
+                plat:
+                  type: integer
+                  title: 对应平台
+                  description: 1-BUFF平台 2-悠悠有品平台
+                  enum:
+                    - 1
+                    - 2
+                  x-apifox-enum:
+                    - value: 1
+                      name: ''
+                      description: BUFF平台
+                    - value: 2
+                      name: ''
+                      description: 悠悠有品平台
+              x-apifox-refs: {}
+              x-apifox-orders:
+                - good_id
+                - plat
+              required:
+                - good_id
+                - plat
+              x-apifox-ignore-properties: []
+            example:
+              good_id: 7310
+              plat: 1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    title: 响应状态码
+                  msg:
+                    type: string
+                    title: 响应信息
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        price:
+                          type: integer
+                          title: 在售价格
+                        num:
+                          type: integer
+                          title: 在售数量
+                        created_at:
+                          type: string
+                          title: 数据创建时间
+                      required:
+                        - price
+                        - num
+                        - created_at
+                      x-apifox-orders:
+                        - price
+                        - num
+                        - created_at
+                      x-apifox-ignore-properties: []
+                    title: 响应数据
+                required:
+                  - code
+                  - msg
+                  - data
+                x-apifox-orders:
+                  - code
+                  - msg
+                  - data
+                x-apifox-ignore-properties: []
+              example:
+                code: 200
+                msg: Success
+                data:
+                  - price: 8550
+                    num: 1156
+                    created_at: '2024-06-28T06:39:40'
+                  - price: 8550
+                    num: 1155
+                    created_at: '2024-06-28T07:03:41'
+                  - price: 8550
+                    num: 1153
+                    created_at: '2024-06-28T07:27:49'
+                  - price: 8550
+                    num: 1153
+                    created_at: '2024-06-28T07:51:52'
+                  - price: 8550
+                    num: 1152
+                    created_at: '2024-06-28T08:16:06'
+                  - price: 8550
+                    num: 1152
+                    created_at: '2024-06-28T08:40:19'
+                  - price: 8550
+                    num: 1154
+                    created_at: '2024-06-28T09:04:46'
+                  - price: 8550
+                    num: 1156
+                    created_at: '2024-06-28T09:29:28'
+          headers: {}
+          x-apifox-name: 成功
+        '422':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          headers: {}
+          x-apifox-name: Validation Error
+      security: []
+      x-apifox-folder: 接口详情/2️⃣ 饰品详情
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4711104/apis/api-187131782-run
+components:
+  schemas:
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      x-apifox-orders:
+        - detail
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ValidationError:
+      title: ValidationError
+      required:
+        - loc
+        - msg
+        - type
+      type: object
+      properties:
+        loc:
+          title: Location
+          type: array
+          items:
+            type: string
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      x-apifox-orders:
+        - loc
+        - msg
+        - type
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers:
+  - url: https://api.csqaq.com
+    description: 正式环境
+security: []
+
+```

@@ -1,0 +1,201 @@
+# 获取库存监控持有量排行榜
+
+## OpenAPI Specification
+
+```yaml
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /api/v1/monitor/rank:
+    post:
+      summary: 获取库存监控持有量排行榜
+      deprecated: false
+      description: >-
+        🥇 获取库存监控中饰品持有量排行榜，默认降序排行，需用饰品good_id进行请求，good_id获取接口为
+        [获取饰品的ID信息](http://docs.csqaq.com/api-187131777)
+      operationId: _____________api_v1_monitor_rank_post
+      tags:
+        - 接口详情/6️⃣ 库存监控
+        - api
+      parameters:
+        - name: ApiToken
+          in: header
+          description: 用户请求令牌（请自行申请）
+          required: true
+          example: '{{APITOKEN}}'
+          schema:
+            type: string
+            default: '{{APITOKEN}}'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                good_id:
+                  title: 饰品good_id
+                  type: integer
+                  description: 需从【获取饰品的ID信息】接口 或 其它包含good_id的接口获取
+              x-apifox-refs: {}
+              x-apifox-orders:
+                - good_id
+              required:
+                - good_id
+              x-apifox-ignore-properties: []
+            example:
+              good_id: '8581'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    title: 响应状态码
+                  msg:
+                    type: string
+                    title: 响应信息
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          title: 库存监控任务task_id
+                        steam_name:
+                          type: string
+                          title: steam用户名称
+                        steam_id:
+                          type: string
+                          title: steam用户id
+                        avatar:
+                          type: string
+                          title: steam头像地址
+                        num:
+                          type: integer
+                          title: 持有数量
+                      required:
+                        - id
+                        - steam_name
+                        - steam_id
+                        - avatar
+                        - num
+                      x-apifox-orders:
+                        - id
+                        - steam_name
+                        - steam_id
+                        - avatar
+                        - num
+                      x-apifox-ignore-properties: []
+                    title: 响应数据
+                required:
+                  - code
+                  - msg
+                  - data
+                x-apifox-orders:
+                  - code
+                  - msg
+                  - data
+                x-apifox-ignore-properties: []
+              example:
+                code: 200
+                msg: Success
+                data:
+                  - id: 226
+                    steam_name: Alaska
+                    steam_id: '76561199407414580'
+                    avatar: >-
+                      https://avatars.akamai.steamstatic.com/d537260590f27edd773a84952c72dbbf06abbda1_full.jpg
+                    num: 139
+                  - id: 959
+                    steam_name: Kitty
+                    steam_id: '76561199109310364'
+                    avatar: >-
+                      https://avatars.akamai.steamstatic.com/74c640b27c7228f29d294ed8d47d5eb9cd400351_full.jpg
+                    num: 90
+                  - id: 1279
+                    steam_name: 不吃香菜qwq
+                    steam_id: '76561199383444943'
+                    avatar: >-
+                      https://avatars.akamai.steamstatic.com/72506d3eab0f4185f58c5ddcc318b41bc0aa5b4a_full.jpg
+                    num: 54
+                  - id: 2173
+                    steam_name: 天才火球鼠
+                    steam_id: '76561198954929757'
+                    avatar: >-
+                      https://avatars.cloudflare.steamstatic.com/2837aac9c5fdc33f2fdb63352d39cdd0276ce4df_full.jpg
+                    num: 29
+                  - id: 321
+                    steam_name: CS2 陈sir一号仓
+                    steam_id: '76561199269022550'
+                    avatar: >-
+                      https://avatars.akamai.steamstatic.com/fc5418576fbdf87ace01eafee2aa8979b0dd0939_full.jpg
+                    num: 29
+          headers: {}
+          x-apifox-name: 成功
+        '422':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          headers: {}
+          x-apifox-name: Validation Error
+      security: []
+      x-apifox-folder: 接口详情/6️⃣ 库存监控
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4711104/apis/api-187131813-run
+components:
+  schemas:
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      x-apifox-orders:
+        - detail
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ValidationError:
+      title: ValidationError
+      required:
+        - loc
+        - msg
+        - type
+      type: object
+      properties:
+        loc:
+          title: Location
+          type: array
+          items:
+            type: string
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      x-apifox-orders:
+        - loc
+        - msg
+        - type
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers:
+  - url: https://api.csqaq.com
+    description: 正式环境
+security: []
+
+```

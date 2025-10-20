@@ -1,0 +1,197 @@
+# 获取武器箱开箱数量统计
+
+## OpenAPI Specification
+
+```yaml
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /api/v1/stat/case:
+    get:
+      summary: 获取武器箱开箱数量统计
+      deprecated: false
+      description: >-
+        🥇 获取武器箱的开箱数量详情数据（对应网站页面
+        [CSQAQ-开箱数据-开箱数量统计](https://csqaq.com/stat/case) ）
+      operationId: __________api_v1_stat_case_get
+      tags:
+        - 接口详情/7️⃣ 武器箱数据
+        - api
+      parameters:
+        - name: ApiToken
+          in: header
+          description: 用户请求令牌（请自行申请）
+          required: true
+          example: '{{APITOKEN}}'
+          schema:
+            type: string
+            default: '{{APITOKEN}}'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    title: 响应状态码
+                  msg:
+                    type: string
+                    title: 响应信息
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        case_id:
+                          type: integer
+                          title: 武器箱id
+                        daily:
+                          type: integer
+                          title: 今日开箱数量
+                        weekly:
+                          type: integer
+                          title: 本周开箱数量
+                        monthly:
+                          type: integer
+                          title: 本月开箱数量
+                        total:
+                          type: integer
+                          title: 总开箱数量
+                        created_at:
+                          type: string
+                          title: 更新时间
+                          description: 数据更新时间
+                        cn_name:
+                          type: string
+                          title: 中文名称
+                        img:
+                          type: string
+                          title: 武器箱图片
+                        type:
+                          type: integer
+                          title: 武器箱类型
+                          enum:
+                            - 0
+                            - 1
+                            - 2
+                            - 3
+                          x-apifox:
+                            enumDescriptions:
+                              '0': 商店直售
+                              '1': 常规掉落
+                              '2': 稀有掉落
+                              '3': 绝版
+                        good_id:
+                          type: integer
+                          title: 饰品id
+                          description: 对应箱子饰品的id
+                        ground_at:
+                          type: string
+                          title: 上线日期
+                          description: 指该箱子在游戏的上线日期
+                      required:
+                        - case_id
+                        - daily
+                        - weekly
+                        - monthly
+                        - total
+                        - created_at
+                        - cn_name
+                        - img
+                        - type
+                        - good_id
+                        - ground_at
+                      x-apifox-orders:
+                        - case_id
+                        - daily
+                        - weekly
+                        - monthly
+                        - total
+                        - created_at
+                        - cn_name
+                        - img
+                        - type
+                        - good_id
+                        - ground_at
+                    title: 响应数据
+                required:
+                  - code
+                  - msg
+                  - data
+                x-apifox-orders:
+                  - code
+                  - msg
+                  - data
+              example:
+                code: 200
+                msg: Success
+                data:
+                  - case_id: 41
+                    daily: 51922
+                    weekly: 376437
+                    monthly: 2627274
+                    total: 15776629
+                    created_at: '2024-06-26T01:00:03'
+                    cn_name: 千瓦武器箱
+                    img: >-
+                      https://market.fp.ps.netease.com/file/65c2d1e641a6a6bbcafdd84cscGrKHvL05
+                    type: 1
+                    good_id: 19521
+                    ground_at: '2024-02-07T00:00:00'
+                  - case_id: 40
+                    daily: 0
+                    weekly: 36910
+                    monthly: 1107318
+                    total: 51379571
+                    created_at: '2024-06-26T01:00:03'
+                    cn_name: 阿努比斯收藏包
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/6447217d3fc7c9a57a30bd50sgSaYhSi04
+                    type: 0
+                    good_id: 16463
+                    ground_at: '2023-04-25T00:00:00'
+                  - case_id: 39
+                    daily: 74074
+                    weekly: 600189
+                    monthly: 3768281
+                    total: 59198480
+                    created_at: '2024-06-26T01:00:03'
+                    cn_name: 变革武器箱
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5a2e6779f248773656374kAHJNEoE04
+                    type: 1
+                    good_id: 16283
+                    ground_at: '2023-02-10T00:00:00'
+                  - case_id: 38
+                    daily: 32174
+                    weekly: 315897
+                    monthly: 2079658
+                    total: 67084330
+                    created_at: '2024-06-26T01:00:03'
+                    cn_name: 反冲武器箱
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/62bf6ac991df682427d38ac4MbtVXRUV04
+                    type: 1
+                    good_id: 15447
+                    ground_at: '2022-07-02T00:00:00'
+          headers: {}
+          x-apifox-name: 成功
+      security: []
+      x-apifox-folder: 接口详情/7️⃣ 武器箱数据
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4711104/apis/api-187131788-run
+components:
+  schemas: {}
+  securitySchemes: {}
+servers:
+  - url: https://api.csqaq.com
+    description: 正式环境
+security: []
+
+```

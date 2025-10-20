@@ -1,0 +1,93 @@
+# 接入指南
+
+CSQAQ数据开放API基于`HTTPS`协议，需自行封装请求进行调用
+
+所有接口请求和响应数据均遵循JSON格式。在开发过程中，您需要注意以下几点：
+
+## 调用地址
+| 环境 | API地址 |状态|
+| --- | --- | --- |
+|  正式环境  |  https://api.csqaq.com/api/v1  | 可用 ✔ |
+
+
+## 调用流程
+
+CSQAQ数据开放API使用基于**简单令牌+IP绑定**的身份验证
+
+API TOKEN在注册账号时默认生成，注册完成后即可直接使用。
+
+通过 `HTTP Headers` 设置 `ApiToken` 的值为`"YOUR_API_TOKEN"`来进行验证
+
+:::tip
+1. 注册网站用户
+2. 点击用户头像，获取ApiToken，复制结果
+3. 点击自动获取 或 手动绑定白名单IP（2024/07/19新增）
+4. 封装API请求 > 发起请求 > 得到响应
+:::
+
+## ⭐特别注意事项⭐
+请**不要**使用网站内【调试】功能进行调试
+
+建议使用**桌面版Apifox**、**Postman**、本地代码进行调试.
+
+原因：网页版会通过Apifox的沙盒进行请求，无法匹配你的白名单IP
+
+<Frame caption="网站自带调试功能，请勿使用">
+  ![](https://api.apifox.com/api/v1/projects/4711104/resources/499879/image-preview)
+</Frame>
+
+
+## 调用流程图示
+
+<Frame caption="获取ApiToken示例">
+  ![](https://api.apifox.com/api/v1/projects/4711104/resources/488506/image-preview)
+</Frame>
+
+
+<Frame caption="令牌结果 / IP绑定">
+  ![](https://api.apifox.com/api/v1/projects/4711104/resources/486758/image-preview)
+</Frame>
+
+<Frame caption="Postman请求参考">
+  ![](https://api.apifox.com/api/v1/projects/4711104/resources/486776/image-preview)
+</Frame>
+
+## 频率限制
+
+:::caution
+为不影响网站业务的正常使用，公开数据API接口请求频率和次数如下：
+
+<TipGood>请求次数：**不限次**</TipGood>
+<TipGood>单IP请求频率：**1 次/秒**</TipGood>
+
+
+<!--如果你有其他更高的调用频率需求，请联系站长
+
+<AccordionGroup>
+  <Accordion title="点击添加好友">
+<Background>
+  ![](https://api.apifox.com/api/v1/projects/4711104/resources/491454/image-preview)
+</Background>
+  </Accordion>
+</AccordionGroup>-->
+:::
+
+
+## 公共返回报文
+在所有请求的返回值里，大部分接口会有以下公共的字段：
+
+|参数名称	|参数类型	|说明|
+| --- | --- | --- |
+|code	|Integer	|接口状态返回码|
+|msg	|String	|业务状态信息|
+|data	|Object	|业务数据|
+
+
+本站常见状态码
+> 2xx：响应成功
+> 400：用户不存在或Token验证未通过
+> 401：Token验证未通过
+> 404：接口错误统一返回
+> 500：服务错误统一返回（回传request_id可协助排查）
+> 503：网关异常或请求频繁
+

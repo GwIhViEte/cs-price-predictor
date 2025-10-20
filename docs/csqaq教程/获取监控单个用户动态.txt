@@ -1,0 +1,311 @@
+# 获取监控单个用户动态
+
+## OpenAPI Specification
+
+```yaml
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /api/v1/task/get_task_info:
+    post:
+      summary: 获取监控单个用户动态
+      deprecated: false
+      description: >-
+        🥇 获取库存监控中单个用户的库存变动动态，需用任务task_id进行请求，task_id获取接口为
+        [获取库存监控任务列表](http://docs.csqaq.com/api-187131810)
+      operationId: ________________api_v1_task_get_task_info_post
+      tags:
+        - 接口详情/6️⃣ 库存监控
+        - api
+      parameters:
+        - name: ApiToken
+          in: header
+          description: 用户请求令牌（请自行申请）
+          required: true
+          example: '{{APITOKEN}}'
+          schema:
+            type: string
+            default: '{{APITOKEN}}'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                page_index:
+                  title: 查询页码数
+                  minimum: 1
+                  type: integer
+                page_size:
+                  title: 每页记录数
+                  maximum: 5000
+                  type: integer
+                task_id:
+                  title: 库存监控任务id
+                  type: integer
+              x-apifox-refs: {}
+              x-apifox-orders:
+                - page_index
+                - page_size
+                - task_id
+              required:
+                - page_index
+                - page_size
+              x-apifox-ignore-properties: []
+            example:
+              page_index: 1
+              page_size: 200
+              task_id: '1431'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    title: 响应状态码
+                  msg:
+                    type: string
+                    title: 响应信息
+                  data:
+                    type: object
+                    properties:
+                      info:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              title: 库存监控task_id
+                            steam_name:
+                              type: string
+                              title: steam用户名称
+                            steam_id:
+                              type: string
+                              title: steam用户id
+                            amount:
+                              type: integer
+                              title: 库存记录数
+                            asset_cnt:
+                              type: integer
+                              title: 库存Assetid数量
+                            active_time:
+                              type: integer
+                              title: 有效天数
+                            state:
+                              type: integer
+                              title: 状态
+                              description: ' 0-运行中 1-已暂停'
+                            avatar:
+                              type: string
+                              title: 头像地址
+                            updated_at:
+                              type: string
+                              title: 上次有效时间
+                              description: 仅用于与有效天数判断是否过期
+                            traded_at:
+                              type: string
+                              title: 最新变动时间
+                            inventory_state:
+                              type: integer
+                              description: 0-公开 1-私密
+                              title: 库存状态
+                            deleted:
+                              type: integer
+                              title: 是否删除
+                              description: 0-未删除 1-已删除
+                          x-apifox-orders:
+                            - id
+                            - steam_name
+                            - steam_id
+                            - amount
+                            - asset_cnt
+                            - active_time
+                            - state
+                            - avatar
+                            - updated_at
+                            - traded_at
+                            - inventory_state
+                            - deleted
+                          x-apifox-ignore-properties: []
+                        title: steam用户信息
+                      trades:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            market_name:
+                              type: string
+                              title: 饰品中文名称
+                            created_at:
+                              type: string
+                              title: 更新时间
+                            count:
+                              type: integer
+                              title: 变动数量
+                            type:
+                              type: integer
+                              title: 条目类型
+                              description: >-
+                                0 默认库存 1 买入 2 卖出 3 存入 4 取出 5 cd恢复 6 取出/恢复 7
+                                卖出/存入
+                            tradable:
+                              type: integer
+                              title: 是否可交易
+                              description: ' 0-禁止 1-允许'
+                            icon_url:
+                              type: string
+                              title: 饰品图片
+                            good_id:
+                              type: integer
+                              title: 饰品good_id
+                          required:
+                            - market_name
+                            - created_at
+                            - count
+                            - type
+                            - tradable
+                            - icon_url
+                            - good_id
+                          x-apifox-orders:
+                            - market_name
+                            - created_at
+                            - count
+                            - type
+                            - tradable
+                            - icon_url
+                            - good_id
+                          x-apifox-ignore-properties: []
+                        title: 库存变动数据
+                      is_user:
+                        type: boolean
+                        title: 是否为本用户创建
+                      is_subscribe:
+                        type: boolean
+                        title: 是否已订阅
+                    required:
+                      - info
+                      - trades
+                      - is_user
+                      - is_subscribe
+                    x-apifox-orders:
+                      - info
+                      - trades
+                      - is_user
+                      - is_subscribe
+                    title: 响应数据
+                    x-apifox-ignore-properties: []
+                required:
+                  - code
+                  - msg
+                  - data
+                x-apifox-orders:
+                  - code
+                  - msg
+                  - data
+                x-apifox-ignore-properties: []
+              example:
+                code: 200
+                msg: Success
+                data:
+                  info:
+                    - id: 1431
+                      steam_name: 超越姐保运我
+                      steam_id: '76561198438710837'
+                      amount: 408
+                      asset_cnt: 276
+                      active_time: 30
+                      state: 0
+                      avatar: >-
+                        https://avatars.cloudflare.steamstatic.com/51c336900b8228d9b18994c26a6d27b6a79f08cc_full.jpg
+                      updated_at: '2024-06-16T13:38:26'
+                      traded_at: '2024-06-26T17:05:47'
+                      inventory_state: 0
+                      deleted: 0
+                  trades:
+                    - market_name: M4A4 | 红色 DDPAT (崭新出厂)
+                      created_at: '2024-06-26T17:05:47'
+                      count: 1
+                      type: 5
+                      tradable: 1
+                      icon_url: >-
+                        -9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhoyszMdS1D-OOjhoKKmcjmNr_ummJW4NE_3OvDoo_xjVflr0M-Ym_yIoTEIVU7YlHSrgfrxO_ogsLquczNyidm7z5iuyjqgrqQeQ
+                      good_id: 13673
+                    - market_name: M9 刺刀（★） | 澄澈之水 (久经沙场)
+                      created_at: '2024-06-26T17:05:47'
+                      count: 1
+                      type: 5
+                      tradable: 1
+                      icon_url: >-
+                        -9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf3qr3czxb49KzgL-Djsj7ML7QmFRa5sx3j9aYpbP4jVC9vh5yMG-ndY_He1U5Y1jQ-Vfvwu3m08Lp7cnOynpruSV0sXzdnxG3gh0fPPsv26LgyWjqrw
+                      good_id: 7293
+                  is_user: false
+                  is_subscribe: false
+          headers: {}
+          x-apifox-name: 成功
+        '422':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          headers: {}
+          x-apifox-name: Validation Error
+      security: []
+      x-apifox-folder: 接口详情/6️⃣ 库存监控
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4711104/apis/api-187131814-run
+components:
+  schemas:
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      x-apifox-orders:
+        - detail
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ValidationError:
+      title: ValidationError
+      required:
+        - loc
+        - msg
+        - type
+      type: object
+      properties:
+        loc:
+          title: Location
+          type: array
+          items:
+            type: string
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      x-apifox-orders:
+        - loc
+        - msg
+        - type
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers:
+  - url: https://api.csqaq.com
+    description: 正式环境
+security: []
+
+```

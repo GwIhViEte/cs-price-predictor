@@ -1,0 +1,131 @@
+# 联想查询饰品的ID信息
+
+## OpenAPI Specification
+
+```yaml
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /api/v1/search/suggest:
+    get:
+      summary: 联想查询饰品的ID信息
+      deprecated: false
+      description: >-
+        🥇 饰品名称联想查询，获取本站所记录的饰品的库表ID信息，用于请求其他接口时所需的good_id
+
+
+        <Columns>
+          <Column>
+         
+        ![微信截图_20240701150828.png](https://api.apifox.com/api/v1/projects/4711104/resources/450700/image-preview)
+          </Column>
+          <Column>
+         
+        ![微信截图_20240701150928.png](https://api.apifox.com/api/v1/projects/4711104/resources/450701/image-preview)
+          </Column>
+        </Columns>
+
+
+        除支持基本的饰品搜索外，还支持特殊关键词联想，示例如下
+
+
+        - 皮肤类：
+
+        > 二西莫夫(高达)、黑色魅影(大姐姐)、炽热之炎(火沙鹰)、巨龙传说(龙狙)、短剑(牙签) 、廓尔喀刀(尼泊尔) 、穿肠刀(杀猪刀)
+        、外表生锈(破伤风)、赤红新星(qq会员) 等
+
+
+        - 武器类：
+
+        > SSG 08(鸟狙)、加利尔 AR(咖喱)、MAC-10(吹风机)、AWP(大狙) 等
+
+
+        - 职业哥类：
+
+        > Twistzz(总监)、frozen(寒王)、electronic(电子哥/倒霉蛋)、ZywOo(载物/大番薯) 等
+
+
+        - 战队类：
+
+        > Astralis(A队)、TYLOO(天禄)、Spirit(绿龙)、FURIA(黑豹)、Monte(三叉戟) 等
+
+
+        - 常规类：
+
+        > 久经沙场(酒精)、StatTrak™(暗金)、原皮/原版/无涂装 等
+      tags:
+        - 接口详情/2️⃣ 饰品详情
+      parameters:
+        - name: text
+          in: query
+          description: 饰品名联想查询关键字
+          required: false
+          example: 杀猪刀
+          schema:
+            type: string
+        - name: ApiToken
+          in: header
+          description: 用户请求令牌（请自行申请）
+          required: true
+          example: '{{APITOKEN}}'
+          schema:
+            type: string
+            default: '{{APITOKEN}}'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    title: 响应状态码
+                  msg:
+                    type: string
+                    title: 响应信息
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          title: 饰品good_id
+                        value:
+                          type: string
+                          title: 饰品中文名
+                      required:
+                        - id
+                        - value
+                      x-apifox-orders:
+                        - id
+                        - value
+                    title: 响应数据
+                required:
+                  - code
+                  - msg
+                  - data
+                x-apifox-orders:
+                  - code
+                  - msg
+                  - data
+          headers: {}
+          x-apifox-name: 成功
+      security: []
+      x-apifox-folder: 接口详情/2️⃣ 饰品详情
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4711104/apis/api-189290586-run
+components:
+  schemas: {}
+  securitySchemes: {}
+servers:
+  - url: https://api.csqaq.com
+    description: 正式环境
+security: []
+
+```

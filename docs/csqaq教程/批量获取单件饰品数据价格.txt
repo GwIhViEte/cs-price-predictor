@@ -1,0 +1,252 @@
+# 批量获取单件饰品数据价格
+
+## OpenAPI Specification
+
+```yaml
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /api/v1/goods/getPriceByMarketHashName:
+    post:
+      summary: 批量获取单件饰品数据价格
+      deprecated: false
+      description: |
+        🥇 批量获取饰品的价格和在售数据接口，通过饰品marketHashName进行请求
+
+        :::caution[]
+        单次查询marketHashName列表长度 ≤ 50
+        :::
+      operationId: __good_____api_v1_info_good_get
+      tags:
+        - 接口详情/2️⃣ 饰品详情
+        - api
+      parameters:
+        - name: ApiToken
+          in: header
+          description: 用户请求令牌（请自行申请）
+          required: true
+          example: '{{APITOKEN}}'
+          schema:
+            type: string
+            default: '{{APITOKEN}}'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                marketHashNameList:
+                  type: array
+                  items:
+                    type: string
+                    description: marketHashName
+                  title: 饰品英文名称列表
+              x-apifox-orders:
+                - marketHashNameList
+              required:
+                - marketHashNameList
+              x-apifox-ignore-properties: []
+            example:
+              marketHashNameList:
+                - ★ Bowie Knife
+                - ★ Huntsman Knife | Tiger Tooth (Factory New)
+                - AWP | Snake Camo (Factory New)
+                - test_name
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  msg:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      success:
+                        type: object
+                        properties:
+                          ★ Bowie Knife:
+                            type: object
+                            properties:
+                              goodId:
+                                type: integer
+                                title: 站内物品ID
+                              name:
+                                type: string
+                                title: 饰品中文名称
+                              marketHashName:
+                                type: string
+                                title: 饰品英文名称
+                              buffSellPrice:
+                                type: integer
+                                title: buff在售价格
+                              buffSellNum:
+                                type: integer
+                                title: buff在售数量
+                              yyypSellPrice:
+                                type: integer
+                                title: yyyp在售价格
+                              yyypSellNum:
+                                type: integer
+                                title: yyyp在售数量
+                              steamSellPrice:
+                                type: number
+                                title: steam在售价格
+                              steamSellNum:
+                                type: integer
+                                title: steam在售数量
+                            required:
+                              - goodId
+                              - name
+                              - marketHashName
+                              - buffSellPrice
+                              - buffSellNum
+                              - yyypSellPrice
+                              - yyypSellNum
+                              - steamSellPrice
+                              - steamSellNum
+                            x-apifox-orders:
+                              - goodId
+                              - name
+                              - marketHashName
+                              - buffSellPrice
+                              - buffSellNum
+                              - yyypSellPrice
+                              - yyypSellNum
+                              - steamSellPrice
+                              - steamSellNum
+                            title: marketHashName
+                            x-apifox-ignore-properties: []
+                        required:
+                          - ★ Bowie Knife
+                        x-apifox-orders:
+                          - ★ Bowie Knife
+                        title: 请求成功数据
+                        x-apifox-ignore-properties: []
+                      error:
+                        type: array
+                        items:
+                          type: string
+                        title: 请求失败数据
+                    required:
+                      - success
+                      - error
+                    x-apifox-orders:
+                      - success
+                      - error
+                    x-apifox-ignore-properties: []
+                required:
+                  - code
+                  - msg
+                  - data
+                x-apifox-orders:
+                  - code
+                  - msg
+                  - data
+                x-apifox-ignore-properties: []
+              example:
+                code: 200
+                msg: Success
+                data:
+                  success:
+                    ★ Bowie Knife:
+                      goodId: 6733
+                      name: 鲍伊猎刀（★）
+                      marketHashName: ★ Bowie Knife
+                      buffSellPrice: 1340
+                      buffSellNum: 43
+                      yyypSellPrice: 1309
+                      yyypSellNum: 35
+                      steamSellPrice: 1947.77
+                      steamSellNum: 11
+                    ★ Huntsman Knife | Tiger Tooth (Factory New):
+                      goodId: 7189
+                      name: 猎杀者匕首（★） | 虎牙 (崭新出厂)
+                      marketHashName: ★ Huntsman Knife | Tiger Tooth (Factory New)
+                      buffSellPrice: 2145
+                      buffSellNum: 41
+                      yyypSellPrice: 2090
+                      yyypSellNum: 32
+                      steamSellPrice: 3060.63
+                      steamSellNum: 26
+                    AWP | Snake Camo (Factory New):
+                      goodId: 301
+                      name: AWP | 蝮蛇迷彩 (崭新出厂)
+                      marketHashName: AWP | Snake Camo (Factory New)
+                      buffSellPrice: 1479
+                      buffSellNum: 8
+                      yyypSellPrice: 1484
+                      yyypSellNum: 5
+                      steamSellPrice: 2474.25
+                      steamSellNum: 4
+                  error:
+                    - test_name
+          headers: {}
+          x-apifox-name: 成功
+        '422':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          headers: {}
+          x-apifox-name: Validation Error
+      security: []
+      x-apifox-folder: 接口详情/2️⃣ 饰品详情
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4711104/apis/api-283470032-run
+components:
+  schemas:
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      x-apifox-orders:
+        - detail
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ValidationError:
+      title: ValidationError
+      required:
+        - loc
+        - msg
+        - type
+      type: object
+      properties:
+        loc:
+          title: Location
+          type: array
+          items:
+            type: string
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      x-apifox-orders:
+        - loc
+        - msg
+        - type
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers:
+  - url: https://api.csqaq.com
+    description: 正式环境
+security: []
+
+```

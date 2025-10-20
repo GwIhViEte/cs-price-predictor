@@ -1,0 +1,192 @@
+# 获取热门系列饰品列表
+
+## OpenAPI Specification
+
+```yaml
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /api/v1/info/get_series_list:
+    post:
+      summary: 获取热门系列饰品列表
+      deprecated: false
+      description: 🥇 获取统计的热门系列饰品列表数据（对应网站页面 [CSQAQ-热门系列](https://csqaq.com/series) ）
+      operationId: _______api_v1_info_get_series_list_post
+      tags:
+        - 接口详情/3️⃣ 涨跌/热门排行
+        - api
+      parameters:
+        - name: ApiToken
+          in: header
+          description: 用户请求令牌（请自行申请）
+          required: true
+          example: '{{APITOKEN}}'
+          schema:
+            type: string
+            default: '{{APITOKEN}}'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    title: 响应状态码
+                  msg:
+                    type: string
+                    title: 响应信息
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        key:
+                          type: integer
+                          title: 序号
+                        id:
+                          type: integer
+                          title: 热门系列id
+                          description: 用于请求获取单件热门系列饰品
+                        name:
+                          type: string
+                          title: 系列名称
+                        sell_price_1:
+                          type: number
+                          title: 近1日售价涨跌比率
+                        sell_price_7:
+                          type: number
+                          title: 近7日售价涨跌比率
+                        sell_price_15:
+                          type: number
+                          title: 近15日售价涨跌比率
+                        sell_price_30:
+                          type: number
+                          title: 近30日售价涨跌比率
+                        sell_price_90:
+                          type: number
+                          title: 近90日售价涨跌比率
+                        sell_price_180:
+                          type: number
+                          title: 近180日售价涨跌比率
+                        amount:
+                          type: integer
+                          title: 该系列饰品数量
+                        total_value:
+                          type: integer
+                          title: 系列底价总值
+                        created_at:
+                          type: string
+                          title: 数据最后更新时间
+                        color:
+                          type: string
+                          title: 系列颜色
+                          description: 自定义颜色代码
+                        s_type:
+                          type: integer
+                          title: 系列类型
+                          description: 0-匕首 1-武器 2-印花 3-其他 4-手套
+                          enum:
+                            - 0
+                            - 1
+                            - 2
+                            - 3
+                            - 4
+                          x-apifox:
+                            enumDescriptions:
+                              '0': '匕首 '
+                              '1': 武器
+                              '2': 印花
+                              '3': 其他
+                              '4': 手套
+                      required:
+                        - key
+                        - id
+                        - name
+                        - sell_price_1
+                        - sell_price_7
+                        - sell_price_15
+                        - sell_price_30
+                        - sell_price_90
+                        - sell_price_180
+                        - amount
+                        - total_value
+                        - created_at
+                        - color
+                        - s_type
+                      x-apifox-orders:
+                        - key
+                        - id
+                        - name
+                        - sell_price_1
+                        - sell_price_7
+                        - sell_price_15
+                        - sell_price_30
+                        - sell_price_90
+                        - sell_price_180
+                        - amount
+                        - total_value
+                        - created_at
+                        - color
+                        - s_type
+                    title: 响应数据
+                required:
+                  - code
+                  - msg
+                  - data
+                x-apifox-orders:
+                  - code
+                  - msg
+                  - data
+              example:
+                code: 200
+                msg: Success
+                data:
+                  - key: 1
+                    id: 1
+                    name: 无涂装
+                    sell_price_1: -0.13
+                    sell_price_7: 0.62
+                    sell_price_15: 0.12
+                    sell_price_30: -2.54
+                    sell_price_90: -3.34
+                    sell_price_180: 7.51
+                    amount: 37
+                    total_value: 115535
+                    created_at: '2024-06-28T11:17:22'
+                    color: adadad
+                    s_type: 0
+                  - key: 2
+                    id: 2
+                    name: 虎牙
+                    sell_price_1: 0.18
+                    sell_price_7: -0.11
+                    sell_price_15: -1.58
+                    sell_price_30: -3.2
+                    sell_price_90: -1.54
+                    sell_price_180: 8.97
+                    amount: 42
+                    total_value: 151529
+                    created_at: '2024-06-28T11:17:22'
+                    color: eaaf13
+                    s_type: 0
+          headers: {}
+          x-apifox-name: 成功
+      security: []
+      x-apifox-folder: 接口详情/3️⃣ 涨跌/热门排行
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4711104/apis/api-187131803-run
+components:
+  schemas: {}
+  securitySchemes: {}
+servers:
+  - url: https://api.csqaq.com
+    description: 正式环境
+security: []
+
+```

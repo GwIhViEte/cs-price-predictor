@@ -1,0 +1,237 @@
+# 获取监控单个用户全部库存
+
+## OpenAPI Specification
+
+```yaml
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /api/v1/task/get_task_all:
+    post:
+      summary: 获取监控单个用户全部库存
+      deprecated: false
+      description: >-
+        🥇 获取库存监控中单个用户的全部库存内容，需用任务task_id进行请求，task_id获取接口为
+        [获取库存监控任务列表](http://docs.csqaq.com/api-187131810)
+      operationId: ______________api_v1_task_get_task_all_post
+      tags:
+        - 接口详情/6️⃣ 库存监控
+        - api
+      parameters:
+        - name: ApiToken
+          in: header
+          description: 用户请求令牌（请自行申请）
+          required: true
+          example: '{{APITOKEN}}'
+          schema:
+            type: string
+            default: '{{APITOKEN}}'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                page_index:
+                  title: 查询页码数
+                  minimum: 1
+                  type: integer
+                page_size:
+                  title: 每页的记录数
+                  maximum: 5000
+                  type: integer
+                task_id:
+                  type: integer
+                  title: 库存监控任务id
+              x-apifox-refs: {}
+              x-apifox-orders:
+                - page_index
+                - page_size
+                - task_id
+              required:
+                - page_index
+                - page_size
+              x-apifox-ignore-properties: []
+            example:
+              page_index: 1
+              page_size: 100
+              task_id: '1431'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    title: 响应状态码
+                  msg:
+                    type: string
+                    title: 响应信息
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        gp_name:
+                          type: string
+                          description: group_hash_name
+                          title: 饰品类型
+                        price:
+                          type: integer
+                          title: 饰品价格
+                        market_name:
+                          type: string
+                          title: 饰品名称
+                        tradable:
+                          type: integer
+                          title: 是否可交易
+                          description: ' 0-禁止 1-允许'
+                        type:
+                          type: integer
+                          title: 条目类型
+                          description: 0 默认库存 1 买入 2 卖出 3 存入 4 取出 5 cd恢复 6 取出/恢复 7 卖出/存入
+                        created_at:
+                          type: string
+                          title: 创建时间
+                        icon_url:
+                          type: string
+                          title: 饰品图片
+                        good_id:
+                          type: integer
+                          title: 饰品good_id
+                      required:
+                        - gp_name
+                        - price
+                        - market_name
+                        - tradable
+                        - type
+                        - created_at
+                        - icon_url
+                        - good_id
+                      x-apifox-orders:
+                        - gp_name
+                        - price
+                        - market_name
+                        - tradable
+                        - type
+                        - created_at
+                        - icon_url
+                        - good_id
+                      x-apifox-ignore-properties: []
+                    title: 响应数据
+                required:
+                  - code
+                  - msg
+                  - data
+                x-apifox-orders:
+                  - code
+                  - msg
+                  - data
+                x-apifox-ignore-properties: []
+              example:
+                code: 200
+                msg: Success
+                data:
+                  - gp_name: 手套
+                    price: 4790
+                    market_name: 运动手套（★） | 双栖 (久经沙场)
+                    tradable: 1
+                    type: 0
+                    created_at: '2024-06-26T17:05:47'
+                    icon_url: >-
+                      -9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DAQ1JmMR1osbaqPQJz7ODYfi9W9eOmm4mYmPnLNanekVRT5NB0tf7J_Jjwt1mxrxopPnfwLYbBIQFraQmG_AO2xei6jZK8v8zJy3VruCdz5C3cmBS3iRlFaO1pm7XAHnjUC0GF
+                    good_id: 8254
+                  - gp_name: 手枪
+                    price: 193
+                    market_name: USP 消音版 | 寻路者 (崭新出厂)
+                    tradable: 1
+                    type: 0
+                    created_at: '2024-06-26T17:05:47'
+                    icon_url: >-
+                      -9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpoo6m1FBRp3_bGcjhQ08-mq4yKle7mOrXFnjlu5Mx2gv2PoNrz2FHk_0Y4ZGmgddSVewc2MF6FrFHtyb-9hp-8vpvLmHdgvich7WGdwUIw88yfpw
+                    good_id: 11519
+                  - gp_name: 微型冲锋枪
+                    price: 2730
+                    market_name: UMP-45 | 渐变之色 (崭新出厂)
+                    tradable: 1
+                    type: 0
+                    created_at: '2024-06-26T17:05:47'
+                    icon_url: >-
+                      -9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpoo7e1f1Jf0vL3dzxG6eOjmZC0m_7zO6-fwDgEvZ0i2-vEpoit0Qbi80VuNW-gcNPBcFc3aAmFqATtxOm618Dp6YOJlyXjjBJ4uQ
+                    good_id: 13654
+                  - gp_name: 霰弹枪
+                    price: 135
+                    market_name: MAG-7 | 银质 (崭新出厂)
+                    tradable: 1
+                    type: 0
+                    created_at: '2024-06-26T17:05:47'
+                    icon_url: >-
+                      -9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou7uifDhh3czbeDFU6c6JmImMn-O6Y--HxG1U6scn2OjCpomi2ADk_UppZ2zyJ4bHJwJtNQ3W8gK8wLvm14j84spUgN3Y0Q
+                    good_id: 18362
+          headers: {}
+          x-apifox-name: 成功
+        '422':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          headers: {}
+          x-apifox-name: Validation Error
+      security: []
+      x-apifox-folder: 接口详情/6️⃣ 库存监控
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4711104/apis/api-187131815-run
+components:
+  schemas:
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      x-apifox-orders:
+        - detail
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ValidationError:
+      title: ValidationError
+      required:
+        - loc
+        - msg
+        - type
+      type: object
+      properties:
+        loc:
+          title: Location
+          type: array
+          items:
+            type: string
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      x-apifox-orders:
+        - loc
+        - msg
+        - type
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers:
+  - url: https://api.csqaq.com
+    description: 正式环境
+security: []
+
+```

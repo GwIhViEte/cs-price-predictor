@@ -1,0 +1,248 @@
+# 获取成交量图表/磨损信息
+
+## OpenAPI Specification
+
+```yaml
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /api/v1/info/vol_data_detail:
+    post:
+      summary: 获取成交量图表/磨损信息
+      deprecated: false
+      description: >-
+        🥇 获取单件饰品的实时成交量历史图表和磨损数据，需用vol_id进行请求，vol_id获取接口为
+        [获取成交量数据信息](http://docs.csqaq.com/api-187131821)
+      operationId: __________api_v1_info_vol_data_detail_post
+      tags:
+        - 接口详情/5️⃣ 实时成交数据（暂停更新）
+        - api
+      parameters:
+        - name: ApiToken
+          in: header
+          description: 用户请求令牌（请自行申请）
+          required: true
+          example: '{{APITOKEN}}'
+          schema:
+            type: string
+            default: '{{APITOKEN}}'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VolHistoryReq'
+            example:
+              vol_id: 326
+              is_weapon: true
+              start_day: '2024-06-26'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    title: 响应状态码
+                  msg:
+                    type: string
+                    title: 响应信息
+                  data:
+                    type: object
+                    properties:
+                      chart:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            statistic:
+                              type: integer
+                              title: 成交数量
+                            avg_price:
+                              type: number
+                              title: 成交均价
+                            sum_price:
+                              type: number
+                              title: 成交总价
+                            updated_at:
+                              type: string
+                              title: 所属日期
+                          required:
+                            - statistic
+                            - avg_price
+                            - sum_price
+                            - updated_at
+                          x-apifox-orders:
+                            - statistic
+                            - avg_price
+                            - sum_price
+                            - updated_at
+                          x-apifox-ignore-properties: []
+                        title: 成交量图表数据
+                      list:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            abrade:
+                              type: string
+                              title: 磨损值
+                            created_at:
+                              type: string
+                              title: 成交时间
+                            price:
+                              type: number
+                              title: 成交价格
+                            comment:
+                              type: string
+                              title: 备注
+                              description: 多普勒P级、渐变值等信息
+                            user:
+                              type: integer
+                              title: 成交用户id
+                              description: 可标识唯一，已脱敏
+                          required:
+                            - abrade
+                            - created_at
+                            - price
+                            - comment
+                            - user
+                          x-apifox-orders:
+                            - abrade
+                            - created_at
+                            - price
+                            - comment
+                            - user
+                          x-apifox-ignore-properties: []
+                        title: 成交量磨损数据
+                    required:
+                      - chart
+                      - list
+                    x-apifox-orders:
+                      - chart
+                      - list
+                    title: 响应数据
+                    x-apifox-ignore-properties: []
+                required:
+                  - code
+                  - msg
+                  - data
+                x-apifox-orders:
+                  - code
+                  - msg
+                  - data
+                x-apifox-ignore-properties: []
+              example:
+                code: 200
+                msg: Success
+                data:
+                  chart:
+                    - statistic: 426
+                      avg_price: 201.604
+                      sum_price: 85883.1
+                      updated_at: '2024-05-25'
+                    - statistic: 419
+                      avg_price: 211.317
+                      sum_price: 88541.9
+                      updated_at: '2024-05-26'
+                  list:
+                    - abrade: '0.2665014863014221'
+                      created_at: '2024-06-26T15:07:26'
+                      price: 194.39
+                      comment: ''
+                      user: 17164167
+                    - abrade: '0.20041747391223907'
+                      created_at: '2024-06-26T15:07:09'
+                      price: 193
+                      comment: ''
+                      user: 20563959
+          headers: {}
+          x-apifox-name: 成功
+        '422':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          headers: {}
+          x-apifox-name: Validation Error
+      security: []
+      x-apifox-folder: 接口详情/5️⃣ 实时成交数据（暂停更新）
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4711104/apis/api-187131822-run
+components:
+  schemas:
+    VolHistoryReq:
+      title: VolHistoryReq
+      required:
+        - vol_id
+      type: object
+      properties:
+        vol_id:
+          title: 成交量vol_id
+          type: integer
+          description: 使用成交量信息接口获取
+        is_weapon:
+          title: 是否包含磨损
+          type: boolean
+          description: true:展示磨损,false:不展示磨损
+        start_day:
+          type: string
+          title: 开始时间
+          description: 格式为"2024-06-26"
+      x-apifox-orders:
+        - vol_id
+        - is_weapon
+        - start_day
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      x-apifox-orders:
+        - detail
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ValidationError:
+      title: ValidationError
+      required:
+        - loc
+        - msg
+        - type
+      type: object
+      properties:
+        loc:
+          title: Location
+          type: array
+          items:
+            type: string
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      x-apifox-orders:
+        - loc
+        - msg
+        - type
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers:
+  - url: https://api.csqaq.com
+    description: 正式环境
+security: []
+
+```

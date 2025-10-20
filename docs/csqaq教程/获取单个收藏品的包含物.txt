@@ -1,0 +1,1594 @@
+# 获取单个收藏品的包含物
+
+## OpenAPI Specification
+
+```yaml
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /api/v1/info/good/container_detail:
+    get:
+      summary: 获取单个收藏品的包含物
+      deprecated: false
+      description: >-
+        🥇 获取对应单个收藏品里面包含的饰品，需用收藏品id进行请求，收藏品id获取接口为
+        [获取所有收藏品列表数据](http://docs.csqaq.com/api-187131826)
+      operationId: ___________api_v1_info_good_container_detail_get
+      tags:
+        - 接口详情/7️⃣ 武器箱数据
+        - api
+      parameters:
+        - name: id
+          in: query
+          description: 收藏品的id
+          required: true
+          example: 2
+          schema:
+            title: Id
+            type: integer
+        - name: ApiToken
+          in: header
+          description: 用户请求令牌（请自行申请）
+          required: true
+          example: '{{APITOKEN}}'
+          schema:
+            type: string
+            default: '{{APITOKEN}}'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    title: 响应状态码
+                  msg:
+                    type: string
+                    title: 响应信息
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          title: 饰品good_id
+                        img:
+                          type: string
+                          title: 饰品图片
+                        price:
+                          type: integer
+                          title: 饰品价格
+                        rln:
+                          type: string
+                          title: 饰品品质
+                        short_name:
+                          type: string
+                          title: 饰品短名称
+                        qln:
+                          type: string
+                          title: 饰品类别
+                      required:
+                        - id
+                        - img
+                        - price
+                        - rln
+                        - short_name
+                        - qln
+                      x-apifox-orders:
+                        - id
+                        - img
+                        - price
+                        - rln
+                        - short_name
+                        - qln
+                      x-apifox-ignore-properties: []
+                    title: 响应数据
+                required:
+                  - code
+                  - msg
+                  - data
+                x-apifox-orders:
+                  - code
+                  - msg
+                  - data
+                x-apifox-ignore-properties: []
+              example:
+                code: 200
+                msg: Success
+                data:
+                  - id: 8394
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5ef4ce0a7f9d2adfd304ee17mI03ZI1i02
+                    price: 129888
+                    rln: 非凡
+                    short_name: 运动手套（★） | 迈阿密风云
+                    qln: ★
+                  - id: 8424
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5c05e5727f9d2a9e3d530b7fKSyskc70
+                    price: 65000
+                    rln: 非凡
+                    short_name: 驾驶手套（★） | 王蛇
+                    qln: ★
+                  - id: 8436
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5f0d278da7f25235e344fa03OevUXHui02
+                    price: 35188
+                    rln: 非凡
+                    short_name: 运动手套（★） | 双栖
+                    qln: ★
+                  - id: 1
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a8e9236143cfa0b0a6fefb8AwD0CpNb
+                    price: 26989.5
+                    rln: 非凡
+                    short_name: 运动手套（★） | 迈阿密风云
+                    qln: ★
+                  - id: 8440
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5f0d285596dee4a85c5413c4dHgUZhOM02
+                    price: 24245
+                    rln: 非凡
+                    short_name: 专业手套（★） | 渐变之色
+                    qln: ★
+                  - id: 8428
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5d37bc49143cfa429ec5f3das6oeiqgX02
+                    price: 23879.5
+                    rln: 非凡
+                    short_name: 运动手套（★） | 欧米伽
+                    qln: ★
+                  - id: 8556
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5b64158d6f0494b8c2a0736bp4VCGyCp
+                    price: 14617
+                    rln: 非凡
+                    short_name: 裹手（★） | 钴蓝骷髅
+                    qln: ★
+                  - id: 8404
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5ae2e6d57f9d2a1e2681f24dAWTxLbRX
+                    price: 13500
+                    rln: 非凡
+                    short_name: 专业手套（★） | 深红之网
+                    qln: ★
+                  - id: 8246
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a86bfb969b21a307dbe6def6LWy10qy
+                    price: 10569.5
+                    rln: 非凡
+                    short_name: 运动手套（★） | 双栖
+                    qln: ★
+                  - id: 8442
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5f0d2bc55e60275b782403ba2FWAkArM02
+                    price: 9798
+                    rln: 非凡
+                    short_name: 摩托手套（★） | 嘭！
+                    qln: ★
+                  - id: 8410
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aeecb0796dee4177fe03f1dN2pqLzoR
+                    price: 9650
+                    rln: 非凡
+                    short_name: 驾驶手套（★） | 蓝紫格子
+                    qln: ★
+                  - id: 8276
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fbfa316b6d4b82d6ea6b2l15Te4aM
+                    price: 9074
+                    rln: 非凡
+                    short_name: 驾驶手套（★） | 王蛇
+                    qln: ★
+                  - id: 8337
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fc1cf16b6d4b82d6ea7efU3UsH5ZZ
+                    price: 7799.5
+                    rln: 非凡
+                    short_name: 运动手套（★） | 迈阿密风云
+                    qln: ★
+                  - id: 8329
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fc1e3fb758a77ba8d672dQwAefIWV
+                    price: 7327
+                    rln: 非凡
+                    short_name: 运动手套（★） | 欧米伽
+                    qln: ★
+                  - id: 8326
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa030c08b742704639b8c3eFw1CimIv
+                    price: 7119.5
+                    rln: 非凡
+                    short_name: 专业手套（★） | 渐变之色
+                    qln: ★
+                  - id: 8398
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5ac62c62143cfa634b9df4e5NpvlEaKo
+                    price: 6598.98
+                    rln: 非凡
+                    short_name: 专业手套（★） | 大腕
+                    qln: ★
+                  - id: 8358
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fc1cf16b6d4b82d6ea7efU3UsH5ZZ
+                    price: 5997
+                    rln: 非凡
+                    short_name: 运动手套（★） | 迈阿密风云
+                    qln: ★
+                  - id: 8430
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5b1b935c7f9d2a5bec7c98c99GWRS0RE
+                    price: 5798.5
+                    rln: 非凡
+                    short_name: 摩托手套（★） | 玳瑁
+                    qln: ★
+                  - id: 9490
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5ba7f14c8b7427f7c536dbe5cq23oQNO
+                    price: 5550
+                    rln: 非凡
+                    short_name: 裹手（★） | 套印
+                    qln: ★
+                  - id: 8439
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5b3743438b74275d51efa4f89BtPP06Q
+                    price: 5340
+                    rln: 非凡
+                    short_name: 摩托手套（★） | 多边形
+                    qln: ★
+                  - id: 9873
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5c41697e143cfa17995c1cb5VoseDi8p02
+                    price: 5248
+                    rln: 非凡
+                    short_name: 运动手套（★） | 青铜形态
+                    qln: ★
+                  - id: 6616
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fd0bd20e3db721bfc0601S2ZTVgho
+                    price: 5220
+                    rln: 非凡
+                    short_name: 裹手（★） | 钴蓝骷髅
+                    qln: ★
+                  - id: 8254
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fc1ebee4c0f75edafd97f6vZN9kBa
+                    price: 4798.5
+                    rln: 非凡
+                    short_name: 运动手套（★） | 双栖
+                    qln: ★
+                  - id: 6617
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa030f85e6027ce677bb1a2cCvTaKP9
+                    price: 4130
+                    rln: 非凡
+                    short_name: 专业手套（★） | 深红之网
+                    qln: ★
+                  - id: 8353
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a8cae8c96dee4974c474790JZYG5GbL
+                    price: 4093
+                    rln: 非凡
+                    short_name: 驾驶手套（★） | 蓝紫格子
+                    qln: ★
+                  - id: 8420
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5b0a3aa66f0494ead90c9b225WL1CGNp
+                    price: 3950
+                    rln: 非凡
+                    short_name: 九头蛇手套（★） | 表面淬火
+                    qln: ★
+                  - id: 8730
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5b6bff0f96dee4684cdc9cc1aW8rGtNj
+                    price: 3890
+                    rln: 非凡
+                    short_name: 驾驶手套（★） | 超越
+                    qln: ★
+                  - id: 6618
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fc1ebee4c0f75edafd97f6vZN9kBa
+                    price: 3799.5
+                    rln: 非凡
+                    short_name: 运动手套（★） | 双栖
+                    qln: ★
+                  - id: 8285
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fcdb07f9d2ab2792ad1b6NGCq7HiD
+                    price: 3779.5
+                    rln: 非凡
+                    short_name: 摩托手套（★） | 嘭！
+                    qln: ★
+                  - id: 8364
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a91a892143cfa210130d4ccNLFmssrM
+                    price: 3749.9
+                    rln: 非凡
+                    short_name: 运动手套（★） | 迈阿密风云
+                    qln: ★
+                  - id: 9676
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5bd9ccad8b7427117942256aRu2JfIPb
+                    price: 3049.99
+                    rln: 非凡
+                    short_name: 摩托手套（★） | 交运
+                    qln: ★
+                  - id: 8298
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fc1e6fb758a82f7b1ccffHtiNu1FH
+                    price: 2940
+                    rln: 非凡
+                    short_name: 运动手套（★） | 欧米伽
+                    qln: ★
+                  - id: 8341
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/6017610b96dee4843f8ecbbfXYW97cG603
+                    price: 2799
+                    rln: 非凡
+                    short_name: 运动手套（★） | 双栖
+                    qln: ★
+                  - id: 8271
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fd0bffb758aa338308d89eRyPZJda
+                    price: 2766
+                    rln: 非凡
+                    short_name: 裹手（★） | 钴蓝骷髅
+                    qln: ★
+                  - id: 8347
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fd09302c9a17e2e286cefKM1iWTav
+                    price: 2436
+                    rln: 非凡
+                    short_name: 裹手（★） | 套印
+                    qln: ★
+                  - id: 8656
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5b680a175e60278d158e4b99ysR64bSw
+                    price: 2390
+                    rln: 非凡
+                    short_name: 专业手套（★） | 狩鹿
+                    qln: ★
+                  - id: 8297
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa030d3a750140af01f429a5k0v0tvu
+                    price: 2370
+                    rln: 非凡
+                    short_name: 专业手套（★） | 渐变之色
+                    qln: ★
+                  - id: 8293
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fbfa2a7f2520c31f1982aUFKuucsm
+                    price: 2259.5
+                    rln: 非凡
+                    short_name: 驾驶手套（★） | 王蛇
+                    qln: ★
+                  - id: 8385
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aac3f7f7f9d2a3f6698fb0bUL0Mco96
+                    price: 2217.99
+                    rln: 非凡
+                    short_name: 裹手（★） | 钴蓝骷髅
+                    qln: ★
+                  - id: 8371
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a8752758b74277300665519vIXs14pL
+                    price: 2157.5
+                    rln: 非凡
+                    short_name: 运动手套（★） | 欧米伽
+                    qln: ★
+                  - id: 8304
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a88a1f6ee4c0f5361829bb4sKSSz0cq
+                    price: 2139.5
+                    rln: 非凡
+                    short_name: 摩托手套（★） | 多边形
+                    qln: ★
+                  - id: 8348
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa030b7a75014ee83533041xyk5mUh0
+                    price: 2129.5
+                    rln: 非凡
+                    short_name: 专业手套（★） | 大腕
+                    qln: ★
+                  - id: 8308
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fbfbb6f0494c1cde6e2becMYozl51
+                    price: 2097.5
+                    rln: 非凡
+                    short_name: 驾驶手套（★） | 蓝紫格子
+                    qln: ★
+                  - id: 8415
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5b067c98143cfa5ca056b8b9drJDLo1o
+                    price: 2048
+                    rln: 非凡
+                    short_name: 裹手（★） | 防水布胶带
+                    qln: ★
+                  - id: 8437
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5b2629656f04944af9b8a6805IQYTx9l
+                    price: 1899.49
+                    rln: 非凡
+                    short_name: 驾驶手套（★） | 墨绿色调
+                    qln: ★
+                  - id: 19254
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fd0be6f0494ebce37f650v8GgmY4c
+                    price: 1839.5
+                    rln: 非凡
+                    short_name: 裹手（★） | 钴蓝骷髅
+                    qln: ★
+                  - id: 8414
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5b03d86aa7f2522ac074c1810Ca9xc2b
+                    price: 1779.5
+                    rln: 非凡
+                    short_name: 九头蛇手套（★） | 翡翠色调
+                    qln: ★
+                  - id: 8336
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fcd5069b21acf8f41687fQAROImZp
+                    price: 1747
+                    rln: 非凡
+                    short_name: 摩托手套（★） | 玳瑁
+                    qln: ★
+                  - id: 8354
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a89872620e3db3738be083cASl4RkdF
+                    price: 1715.99
+                    rln: 非凡
+                    short_name: 驾驶手套（★） | 蓝紫格子
+                    qln: ★
+                  - id: 8286
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a8731b3ee4c0fe23a51bd481iejM1S4
+                    price: 1700
+                    rln: 非凡
+                    short_name: 专业手套（★） | 渐变之色
+                    qln: ★
+                  - id: 8226
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa030dc143cfaf6dda53cddsOamitVv
+                    price: 1647
+                    rln: 非凡
+                    short_name: 专业手套（★） | 深红之网
+                    qln: ★
+                  - id: 8309
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fbfa2a7f2520c31f1982aUFKuucsm
+                    price: 1630
+                    rln: 非凡
+                    short_name: 驾驶手套（★） | 王蛇
+                    qln: ★
+                  - id: 8384
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aabb788143cfabb512383ecg1oDWNuW
+                    price: 1592.5
+                    rln: 非凡
+                    short_name: 裹手（★） | 森林色调
+                    qln: ★
+                  - id: 8418
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5b07cc8e8b74274f97462db6Ui2qiUDU
+                    price: 1580
+                    rln: 非凡
+                    short_name: 九头蛇手套（★） | 响尾蛇
+                    qln: ★
+                  - id: 8287
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fc1e502c9a168edd9cd8bzKeZJJFi
+                    price: 1560
+                    rln: 非凡
+                    short_name: 运动手套（★） | 欧米伽
+                    qln: ★
+                  - id: 8346
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fc1e969b21a8098b0ff68scAsHEX2
+                    price: 1449.5
+                    rln: 非凡
+                    short_name: 运动手套（★） | 青铜形态
+                    qln: ★
+                  - id: 8333
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fd09502c9a1860526dc15UbViWQzc
+                    price: 1429
+                    rln: 非凡
+                    short_name: 裹手（★） | 套印
+                    qln: ★
+                  - id: 8220
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fbfa702c9a159262b4c5eIRhgMS8i
+                    price: 1394
+                    rln: 非凡
+                    short_name: 驾驶手套（★） | 蓝紫格子
+                    qln: ★
+                  - id: 8380
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aab9a5dadce5f9175aa6f24GDV3pXVw
+                    price: 1382.89
+                    rln: 非凡
+                    short_name: 九头蛇手套（★） | 红树林
+                    qln: ★
+                  - id: 8241
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fcda7aa49f1fe03de2418fU0ZDlzL
+                    price: 1367.38
+                    rln: 非凡
+                    short_name: 摩托手套（★） | 嘭！
+                    qln: ★
+                  - id: 8359
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa030dc143cfaf6dda53cddsOamitVv
+                    price: 1227.95
+                    rln: 非凡
+                    short_name: 专业手套（★） | 深红之网
+                    qln: ★
+                  - id: 8313
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5d06f6f6143cfa24f37e42b2B73J2vHk02
+                    price: 1196
+                    rln: 非凡
+                    short_name: 裹手（★） | 套印
+                    qln: ★
+                  - id: 8273
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fcdce02c9a17afeb53f9dvwe0Njtw
+                    price: 1133.48
+                    rln: 非凡
+                    short_name: 摩托手套（★） | 多边形
+                    qln: ★
+                  - id: 8275
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fbfa402c9a159262b4c5dj2mNTPSs
+                    price: 1125.5
+                    rln: 非凡
+                    short_name: 驾驶手套（★） | 王蛇
+                    qln: ★
+                  - id: 8303
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fbf9f8b742740e433980b3mPZxPiy
+                    price: 1115
+                    rln: 非凡
+                    short_name: 驾驶手套（★） | 超越
+                    qln: ★
+                  - id: 8198
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa030b5aa49f1d5cedbf750RboApVLu
+                    price: 1087
+                    rln: 非凡
+                    short_name: 专业手套（★） | 大腕
+                    qln: ★
+                  - id: 8314
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0b98aa750142556a6069011RBI431
+                    price: 1036.66
+                    rln: 非凡
+                    short_name: 九头蛇手套（★） | 表面淬火
+                    qln: ★
+                  - id: 8277
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fcdce02c9a17afeb53f9dvwe0Njtw
+                    price: 1010
+                    rln: 非凡
+                    short_name: 摩托手套（★） | 多边形
+                    qln: ★
+                  - id: 8325
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa030d116b6d497f1380281OvKDDuGD
+                    price: 1000
+                    rln: 非凡
+                    short_name: 专业手套（★） | 渐变之色
+                    qln: ★
+                  - id: 8370
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fcda7aa49f1fe03de2418fU0ZDlzL
+                    price: 950
+                    rln: 非凡
+                    short_name: 摩托手套（★） | 嘭！
+                    qln: ★
+                  - id: 8327
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa030b5aa49f1d5cedbf750RboApVLu
+                    price: 909.5
+                    rln: 非凡
+                    short_name: 专业手套（★） | 大腕
+                    qln: ★
+                  - id: 8365
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa030fa96dee4d4665ab1c3tswP53iP
+                    price: 898.5
+                    rln: 非凡
+                    short_name: 专业手套（★） | 深红之网
+                    qln: ★
+                  - id: 8247
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fc1e7a750141dafacb9071W2YRqNY
+                    price: 869
+                    rln: 非凡
+                    short_name: 运动手套（★） | 青铜形态
+                    qln: ★
+                  - id: 8278
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fcd4e6f0494e6eb7c7904vzTCRcQE
+                    price: 812
+                    rln: 非凡
+                    short_name: 摩托手套（★） | 玳瑁
+                    qln: ★
+                  - id: 8281
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5d01f66f5e60273f1c02a4e5Xr1jcuSO02
+                    price: 800
+                    rln: 非凡
+                    short_name: 专业手套（★） | 大腕
+                    qln: ★
+                  - id: 8328
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fc1e7a750141dafacb9071W2YRqNY
+                    price: 780
+                    rln: 非凡
+                    short_name: 运动手套（★） | 青铜形态
+                    qln: ★
+                  - id: 8283
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fcd9102c9a17e2e286a65LTpiSMiS
+                    price: 774.5
+                    rln: 非凡
+                    short_name: 摩托手套（★） | 交运
+                    qln: ★
+                  - id: 8320
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fcdcf8b74274a7fc8eae4lriv4XAo
+                    price: 737
+                    rln: 非凡
+                    short_name: 摩托手套（★） | 多边形
+                    qln: ★
+                  - id: 8312
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fd0948b7427452c7ef634QHHUCSvR
+                    price: 719
+                    rln: 非凡
+                    short_name: 裹手（★） | 套印
+                    qln: ★
+                  - id: 8295
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fd0c2ee4c0f99c831cbb2PkgM7ju2
+                    price: 715
+                    rln: 非凡
+                    short_name: 裹手（★） | 森林色调
+                    qln: ★
+                  - id: 16409
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b6017a80968efc3c82c8jic8y2ET04
+                    price: 707.5
+                    rln: 隐秘
+                    short_name: M4A4 | 反冲精英
+                    qln: 普通
+                  - id: 8227
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fc1eaa750141b9843427eLyXENCjH
+                    price: 700
+                    rln: 非凡
+                    short_name: 运动手套（★） | 青铜形态
+                    qln: ★
+                  - id: 8323
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa031048b74273df52b1a89AXzkCUIg
+                    price: 696.99
+                    rln: 非凡
+                    short_name: 专业手套（★） | 狩鹿
+                    qln: ★
+                  - id: 8279
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fcd4e6f0494e6eb7c7904vzTCRcQE
+                    price: 695
+                    rln: 非凡
+                    short_name: 摩托手套（★） | 玳瑁
+                    qln: ★
+                  - id: 8240
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0b9746f0494101813db4euHVFzhzB
+                    price: 655
+                    rln: 非凡
+                    short_name: 九头蛇手套（★） | 表面淬火
+                    qln: ★
+                  - id: 8339
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0b9746f0494101813db4euHVFzhzB
+                    price: 610
+                    rln: 非凡
+                    short_name: 九头蛇手套（★） | 表面淬火
+                    qln: ★
+                  - id: 8239
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fd09716b6d4dee50cd4e4JRoxevkV
+                    price: 610
+                    rln: 非凡
+                    short_name: 裹手（★） | 防水布胶带
+                    qln: ★
+                  - id: 8245
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0b99f20e3db59860c5b2fy3FaCpod
+                    price: 599
+                    rln: 非凡
+                    short_name: 九头蛇手套（★） | 表面淬火
+                    qln: ★
+                  - id: 8282
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fbf9eaa49f1d76aa113b78EQjw18E
+                    price: 598
+                    rln: 非凡
+                    short_name: 驾驶手套（★） | 超越
+                    qln: ★
+                  - id: 8345
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fcdb102c9a17946438eb4r30jdoZw
+                    price: 579
+                    rln: 非凡
+                    short_name: 摩托手套（★） | 嘭！
+                    qln: ★
+                  - id: 8334
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0b97102c9a168a8e01f7bDSlROQXY
+                    price: 574.5
+                    rln: 非凡
+                    short_name: 九头蛇手套（★） | 翡翠色调
+                    qln: ★
+                  - id: 8322
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fcd5920e3db48929cb94aags7BSEY
+                    price: 565.49
+                    rln: 非凡
+                    short_name: 摩托手套（★） | 玳瑁
+                    qln: ★
+                  - id: 19250
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fd0c1adce5f51ad9e4adbfxWXfXDM
+                    price: 550
+                    rln: 非凡
+                    short_name: 裹手（★） | 森林色调
+                    qln: ★
+                  - id: 8310
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fbf9c16b6d4ba895b0197G0uPwtDS
+                    price: 550
+                    rln: 非凡
+                    short_name: 驾驶手套（★） | 墨绿色调
+                    qln: ★
+                  - id: 8225
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fcd6aadce5f5573cff77d4itfyfIv
+                    price: 510
+                    rln: 非凡
+                    short_name: 摩托手套（★） | 交运
+                    qln: ★
+                  - id: 8280
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa030fb16b6d495d2aa7ad35PefIeyF
+                    price: 503.5
+                    rln: 非凡
+                    short_name: 专业手套（★） | 狩鹿
+                    qln: ★
+                  - id: 8270
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fbf9aaa49f1cd1784053agW8J4iT0
+                    price: 498.5
+                    rln: 非凡
+                    short_name: 驾驶手套（★） | 墨绿色调
+                    qln: ★
+                  - id: 8238
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fd0bcaa49f1013d00b5c6fg5RJ113
+                    price: 494.5
+                    rln: 非凡
+                    short_name: 裹手（★） | 防水布胶带
+                    qln: ★
+                  - id: 8221
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fbf9eaa49f1d76aa113b78EQjw18E
+                    price: 490.49
+                    rln: 非凡
+                    short_name: 驾驶手套（★） | 超越
+                    qln: ★
+                  - id: 8300
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0b94c8b74277c955eeae5XV1VyZLW
+                    price: 489.5
+                    rln: 非凡
+                    short_name: 九头蛇手套（★） | 红树林
+                    qln: ★
+                  - id: 8315
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a8989d246072b544a7ef64espDyQbAC
+                    price: 485
+                    rln: 非凡
+                    short_name: 九头蛇手套（★） | 翡翠色调
+                    qln: ★
+                  - id: 19255
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fd0c1adce5f51ad9e4adbfxWXfXDM
+                    price: 485
+                    rln: 非凡
+                    short_name: 裹手（★） | 森林色调
+                    qln: ★
+                  - id: 8272
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0b8fda7501417cd2382d9Phmc4Spz
+                    price: 482
+                    rln: 非凡
+                    short_name: 九头蛇手套（★） | 响尾蛇
+                    qln: ★
+                  - id: 8316
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0b972adce5f42c75ed7417d4Nbcoe
+                    price: 479
+                    rln: 非凡
+                    short_name: 九头蛇手套（★） | 翡翠色调
+                    qln: ★
+                  - id: 8223
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0b94a02c9a168175ee897ZIgOS3FR
+                    price: 470
+                    rln: 非凡
+                    short_name: 九头蛇手套（★） | 红树林
+                    qln: ★
+                  - id: 8356
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fbfa1a75014218b2c8c57eTeOxQhk
+                    price: 469.44
+                    rln: 非凡
+                    short_name: 驾驶手套（★） | 超越
+                    qln: ★
+                  - id: 8224
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0b8fbaa49f1edab7d6a67Y3N8ZVPf
+                    price: 459.5
+                    rln: 非凡
+                    short_name: 九头蛇手套（★） | 响尾蛇
+                    qln: ★
+                  - id: 8222
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a86876aa7f2523857b085e7q31YGEhd
+                    price: 459.3
+                    rln: 非凡
+                    short_name: 裹手（★） | 防水布胶带
+                    qln: ★
+                  - id: 8321
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fcda620e3db4abca7d86dpu8e2iwi
+                    price: 458.99
+                    rln: 非凡
+                    short_name: 摩托手套（★） | 交运
+                    qln: ★
+                  - id: 8253
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fd0c3aa49f1013d00b5caiSJwaAxS
+                    price: 455.39
+                    rln: 非凡
+                    short_name: 裹手（★） | 森林色调
+                    qln: ★
+                  - id: 8318
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0b94a02c9a168175ee897ZIgOS3FR
+                    price: 455
+                    rln: 非凡
+                    short_name: 九头蛇手套（★） | 红树林
+                    qln: ★
+                  - id: 8335
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fcd6aadce5f5573cff77d4itfyfIv
+                    price: 455
+                    rln: 非凡
+                    short_name: 摩托手套（★） | 交运
+                    qln: ★
+                  - id: 8311
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fd09802c9a1860526dc1dXl83syeE
+                    price: 453
+                    rln: 非凡
+                    short_name: 裹手（★） | 防水布胶带
+                    qln: ★
+                  - id: 8296
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a87526b7f9d2a43294ba82ei5S0B4VZ
+                    price: 450
+                    rln: 非凡
+                    short_name: 九头蛇手套（★） | 红树林
+                    qln: ★
+                  - id: 8317
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a89803aadce5fc24ca098a6DFWrmRbL
+                    price: 449.72
+                    rln: 非凡
+                    short_name: 九头蛇手套（★） | 翡翠色调
+                    qln: ★
+                  - id: 8350
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa03115adce5f1d91fe2862qEUUe0TL
+                    price: 449.5
+                    rln: 非凡
+                    short_name: 专业手套（★） | 狩鹿
+                    qln: ★
+                  - id: 8363
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0b8fbaa49f1edab7d6a67Y3N8ZVPf
+                    price: 449.5
+                    rln: 非凡
+                    short_name: 九头蛇手套（★） | 响尾蛇
+                    qln: ★
+                  - id: 8319
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0b91102c9a16d3f5e553dgqHRIWTk
+                    price: 448.28
+                    rln: 非凡
+                    short_name: 九头蛇手套（★） | 响尾蛇
+                    qln: ★
+                  - id: 8324
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa030fb16b6d495d2aa7ad35PefIeyF
+                    price: 446
+                    rln: 非凡
+                    short_name: 专业手套（★） | 狩鹿
+                    qln: ★
+                  - id: 8332
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fbf9aaa49f1cd1784053agW8J4iT0
+                    price: 445
+                    rln: 非凡
+                    short_name: 驾驶手套（★） | 墨绿色调
+                    qln: ★
+                  - id: 8237
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fbf9d96dee42c0f59525fJitBPHKE
+                    price: 440
+                    rln: 非凡
+                    short_name: 驾驶手套（★） | 墨绿色调
+                    qln: ★
+                  - id: 16422
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b55f43d7925e385ffe08r90XLi5z04
+                    price: 438
+                    rln: 隐秘
+                    short_name: AK-47 | 一发入魂
+                    qln: 普通
+                  - id: 16380
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b6017a80968efc3c82c8jic8y2ET04
+                    price: 398.49
+                    rln: 隐秘
+                    short_name: M4A4 | 反冲精英
+                    qln: 普通
+                  - id: 16339
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b55f43d7925e385ffe08r90XLi5z04
+                    price: 132.8
+                    rln: 隐秘
+                    short_name: AK-47 | 一发入魂
+                    qln: 普通
+                  - id: 16415
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5d4600c02f7106bb2d5betUsxj27Q04
+                    price: 86.05
+                    rln: 隐秘
+                    short_name: M4A4 | 反冲精英
+                    qln: 普通
+                  - id: 16442
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5d4600c02f7106bb2d5betUsxj27Q04
+                    price: 68
+                    rln: 隐秘
+                    short_name: M4A4 | 反冲精英
+                    qln: 普通
+                  - id: 16401
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b68a883c7756df90b08eGpdC8aZe04
+                    price: 66.9
+                    rln: 保密
+                    short_name: P2000 | 变态杀戮
+                    qln: 普通
+                  - id: 16376
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5bf8c6d30e90ecaba9746ws98ik2204
+                    price: 66.89
+                    rln: 保密
+                    short_name: UMP-45 | 野孩子
+                    qln: 普通
+                  - id: 16454
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63ed84683b12f857b9f3ae78RcMJA5mb04
+                    price: 66.09
+                    rln: 保密
+                    short_name: AWP | 金粉肆蛇
+                    qln: 普通
+                  - id: 16408
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5cc0de51dec9617ec3dfbOFATCLZ704
+                    price: 57
+                    rln: 隐秘
+                    short_name: AK-47 | 一发入魂
+                    qln: 普通
+                  - id: 16399
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5cc0de51dec9617ec3dfbOFATCLZ704
+                    price: 38.87
+                    rln: 隐秘
+                    short_name: AK-47 | 一发入魂
+                    qln: 普通
+                  - id: 16391
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5c97cb7b9d527af0abd24sE62G8LE04
+                    price: 34.36
+                    rln: 隐秘
+                    short_name: M4A4 | 反冲精英
+                    qln: 普通
+                  - id: 16455
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63ed84683b12f857b9f3ae78RcMJA5mb04
+                    price: 32.32
+                    rln: 保密
+                    short_name: AWP | 金粉肆蛇
+                    qln: 普通
+                  - id: 16347
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b68a883c7756df90b08eGpdC8aZe04
+                    price: 31.68
+                    rln: 保密
+                    short_name: P2000 | 变态杀戮
+                    qln: 普通
+                  - id: 16373
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5bf8c6d30e90ecaba9746ws98ik2204
+                    price: 31.32
+                    rln: 保密
+                    short_name: UMP-45 | 野孩子
+                    qln: 普通
+                  - id: 16318
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5af0514a64daf7fbbdafeLLlvh1QX04
+                    price: 28
+                    rln: 隐秘
+                    short_name: AK-47 | 一发入魂
+                    qln: 普通
+                  - id: 16369
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b1f12b1fce9a8275e75eObsHji6104
+                    price: 14.8
+                    rln: 受限
+                    short_name: M4A1 消音型 | 隐伏帝王龙
+                    qln: 普通
+                  - id: 18815
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63ed7c383b12f836fff63ab5YduHkFrG04
+                    price: 12.5
+                    rln: 保密
+                    short_name: AWP | 金粉肆蛇
+                    qln: 普通
+                  - id: 16459
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63ed7c383b12f836fff63ab5YduHkFrG04
+                    price: 12.08
+                    rln: 保密
+                    short_name: AWP | 金粉肆蛇
+                    qln: 普通
+                  - id: 16386
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5c73e294286b90b8a9d720NI5oDub04
+                    price: 10.7
+                    rln: 保密
+                    short_name: UMP-45 | 野孩子
+                    qln: 普通
+                  - id: 16372
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b08c0c02f71faa566169rg6VPiYp04
+                    price: 10.6
+                    rln: 保密
+                    short_name: P2000 | 变态杀戮
+                    qln: 普通
+                  - id: 16383
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5acda0c02f730547158f7Zi6yC7pt04
+                    price: 9.31
+                    rln: 受限
+                    short_name: R8 左轮手枪 | 蕉农炮
+                    qln: 普通
+                  - id: 16338
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b4fcc2329a868fb89298KyKA7tCt04
+                    price: 8.94
+                    rln: 受限
+                    short_name: 格洛克 18 型 | 圆影玉兔
+                    qln: 普通
+                  - id: 16452
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63ed8219969f8905a1ee999eD7mVKXkQ04
+                    price: 7.91
+                    rln: 保密
+                    short_name: AWP | 金粉肆蛇
+                    qln: 普通
+                  - id: 16356
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5a87e7f559b7653192c9aFqspb4ck04
+                    price: 7.45
+                    rln: 受限
+                    short_name: P90 | 元女王
+                    qln: 普通
+                  - id: 16326
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b08c0c02f71faa566169rg6VPiYp04
+                    price: 7.3
+                    rln: 保密
+                    short_name: P2000 | 变态杀戮
+                    qln: 普通
+                  - id: 16417
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5c73e294286b90b8a9d720NI5oDub04
+                    price: 6.91
+                    rln: 保密
+                    short_name: UMP-45 | 野孩子
+                    qln: 普通
+                  - id: 16388
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5c8a0cd0226ac10cb3ee3Mi7dIAyw04
+                    price: 5.98
+                    rln: 保密
+                    short_name: P2000 | 变态杀戮
+                    qln: 普通
+                  - id: 16328
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b1f12b1fce9a8275e75eObsHji6104
+                    price: 5.95
+                    rln: 受限
+                    short_name: M4A1 消音型 | 隐伏帝王龙
+                    qln: 普通
+                  - id: 16371
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5bf4e4940ea641584a0e4ctPy1icz04
+                    price: 5.92
+                    rln: 保密
+                    short_name: UMP-45 | 野孩子
+                    qln: 普通
+                  - id: 16351
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b341e51dec3c41dd007dZiBo4fdJ04
+                    price: 5.89
+                    rln: 受限
+                    short_name: MAC-10 | 错觉
+                    qln: 普通
+                  - id: 16355
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b4fcc2329a868fb89298KyKA7tCt04
+                    price: 4.13
+                    rln: 受限
+                    short_name: 格洛克 18 型 | 圆影玉兔
+                    qln: 普通
+                  - id: 16308
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5a87e7f559b7653192c9aFqspb4ck04
+                    price: 3.9
+                    rln: 受限
+                    short_name: P90 | 元女王
+                    qln: 普通
+                  - id: 16312
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5acda0c02f730547158f7Zi6yC7pt04
+                    price: 3.75
+                    rln: 受限
+                    short_name: R8 左轮手枪 | 蕉农炮
+                    qln: 普通
+                  - id: 16420
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5af658cdf0341c78d41529QNdRqo804
+                    price: 3.54
+                    rln: 受限
+                    short_name: M4A1 消音型 | 隐伏帝王龙
+                    qln: 普通
+                  - id: 16321
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5af658cdf0341c78d41529QNdRqo804
+                    price: 2.28
+                    rln: 受限
+                    short_name: M4A1 消音型 | 隐伏帝王龙
+                    qln: 普通
+                  - id: 16327
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b1ec7a80968efc3c81673c86J2bt04
+                    price: 2.19
+                    rln: 受限
+                    short_name: P90 | 元女王
+                    qln: 普通
+                  - id: 16378
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b341e51dec3c41dd007dZiBo4fdJ04
+                    price: 2.05
+                    rln: 受限
+                    short_name: MAC-10 | 错觉
+                    qln: 普通
+                  - id: 16345
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b64d2b1fce206541f491DeLj4cUb04
+                    price: 1.94
+                    rln: 受限
+                    short_name: M4A1 消音型 | 隐伏帝王龙
+                    qln: 普通
+                  - id: 16362
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b97230422a8b7d15724buwSQkjeq04
+                    price: 1.7
+                    rln: 受限
+                    short_name: P90 | 元女王
+                    qln: 普通
+                  - id: 16346
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b64b0bff01331d5c90644WySGdpH04
+                    price: 1.68
+                    rln: 受限
+                    short_name: 格洛克 18 型 | 圆影玉兔
+                    qln: 普通
+                  - id: 16344
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b64b0bff01331d5c90644WySGdpH04
+                    price: 1.68
+                    rln: 受限
+                    short_name: 格洛克 18 型 | 圆影玉兔
+                    qln: 普通
+                  - id: 16352
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b97230422a8b7d15724buwSQkjeq04
+                    price: 1.67
+                    rln: 受限
+                    short_name: P90 | 元女王
+                    qln: 普通
+                  - id: 16364
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b640b7b9d56422b29cb4bJlJyiFp04
+                    price: 1.63
+                    rln: 军规级
+                    short_name: MP5-SD | 液化
+                    qln: 普通
+                  - id: 16367
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5be73969f8974f211250bIQaX3Uzf04
+                    price: 1.6
+                    rln: 受限
+                    short_name: R8 左轮手枪 | 蕉农炮
+                    qln: 普通
+                  - id: 19262
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5be73969f8974f211250bIQaX3Uzf04
+                    price: 1.56
+                    rln: 受限
+                    short_name: R8 左轮手枪 | 蕉农炮
+                    qln: 普通
+                  - id: 16377
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5ae860bff01b7f85ba324r6H2Z3Zd04
+                    price: 1.53
+                    rln: 军规级
+                    short_name: SG 553 | 赛博之力
+                    qln: 普通
+                  - id: 18233
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5afc21d3449b6f16c4fe9d5sTq79F04
+                    price: 1.47
+                    rln: 军规级
+                    short_name: MAG-7 | 鱼长梦短
+                    qln: 普通
+                  - id: 16361
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b34f3f043c6e794118275Nao8rPX04
+                    price: 1.43
+                    rln: 军规级
+                    short_name: Tec-9 | 叛逆
+                    qln: 普通
+                  - id: 16348
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b725a86d7880f2abc7b6pwD8cBAF04
+                    price: 1.41
+                    rln: 受限
+                    short_name: 格洛克 18 型 | 圆影玉兔
+                    qln: 普通
+                  - id: 16400
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5ae516d30e9549eb024e8YqkRoOzf04
+                    price: 1.4
+                    rln: 军规级
+                    short_name: MP9 | 羽量级
+                    qln: 普通
+                  - id: 16313
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5adf9520b2d6d488b210d7yuxhmV904
+                    price: 1.39
+                    rln: 受限
+                    short_name: MAC-10 | 错觉
+                    qln: 普通
+                  - id: 16366
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5be247a8096ad46055ccdA15xO9QB04
+                    price: 1.39
+                    rln: 受限
+                    short_name: R8 左轮手枪 | 蕉农炮
+                    qln: 普通
+                  - id: 16398
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b3eb7a80960e573a2694d8i3xz2U04
+                    price: 1.32
+                    rln: 军规级
+                    short_name: P250 | 重构
+                    qln: 普通
+                  - id: 19355
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5add0052dfe28025d3e73iyMfbGYw04
+                    price: 1.29
+                    rln: 军规级
+                    short_name: SCAR-20 | 碎片
+                    qln: 普通
+                  - id: 16331
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b34f3f043c6e794118275Nao8rPX04
+                    price: 0.66
+                    rln: 军规级
+                    short_name: Tec-9 | 叛逆
+                    qln: 普通
+                  - id: 16334
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b3eb7a80960e573a2694d8i3xz2U04
+                    price: 0.62
+                    rln: 军规级
+                    short_name: P250 | 重构
+                    qln: 普通
+                  - id: 16316
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5ae516d30e9549eb024e8YqkRoOzf04
+                    price: 0.57
+                    rln: 军规级
+                    short_name: MP9 | 羽量级
+                    qln: 普通
+                  - id: 16320
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5add0052dfe28025d3e73iyMfbGYw04
+                    price: 0.57
+                    rln: 军规级
+                    short_name: SCAR-20 | 碎片
+                    qln: 普通
+                  - id: 16317
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5ae860bff01b7f85ba324r6H2Z3Zd04
+                    price: 0.57
+                    rln: 军规级
+                    short_name: SG 553 | 赛博之力
+                    qln: 普通
+                  - id: 18231
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5afc21d3449b6f16c4fe9d5sTq79F04
+                    price: 0.56
+                    rln: 军规级
+                    short_name: MAG-7 | 鱼长梦短
+                    qln: 普通
+                  - id: 16343
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b640b7b9d56422b29cb4bJlJyiFp04
+                    price: 0.5
+                    rln: 军规级
+                    short_name: MP5-SD | 液化
+                    qln: 普通
+                  - id: 16314
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5adfef186326b0bd9c22aJFIhoToq04
+                    price: 0.29
+                    rln: 军规级
+                    short_name: MP5-SD | 液化
+                    qln: 普通
+                  - id: 18455
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5ac2630422a2adffb71d2R8bTuAJp04
+                    price: 0.28
+                    rln: 军规级
+                    short_name: MAG-7 | 鱼长梦短
+                    qln: 普通
+                  - id: 16311
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5ab9d1d3449735bd42699fD6dmWwL04
+                    price: 0.27
+                    rln: 军规级
+                    short_name: MP9 | 羽量级
+                    qln: 普通
+                  - id: 16307
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5a74d3edd5883241417c1DXO55DYN04
+                    price: 0.27
+                    rln: 军规级
+                    short_name: SCAR-20 | 碎片
+                    qln: 普通
+                  - id: 16323
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5af1d3b7500901b4dcdc6itI8R52x04
+                    price: 0.27
+                    rln: 军规级
+                    short_name: SG 553 | 赛博之力
+                    qln: 普通
+                  - id: 16315
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5ae48883c777bdf8c93b6ovvJkc5V04
+                    price: 0.27
+                    rln: 军规级
+                    short_name: Tec-9 | 叛逆
+                    qln: 普通
+                  - id: 16309
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5a8fdf186323a70437d76IKqr2MRE04
+                    price: 0.26
+                    rln: 军规级
+                    short_name: P250 | 重构
+                    qln: 普通
+                  - id: 16324
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5a8fdf186323a70437d76IKqr2MRE04
+                    price: 0.24
+                    rln: 军规级
+                    short_name: P250 | 重构
+                    qln: 普通
+                  - id: 16340
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b5cf3b12f81541615864bdl0M5Y004
+                    price: 0.23
+                    rln: 军规级
+                    short_name: SG 553 | 赛博之力
+                    qln: 普通
+                  - id: 16393
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5a74d3edd5883241417c1DXO55DYN04
+                    price: 0.22
+                    rln: 军规级
+                    short_name: SCAR-20 | 碎片
+                    qln: 普通
+                  - id: 16310
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5ab9d1d3449735bd42699fD6dmWwL04
+                    price: 0.2
+                    rln: 军规级
+                    short_name: MP9 | 羽量级
+                    qln: 普通
+                  - id: 16322
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5afec5a2098bf62b5fb2e6L43syLg04
+                    price: 0.2
+                    rln: 军规级
+                    short_name: MP9 | 羽量级
+                    qln: 普通
+                  - id: 16319
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5af1d3b7500901b4dcdc6itI8R52x04
+                    price: 0.2
+                    rln: 军规级
+                    short_name: SG 553 | 赛博之力
+                    qln: 普通
+                  - id: 16350
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b84c84beef4af22b2d41dR2jc3IJ04
+                    price: 0.2
+                    rln: 军规级
+                    short_name: Tec-9 | 叛逆
+                    qln: 普通
+                  - id: 16325
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5ae48883c777bdf8c93b6ovvJkc5V04
+                    price: 0.2
+                    rln: 军规级
+                    short_name: Tec-9 | 叛逆
+                    qln: 普通
+                  - id: 18456
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b9e59de9f60287a9d0f1FR4VDEUF04
+                    price: 0.19
+                    rln: 军规级
+                    short_name: MAG-7 | 鱼长梦短
+                    qln: 普通
+                  - id: 18458
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5ac2630422a2adffb71d2R8bTuAJp04
+                    price: 0.19
+                    rln: 军规级
+                    short_name: MAG-7 | 鱼长梦短
+                    qln: 普通
+                  - id: 16332
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5adfef186326b0bd9c22aJFIhoToq04
+                    price: 0.19
+                    rln: 军规级
+                    short_name: MP5-SD | 液化
+                    qln: 普通
+                  - id: 16349
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b745672a5233fa613248U7WtRy8R04
+                    price: 0.19
+                    rln: 军规级
+                    short_name: SCAR-20 | 碎片
+                    qln: 普通
+                  - id: 16335
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b3ed969f89922b8cba9f6kImxwDJ04
+                    price: 0.18
+                    rln: 军规级
+                    short_name: MP5-SD | 液化
+                    qln: 普通
+                  - id: 16329
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b25bcd02267e805123f234AYdGIF04
+                    price: 0.18
+                    rln: 军规级
+                    short_name: P250 | 重构
+                    qln: 普通
+                  - id: 16283
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5a2e6779f248773656374kAHJNEoE04
+                    price: 0
+                    rln: 普通级
+                    short_name: 变革武器箱
+                    qln: 普通
+          headers: {}
+          x-apifox-name: 成功
+        '422':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          headers: {}
+          x-apifox-name: Validation Error
+      security: []
+      x-apifox-folder: 接口详情/7️⃣ 武器箱数据
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4711104/apis/api-187131825-run
+components:
+  schemas:
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      x-apifox-orders:
+        - detail
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ValidationError:
+      title: ValidationError
+      required:
+        - loc
+        - msg
+        - type
+      type: object
+      properties:
+        loc:
+          title: Location
+          type: array
+          items:
+            type: string
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      x-apifox-orders:
+        - loc
+        - msg
+        - type
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers:
+  - url: https://api.csqaq.com
+    description: 正式环境
+security: []
+
+```

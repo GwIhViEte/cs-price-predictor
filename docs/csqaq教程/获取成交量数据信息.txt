@@ -1,0 +1,1515 @@
+# 获取成交量数据信息
+
+## OpenAPI Specification
+
+```yaml
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /api/v1/info/vol_data_info:
+    post:
+      summary: 获取成交量数据信息
+      deprecated: false
+      description: 🥇 获取交易平台实时成交量数据（对应网站页面 [CSQAQ-平台实时成交](https://csqaq.com/vol) ）
+      operationId: __________api_v1_info_vol_data_info_post
+      tags:
+        - 接口详情/5️⃣ 实时成交数据（暂停更新）
+        - api
+      parameters:
+        - name: ApiToken
+          in: header
+          description: 用户请求令牌（请自行申请）
+          required: true
+          example: '{{APITOKEN}}'
+          schema:
+            type: string
+            default: '{{APITOKEN}}'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    title: 响应状态码
+                  msg:
+                    type: string
+                    title: 响应信息
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          title: 成交量vol_id
+                          description: vol_id 用以请求成交量详情信息
+                        good_id:
+                          type: integer
+                          title: 饰品id
+                        name:
+                          type: string
+                          title: 饰品中文名
+                        img:
+                          type: string
+                          title: 饰品图片
+                        group:
+                          type: string
+                          title: 类型
+                        statistic:
+                          type: integer
+                          title: 成交数量
+                        updated_at:
+                          type: string
+                          title: 上次更新时间
+                        avg_price:
+                          type: number
+                          title: 成交平均价
+                        sum_price:
+                          type: number
+                          title: 成交总价
+                        special:
+                          type: integer
+                          description: 废弃
+                      required:
+                        - id
+                        - good_id
+                        - name
+                        - img
+                        - group
+                        - statistic
+                        - updated_at
+                        - avg_price
+                        - sum_price
+                        - special
+                      x-apifox-orders:
+                        - id
+                        - good_id
+                        - name
+                        - img
+                        - group
+                        - statistic
+                        - updated_at
+                        - avg_price
+                        - sum_price
+                        - special
+                    title: 响应数据
+                required:
+                  - code
+                  - msg
+                  - data
+                x-apifox-orders:
+                  - code
+                  - msg
+                  - data
+              example:
+                code: 200
+                msg: Success
+                data:
+                  - id: 150
+                    good_id: 14675
+                    name: 梦魇武器箱
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/61ea007291df686b72795522ILtdbSRG04
+                    group: 其他
+                    statistic: 7908
+                    updated_at: '2024-06-26T15:00:18'
+                    avg_price: 5.643
+                    sum_price: 44624.8
+                    special: 0
+                  - id: 153
+                    good_id: 19521
+                    name: 千瓦武器箱
+                    img: >-
+                      https://market.fp.ps.netease.com/file/65c2d1e641a6a6bbcafdd84cscGrKHvL05
+                    group: 其他
+                    statistic: 6680
+                    updated_at: '2024-06-26T15:00:48'
+                    avg_price: 4.504
+                    sum_price: 30084.1
+                    special: 0
+                  - id: 148
+                    good_id: 12364
+                    name: 裂空武器箱
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5f2cadd07f9d2ad2f7231f44KiHkXa5a02
+                    group: 其他
+                    statistic: 6253
+                    updated_at: '2024-06-26T15:00:38'
+                    avg_price: 1.207
+                    sum_price: 7544.26
+                    special: 0
+                  - id: 152
+                    good_id: 16283
+                    name: 变革武器箱
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5a2e6779f248773656374kAHJNEoE04
+                    group: 其他
+                    statistic: 5993
+                    updated_at: '2024-06-26T15:00:27'
+                    avg_price: 2.095
+                    sum_price: 12552.6
+                    special: 0
+                  - id: 151
+                    good_id: 15447
+                    name: 反冲武器箱
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/62bf6ac991df682427d38ac4MbtVXRUV04
+                    group: 其他
+                    statistic: 5894
+                    updated_at: '2024-06-26T15:00:48'
+                    avg_price: 11.944
+                    sum_price: 70399.2
+                    special: 0
+                  - id: 149
+                    good_id: 13173
+                    name: 蛇噬武器箱
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/609079ca2786fd5a983c694dj6KXbAdk03
+                    group: 其他
+                    statistic: 2075
+                    updated_at: '2024-06-26T15:00:46'
+                    avg_price: 1
+                    sum_price: 2074.95
+                    special: 0
+                  - id: 160
+                    good_id: 16463
+                    name: 阿努比斯收藏包
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/6447217d3fc7c9a57a30bd50sgSaYhSi04
+                    group: 其他
+                    statistic: 1718
+                    updated_at: '2024-06-26T14:49:27'
+                    avg_price: 8.032
+                    sum_price: 13799.8
+                    special: 0
+                  - id: 143
+                    good_id: 8102
+                    name: 命悬一线武器箱
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fe246fb758acf3db7dc6fzK9qCbh3
+                    group: 其他
+                    statistic: 1098
+                    updated_at: '2024-06-26T14:59:01'
+                    avg_price: 3.57
+                    sum_price: 3920.03
+                    special: 0
+                  - id: 147
+                    good_id: 12186
+                    name: 棱彩2号武器箱
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5e83d7916f04943b53820821TwZ0RJVV02
+                    group: 其他
+                    statistic: 812
+                    updated_at: '2024-06-26T15:00:18'
+                    avg_price: 3.485
+                    sum_price: 2830.15
+                    special: 0
+                  - id: 158
+                    good_id: 17141
+                    name: 2023年巴黎锦标赛荒漠迷城纪念包
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/645920794efdc9739a84b1e2sPreWVSe04
+                    group: 其他
+                    statistic: 812
+                    updated_at: '2024-06-26T14:52:26'
+                    avg_price: 12.56
+                    sum_price: 10198.9
+                    special: 0
+                  - id: 144
+                    good_id: 9709
+                    name: “头号特训”武器箱
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/60d1593c143cfa4f5ceafc90I62GOuZD03
+                    group: 其他
+                    statistic: 764
+                    updated_at: '2024-06-26T14:48:08'
+                    avg_price: 3.468
+                    sum_price: 2649.81
+                    special: 1
+                  - id: 157
+                    good_id: 16260
+                    name: 2022年里约热内卢锦标赛炙热沙城 II 纪念包
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63606617ddf9cd237f527ac8JTs0avYi04
+                    group: 其他
+                    statistic: 660
+                    updated_at: '2024-06-26T14:58:07'
+                    avg_price: 15.205
+                    sum_price: 10035.1
+                    special: 0
+                  - id: 146
+                    good_id: 11140
+                    name: 反恐精英20周年武器箱
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5daa16cf143cfa4bec985411BxRRRYe402
+                    group: 其他
+                    statistic: 366
+                    updated_at: '2024-06-26T14:59:00'
+                    avg_price: 3.029
+                    sum_price: 1108.7
+                    special: 1
+                  - id: 82
+                    good_id: 12531
+                    name: 残酷的达里尔爵士（聒噪）| 专业人士
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5fc969e9143cfa7f6d60be6eRqMvkCkm02
+                    group: 探员
+                    statistic: 363
+                    updated_at: '2024-06-26T14:53:48'
+                    avg_price: 281.295
+                    sum_price: 102110
+                    special: 1
+                  - id: 142
+                    good_id: 2848
+                    name: 光谱 2 号武器箱
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa02c57fb758a6794d5f8d0MtQFYjk0
+                    group: 其他
+                    statistic: 357
+                    updated_at: '2024-06-26T14:48:08'
+                    avg_price: 10.993
+                    sum_price: 3924.53
+                    special: 1
+                  - id: 81
+                    good_id: 12514
+                    name: 老K | 专业人士
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5fc966f36f04945adf35c1bfHukuIAJj02
+                    group: 探员
+                    statistic: 352
+                    updated_at: '2024-06-26T14:59:13'
+                    avg_price: 298.074
+                    sum_price: 104922
+                    special: 1
+                  - id: 353
+                    good_id: 12414
+                    name: 沙漠之鹰 | 印花集 (久经沙场)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5f2cc5fe6f0494116fe13465R9TfZKuf02
+                    group: 手枪
+                    statistic: 325
+                    updated_at: '2024-06-26T14:55:29'
+                    avg_price: 214.145
+                    sum_price: 69597.1
+                    special: 2
+                  - id: 145
+                    good_id: 10337
+                    name: 棱彩武器箱
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5c899fe8a7f25296f3b01ab5PiKsXDdV02
+                    group: 其他
+                    statistic: 309
+                    updated_at: '2024-06-26T14:56:20'
+                    avg_price: 3.067
+                    sum_price: 947.57
+                    special: 1
+                  - id: 469
+                    good_id: 11498
+                    name: B 中队指挥官 | 英国空军特别部队
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5ee6eaaa8b742789d5070b95DZcaYVua02
+                    group: 探员
+                    statistic: 301
+                    updated_at: '2024-06-26T15:00:20'
+                    avg_price: 40.914
+                    sum_price: 12315
+                    special: 1
+                  - id: 215
+                    good_id: 135
+                    name: AK-47 | 红线 (久经沙场)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0c2f769b21ae0f25da300W8ER6ycS
+                    group: 步枪
+                    statistic: 272
+                    updated_at: '2024-06-26T14:58:53'
+                    avg_price: 220.191
+                    sum_price: 59891.9
+                    special: 2
+                  - id: 417
+                    good_id: 17243
+                    name: 格洛克 18 型 | 伽玛多普勒 (崭新出厂)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/6154197cfbfe1b2069ce05f1zJxTiJTM03
+                    group: 手枪
+                    statistic: 243
+                    updated_at: '2024-06-26T14:57:49'
+                    avg_price: 3516.9
+                    sum_price: 854608
+                    special: 2
+                  - id: 86
+                    good_id: 12669
+                    name: 残酷的达里尔爵士（迈阿密）| 专业人士
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5fc96f1f69b21a2240e5a42eydOVm6dS02
+                    group: 探员
+                    statistic: 237
+                    updated_at: '2024-06-26T14:53:47'
+                    avg_price: 503.983
+                    sum_price: 119444
+                    special: 1
+                  - id: 87
+                    good_id: 12672
+                    name: 残酷的达里尔爵士（皇家）| 专业人士
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5fc96f237f9d2a7088567402tFqjqNAF02
+                    group: 探员
+                    statistic: 231
+                    updated_at: '2024-06-26T14:56:30'
+                    avg_price: 189.297
+                    sum_price: 43727.5
+                    special: 1
+                  - id: 515
+                    good_id: 20248
+                    name: 印花 | Lynn Vision（全息）| 2024年哥本哈根锦标赛
+                    img: >-
+                      https://market.fp.ps.netease.com/file/65fb982562bccb65149a2d965wj1ibNO05
+                    group: 印花
+                    statistic: 227
+                    updated_at: '2024-06-26T14:57:27'
+                    avg_price: 51.893
+                    sum_price: 11779.8
+                    special: 1
+                  - id: 355
+                    good_id: 12466
+                    name: 沙漠之鹰 | 印花集 (略有磨损)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5f2cdf9b2786fdc5d7c9fedflDzy6QJ402
+                    group: 手枪
+                    statistic: 221
+                    updated_at: '2024-06-26T14:58:10'
+                    avg_price: 341.876
+                    sum_price: 75554.7
+                    special: 2
+                  - id: 159
+                    good_id: 17143
+                    name: 2023年巴黎锦标赛阿努比斯纪念包
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/645920e0969f89a5126fdd5f4bouR02W04
+                    group: 其他
+                    statistic: 216
+                    updated_at: '2024-06-26T14:40:31'
+                    avg_price: 9.132
+                    sum_price: 1972.56
+                    special: 0
+                  - id: 500
+                    good_id: 20062
+                    name: 印花 | ECSTATIC（全息）| 2024年哥本哈根锦标赛
+                    img: >-
+                      https://market.fp.ps.netease.com/file/65fb9684744fe2684fcb253dxQ6Eu3jx05
+                    group: 印花
+                    statistic: 216
+                    updated_at: '2024-06-26T14:35:20'
+                    avg_price: 6.008
+                    sum_price: 1297.66
+                    special: 1
+                  - id: 513
+                    good_id: 20241
+                    name: 印花 | KOI（全息）| 2024年哥本哈根锦标赛
+                    img: >-
+                      https://market.fp.ps.netease.com/file/65fb9649b7c1f36cb0355358yVzc3Zha05
+                    group: 印花
+                    statistic: 216
+                    updated_at: '2024-06-26T14:41:07'
+                    avg_price: 63.522
+                    sum_price: 13720.8
+                    special: 1
+                  - id: 326
+                    good_id: 9720
+                    name: AK-47 | 二西莫夫 (久经沙场)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5c09c2828b74270874352ef8R297pP5v
+                    group: 步枪
+                    statistic: 215
+                    updated_at: '2024-06-26T14:52:52'
+                    avg_price: 197.204
+                    sum_price: 42398.8
+                    special: 2
+                  - id: 456
+                    good_id: 11431
+                    name: 爱娃特工 | 联邦调查局（FBI）
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5ee6e88d8b742789d50708ddj4HELk3s02
+                    group: 探员
+                    statistic: 211
+                    updated_at: '2024-06-26T15:00:23'
+                    avg_price: 88.606
+                    sum_price: 18695.8
+                    special: 1
+                  - id: 405
+                    good_id: 15466
+                    name: USP 消音版 | 印花集 (久经沙场)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/62bf775414a64d0841f72625b5K3QXMX04
+                    group: 手枪
+                    statistic: 208
+                    updated_at: '2024-06-26T15:00:36'
+                    avg_price: 214.512
+                    sum_price: 44618.5
+                    special: 2
+                  - id: 80
+                    good_id: 13745
+                    name: D 中队军官 | 新西兰特种空勤团
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/614aa1bf16b6d46f5f48e3b8SuHcj1rq03
+                    group: 探员
+                    statistic: 205
+                    updated_at: '2024-06-26T14:48:21'
+                    avg_price: 322.449
+                    sum_price: 66102.1
+                    special: 1
+                  - id: 77
+                    good_id: 13564
+                    name: 指挥官弗兰克·巴鲁德（湿袜） | 海豹蛙人
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/614a9c34affd2a4736547c93z8xfB7qa03
+                    group: 探员
+                    statistic: 175
+                    updated_at: '2024-06-26T14:45:32'
+                    avg_price: 272.933
+                    sum_price: 47763.3
+                    special: 1
+                  - id: 357
+                    good_id: 12680
+                    name: M4A1 消音型 | 印花集 (久经沙场)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5fc96fe969b21a471fd0c5a2E3yID51t02
+                    group: 步枪
+                    statistic: 164
+                    updated_at: '2024-06-26T14:58:09'
+                    avg_price: 1098.86
+                    sum_price: 180213
+                    special: 2
+                  - id: 78
+                    good_id: 13591
+                    name: 指挥官黛维达·费尔南德斯（护目镜） | 海豹蛙人
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/614a9d21a37d2ca8e6c20c72s4BQd49R03
+                    group: 探员
+                    statistic: 148
+                    updated_at: '2024-06-26T14:56:32'
+                    avg_price: 316.411
+                    sum_price: 46828.8
+                    special: 1
+                  - id: 414
+                    good_id: 16415
+                    name: M4A4 | 反冲精英 (久经沙场)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5d4600c02f7106bb2d5betUsxj27Q04
+                    group: 步枪
+                    statistic: 148
+                    updated_at: '2024-06-26T14:57:49'
+                    avg_price: 96.844
+                    sum_price: 14332.9
+                    special: 2
+                  - id: 88
+                    good_id: 12720
+                    name: 飞贼波兹曼 | 专业人士
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5fc9730b6f04947d4aa2682aDAC8ojCx02
+                    group: 探员
+                    statistic: 146
+                    updated_at: '2024-06-26T14:53:47'
+                    avg_price: 76.284
+                    sum_price: 11137.4
+                    special: 1
+                  - id: 319
+                    good_id: 8563
+                    name: AK-47 | 霓虹骑士 (久经沙场)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5bc978416f049460b26be8b3vSGkttaA
+                    group: 步枪
+                    statistic: 145
+                    updated_at: '2024-06-26T14:55:40'
+                    avg_price: 314.857
+                    sum_price: 45654.2
+                    special: 2
+                  - id: 83
+                    good_id: 12555
+                    name: 残酷的达里尔爵士（头盖骨）| 专业人士
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5fc96b7e143cfa71f9d3cdb9l15hbCG602
+                    group: 探员
+                    statistic: 143
+                    updated_at: '2024-06-26T14:56:31'
+                    avg_price: 148.76
+                    sum_price: 21272.7
+                    special: 1
+                  - id: 455
+                    good_id: 11424
+                    name: 海军上尉里克索尔 | 海军水面战中心海豹部队
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5ee6e90b8b74277181cfcda8k5lDomhr02
+                    group: 探员
+                    statistic: 142
+                    updated_at: '2024-06-26T14:52:14'
+                    avg_price: 62.66
+                    sum_price: 8897.71
+                    special: 1
+                  - id: 217
+                    good_id: 145
+                    name: AK-47 | 皇后 (久经沙场)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0c2fd7f9d2aefe8cdfce98ea5DQLm
+                    group: 步枪
+                    statistic: 139
+                    updated_at: '2024-06-26T14:58:52'
+                    avg_price: 221.059
+                    sum_price: 30727.2
+                    special: 2
+                  - id: 412
+                    good_id: 16408
+                    name: AK-47 | 一发入魂 (久经沙场)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5cc0de51dec9617ec3dfbOFATCLZ704
+                    group: 步枪
+                    statistic: 137
+                    updated_at: '2024-06-26T15:00:31'
+                    avg_price: 57.207
+                    sum_price: 7837.38
+                    special: 2
+                  - id: 424
+                    good_id: 19585
+                    name: M4A1 消音型 | 黑莲花 (久经沙场)
+                    img: >-
+                      https://market.fp.ps.netease.com/file/65c2ed3bbe0ac17458cc9278VRN6Qo3P05
+                    group: 步枪
+                    statistic: 135
+                    updated_at: '2024-06-26T14:55:06'
+                    avg_price: 70.845
+                    sum_price: 9564.14
+                    special: 2
+                  - id: 501
+                    good_id: 20066
+                    name: 印花 | Legacy（全息）| 2024年哥本哈根锦标赛
+                    img: >-
+                      https://market.fp.ps.netease.com/file/65fb961abdcd5cd55ece1e36vyg9Rmis05
+                    group: 印花
+                    statistic: 126
+                    updated_at: '2024-06-26T14:54:22'
+                    avg_price: 6.396
+                    sum_price: 805.87
+                    special: 1
+                  - id: 349
+                    good_id: 12206
+                    name: M4A1 消音型 | 二号玩家 (久经沙场)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5e83e9052786fd1e0a80481eSycIvE0202
+                    group: 步枪
+                    statistic: 121
+                    updated_at: '2024-06-26T14:58:12'
+                    avg_price: 135.737
+                    sum_price: 16424.2
+                    special: 2
+                  - id: 409
+                    good_id: 15547
+                    name: USP 消音版 | 印花集 (略有磨损)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/62bf850700722e66448322fagwdOiFPg04
+                    group: 手枪
+                    statistic: 117
+                    updated_at: '2024-06-26T14:55:11'
+                    avg_price: 402.854
+                    sum_price: 47133.9
+                    special: 2
+                  - id: 418
+                    good_id: 17244
+                    name: AK-47 | 二西莫夫 (略有磨损)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5c0a0efd7f9d2a50e5ac90064AJCPOWG
+                    group: 步枪
+                    statistic: 114
+                    updated_at: '2024-06-26T14:57:48'
+                    avg_price: 425.307
+                    sum_price: 48485
+                    special: 2
+                  - id: 411
+                    good_id: 16380
+                    name: M4A4 | 反冲精英 (略有磨损)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b6017a80968efc3c82c8jic8y2ET04
+                    group: 步枪
+                    statistic: 112
+                    updated_at: '2024-06-26T15:00:31'
+                    avg_price: 405.88
+                    sum_price: 45458.6
+                    special: 2
+                  - id: 402
+                    good_id: 14730
+                    name: AK-47 | 夜愿 (略有磨损)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/61ea1c764efdc93c954953bc04UrEV8p04
+                    group: 步枪
+                    statistic: 105
+                    updated_at: '2024-06-26T14:49:43'
+                    avg_price: 115.067
+                    sum_price: 12082
+                    special: 2
+                  - id: 84
+                    good_id: 12592
+                    name: 出逃的萨莉 | 专业人士
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5fc96cef6f04942359706506PCZVXizv02
+                    group: 探员
+                    statistic: 103
+                    updated_at: '2024-06-26T14:42:55'
+                    avg_price: 535.105
+                    sum_price: 55115.8
+                    special: 1
+                  - id: 504
+                    good_id: 20139
+                    name: 印花 | GamerLegion（全息）| 2024年哥本哈根锦标赛
+                    img: >-
+                      https://market.fp.ps.netease.com/file/65fb9b478ea624819a1ab57fJmw6fkL105
+                    group: 印花
+                    statistic: 100
+                    updated_at: '2024-06-26T14:52:03'
+                    avg_price: 18.869
+                    sum_price: 1886.86
+                    special: 1
+                  - id: 14
+                    good_id: 8661
+                    name: 短剑（★）
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5b680a536f04947b80a1af18gSdWdmMV
+                    group: 匕首
+                    statistic: 99
+                    updated_at: '2024-06-26T14:54:09'
+                    avg_price: 2727.07
+                    sum_price: 269980
+                    special: 2
+                  - id: 104
+                    good_id: 16614
+                    name: 印花 | MOUZ（全息）| 2023年巴黎锦标赛
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/6454484b969f8911460f56ebfjvm6SR704
+                    group: 印花
+                    statistic: 98
+                    updated_at: '2024-06-26T15:00:04'
+                    avg_price: 16.827
+                    sum_price: 1649.07
+                    special: 0
+                  - id: 211
+                    good_id: 113
+                    name: AK-47 | 霓虹革命 (略有磨损)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0c2918b74279301e0c6896ld4ZNL4
+                    group: 步枪
+                    statistic: 96
+                    updated_at: '2024-06-26T14:50:47'
+                    avg_price: 225.547
+                    sum_price: 21652.5
+                    special: 2
+                  - id: 549
+                    good_id: 20073
+                    name: 印花 | Cloud9（闪耀）| 2024年哥本哈根锦标赛
+                    img: >-
+                      https://market.fp.ps.netease.com/file/65fb967613557c6217db58e3q3VfEg1r05
+                    group: 印花
+                    statistic: 95
+                    updated_at: '2024-06-26T13:39:12'
+                    avg_price: 4.119
+                    sum_price: 391.3
+                    special: 1
+                  - id: 503
+                    good_id: 20118
+                    name: 印花 | Imperial Esports（全息）| 2024年哥本哈根锦标赛
+                    img: >-
+                      https://market.fp.ps.netease.com/file/65fb967fe3332103d67a170csir34wUI05
+                    group: 印花
+                    statistic: 94
+                    updated_at: '2024-06-26T14:46:31'
+                    avg_price: 8.708
+                    sum_price: 818.54
+                    special: 1
+                  - id: 12
+                    good_id: 8581
+                    name: 折刀（★）
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5b65677396dee40b597bea7am5XwmJSg
+                    group: 匕首
+                    statistic: 92
+                    updated_at: '2024-06-26T14:18:59'
+                    avg_price: 962.595
+                    sum_price: 88558.7
+                    special: 2
+                  - id: 66
+                    good_id: 9714
+                    name: AWP | 黑色魅影 (崭新出厂)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5c09b2be143cfaa3ac63cdf2rX5BdeIM
+                    group: 步枪
+                    statistic: 91
+                    updated_at: '2024-06-26T14:45:35'
+                    avg_price: 206.98
+                    sum_price: 18835.2
+                    special: 2
+                  - id: 90
+                    good_id: 13560
+                    name: 残酷的达里尔（穷鬼）| 专业人士
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/614a9be199e8d68cabbf75db4TM34hEy03
+                    group: 探员
+                    statistic: 90
+                    updated_at: '2024-06-26T14:37:28'
+                    avg_price: 127.838
+                    sum_price: 11505.4
+                    special: 1
+                  - id: 410
+                    good_id: 16339
+                    name: AK-47 | 一发入魂 (略有磨损)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5b55f43d7925e385ffe08r90XLi5z04
+                    group: 步枪
+                    statistic: 89
+                    updated_at: '2024-06-26T15:00:32'
+                    avg_price: 132
+                    sum_price: 11748
+                    special: 2
+                  - id: 255
+                    good_id: 1273
+                    name: M4A1 消音型 | 机械工业 (久经沙场)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0b747aa49f1f1b700209cbUC5X6UJ
+                    group: 步枪
+                    statistic: 88
+                    updated_at: '2024-06-26T14:55:58'
+                    avg_price: 174.951
+                    sum_price: 15395.7
+                    special: 2
+                  - id: 406
+                    good_id: 15487
+                    name: AK-47 | 可燃冰 (崭新出厂)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/62bf73d33edd585943b1865eZcOOJTPH04
+                    group: 步枪
+                    statistic: 85
+                    updated_at: '2024-06-26T14:36:07'
+                    avg_price: 104.141
+                    sum_price: 8851.99
+                    special: 2
+                  - id: 107
+                    good_id: 16663
+                    name: 印花 | FURIA（全息）| 2023年巴黎锦标赛
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/645448cb3f043cbec960d2a9lMZ0Ez9A04
+                    group: 印花
+                    statistic: 83
+                    updated_at: '2024-06-26T14:28:23'
+                    avg_price: 19.056
+                    sum_price: 1581.63
+                    special: 0
+                  - id: 210
+                    good_id: 112
+                    name: AK-47 | 霓虹革命 (久经沙场)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0c2906f0494269f5b76fdbNsQh7RK
+                    group: 步枪
+                    statistic: 82
+                    updated_at: '2024-06-26T14:58:55'
+                    avg_price: 90.375
+                    sum_price: 7410.78
+                    special: 2
+                  - id: 199
+                    good_id: 48
+                    name: AK-47 | 血腥运动 (略有磨损)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0c29a20e3db746eb9153bVTu67Bg7
+                    group: 步枪
+                    statistic: 80
+                    updated_at: '2024-06-26T14:58:59'
+                    avg_price: 699.359
+                    sum_price: 55948.7
+                    special: 2
+                  - id: 428
+                    good_id: 19591
+                    name: M4A1 消音型 | 黑莲花 (略有磨损)
+                    img: >-
+                      https://market.fp.ps.netease.com/file/65c2ee884982ab43765d95e0R6DyW8uD05
+                    group: 步枪
+                    statistic: 80
+                    updated_at: '2024-06-26T14:57:44'
+                    avg_price: 98.945
+                    sum_price: 7915.62
+                    special: 2
+                  - id: 98
+                    good_id: 16601
+                    name: 印花 | 9INE（全息）| 2023年巴黎锦标赛
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/6455c2b25a209832477a511bwyb9hM7X04
+                    group: 印花
+                    statistic: 79
+                    updated_at: '2024-06-26T13:24:37'
+                    avg_price: 8.346
+                    sum_price: 659.32
+                    special: 1
+                  - id: 512
+                    good_id: 20225
+                    name: 印花 | Team Spirit（全息）| 2024年哥本哈根锦标赛
+                    img: >-
+                      https://market.fp.ps.netease.com/file/65fb97783ff4dd7d9fc0de72cyNdSbAG05
+                    group: 印花
+                    statistic: 79
+                    updated_at: '2024-06-26T14:43:50'
+                    avg_price: 11.098
+                    sum_price: 876.78
+                    special: 1
+                  - id: 350
+                    good_id: 12231
+                    name: M4A1 消音型 | 二号玩家 (略有磨损)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5e83fa525e6027900744f4dfp4UPvC9d02
+                    group: 步枪
+                    statistic: 77
+                    updated_at: '2024-06-26T14:52:44'
+                    avg_price: 377.4
+                    sum_price: 29059.8
+                    special: 2
+                  - id: 433
+                    good_id: 19609
+                    name: AK-47 | 传承 (久经沙场)
+                    img: >-
+                      https://market.fp.ps.netease.com/file/65c2f094f9dc6345bd2af366rg9iJ9lT05
+                    group: 步枪
+                    statistic: 77
+                    updated_at: '2024-06-26T14:57:43'
+                    avg_price: 409.095
+                    sum_price: 31500.3
+                    special: 2
+                  - id: 282
+                    good_id: 7310
+                    name: M9 刺刀（★） | 多普勒 (崭新出厂)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa9492eaa49f1631dbfe031hhfyOprC
+                    group: 匕首
+                    statistic: 76
+                    updated_at: '2024-06-26T14:50:23'
+                    avg_price: 12934.5
+                    sum_price: 983024
+                    special: 2
+                  - id: 197
+                    good_id: 39
+                    name: AK-47 | 深海复仇 (久经沙场)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0c34ba7f252734354c57eEw5EPijr
+                    group: 步枪
+                    statistic: 73
+                    updated_at: '2024-06-26T14:48:07'
+                    avg_price: 260.703
+                    sum_price: 19031.3
+                    special: 2
+                  - id: 218
+                    good_id: 146
+                    name: AK-47 | 皇后 (略有磨损)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0c311fb758aa2341ad8131LIH2oM8
+                    group: 步枪
+                    statistic: 70
+                    updated_at: '2024-06-26T14:58:52'
+                    avg_price: 470.424
+                    sum_price: 32929.7
+                    special: 2
+                  - id: 422
+                    good_id: 19580
+                    name: USP 消音版 | 破颚者 (久经沙场)
+                    img: >-
+                      https://market.fp.ps.netease.com/file/65c2ee1a1c61834927b35d3aoDIPXcsP05
+                    group: 手枪
+                    statistic: 70
+                    updated_at: '2024-06-26T14:46:49'
+                    avg_price: 42.241
+                    sum_price: 2956.89
+                    special: 2
+                  - id: 204
+                    good_id: 87
+                    name: AK-47 | 燃料喷射器 (久经沙场)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0c3137f9d2af3349ecb8fNgGijwHR
+                    group: 步枪
+                    statistic: 69
+                    updated_at: '2024-06-26T14:50:49'
+                    avg_price: 1024.54
+                    sum_price: 70693.5
+                    special: 2
+                  - id: 247
+                    good_id: 1235
+                    name: M4A1 消音型 | 毁灭者 2000 (略有磨损)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0b72220e3db59860c59c0u0QYFL1L
+                    group: 步枪
+                    statistic: 69
+                    updated_at: '2024-06-26T14:53:19'
+                    avg_price: 107.078
+                    sum_price: 7388.41
+                    special: 2
+                  - id: 389
+                    good_id: 13363
+                    name: AK-47 | 抽象派 1337 (略有磨损)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/614a91db73c76a3bd54f192chy2LiS1t03
+                    group: 步枪
+                    statistic: 68
+                    updated_at: '2024-06-26T14:55:18'
+                    avg_price: 255.244
+                    sum_price: 17356.6
+                    special: 2
+                  - id: 464
+                    good_id: 11462
+                    name: 精英穆哈里克先生 | 精锐分子
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5ee6e93296dee4f1804be6d4kQzH4x2I02
+                    group: 探员
+                    statistic: 68
+                    updated_at: '2024-06-26T15:00:21'
+                    avg_price: 30.544
+                    sum_price: 2076.96
+                    special: 1
+                  - id: 551
+                    good_id: 20169
+                    name: 印花 | donk（闪耀）| 2024年哥本哈根锦标赛
+                    img: >-
+                      https://market.fp.ps.netease.com/file/65fb94e57338558571dd4ecdC3sxLQBF05
+                    group: 印花
+                    statistic: 68
+                    updated_at: '2024-06-26T14:51:58'
+                    avg_price: 5.214
+                    sum_price: 354.54
+                    special: 1
+                  - id: 58
+                    good_id: 46
+                    name: AK-47 | 血腥运动 (崭新出厂)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0c29a20e3db746eb9153bVTu67Bg7
+                    group: 步枪
+                    statistic: 67
+                    updated_at: '2024-06-26T14:56:38'
+                    avg_price: 827.891
+                    sum_price: 55468.7
+                    special: 2
+                  - id: 327
+                    good_id: 9779
+                    name: AWP | 黑色魅影 (久经沙场)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5c0a2eb78b742767f2f0bc2f1XfFUT4O
+                    group: 步枪
+                    statistic: 67
+                    updated_at: '2024-06-26T14:52:52'
+                    avg_price: 128.538
+                    sum_price: 8612.02
+                    special: 2
+                  - id: 85
+                    good_id: 12628
+                    name: 残酷的达里尔爵士（沉默）| 专业人士
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5fc96de37f9d2a28923ad94bJu6LekXP02
+                    group: 探员
+                    statistic: 65
+                    updated_at: '2024-06-26T14:42:55'
+                    avg_price: 121.709
+                    sum_price: 7911.09
+                    special: 1
+                  - id: 363
+                    good_id: 12816
+                    name: M4A1 消音型 | 印花集 (略有磨损)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5fc978e45e602738f5cf2d7bDz6TNhoY02
+                    group: 步枪
+                    statistic: 65
+                    updated_at: '2024-06-26T14:58:07'
+                    avg_price: 1668.09
+                    sum_price: 108426
+                    special: 2
+                  - id: 514
+                    good_id: 20246
+                    name: 印花 | Cloud9（全息）| 2024年哥本哈根锦标赛
+                    img: >-
+                      https://market.fp.ps.netease.com/file/65fb9717d683052109584792zLObWSoy05
+                    group: 印花
+                    statistic: 65
+                    updated_at: '2024-06-26T14:30:19'
+                    avg_price: 48.463
+                    sum_price: 3150.08
+                    special: 1
+                  - id: 63
+                    good_id: 12630
+                    name: M4A1 消音型 | 澜磷 (崭新出厂)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5fc96de896dee45c27ea8f43Msj90Qpq02
+                    group: 步枪
+                    statistic: 64
+                    updated_at: '2024-06-26T14:34:51'
+                    avg_price: 4008.86
+                    sum_price: 256567
+                    special: 2
+                  - id: 101
+                    good_id: 16607
+                    name: 印花 | Fluxo（全息）| 2023年巴黎锦标赛
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/645448433b75004bb614dc0dwLtVEK3v04
+                    group: 印花
+                    statistic: 64
+                    updated_at: '2024-06-26T14:31:59'
+                    avg_price: 8.204
+                    sum_price: 525.07
+                    special: 1
+                  - id: 110
+                    good_id: 16722
+                    name: 印花 | Team Liquid（全息）| 2023年巴黎锦标赛
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/6454494b2942863a04e47c55zSihUvyf04
+                    group: 印花
+                    statistic: 64
+                    updated_at: '2024-06-26T14:59:05'
+                    avg_price: 4.949
+                    sum_price: 316.72
+                    special: 1
+                  - id: 203
+                    good_id: 83
+                    name: AK-47 | 前线迷雾 (略有磨损)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0c352ee4c0f9d06310735l89GH0Nu
+                    group: 步枪
+                    statistic: 64
+                    updated_at: '2024-06-26T14:56:18'
+                    avg_price: 153.173
+                    sum_price: 9803.06
+                    special: 2
+                  - id: 338
+                    good_id: 11230
+                    name: AWP | 野火 (久经沙场)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5daa33e696dee492804f0723UhizgDF802
+                    group: 步枪
+                    statistic: 64
+                    updated_at: '2024-06-26T14:52:48'
+                    avg_price: 436.68
+                    sum_price: 27947.5
+                    special: 2
+                  - id: 471
+                    good_id: 12515
+                    name: 第一中尉法洛 | 特警
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5fc966f36f04941b6b58f44885qdSilg02
+                    group: 探员
+                    statistic: 64
+                    updated_at: '2024-06-26T14:57:36'
+                    avg_price: 29.601
+                    sum_price: 1894.47
+                    special: 1
+                  - id: 498
+                    good_id: 20040
+                    name: 印花 | nexa（全息）| 2024年哥本哈根锦标赛
+                    img: >-
+                      https://market.fp.ps.netease.com/file/65fb99a7a78ff632b0ad904cuY5GYjbP05
+                    group: 印花
+                    statistic: 64
+                    updated_at: '2024-06-26T13:55:15'
+                    avg_price: 8.943
+                    sum_price: 572.36
+                    special: 1
+                  - id: 550
+                    good_id: 20142
+                    name: 印花 | z4KR（闪耀）| 2024年哥本哈根锦标赛
+                    img: >-
+                      https://market.fp.ps.netease.com/file/65fb960e13fe4adf99ab761f7yGOgddM05
+                    group: 印花
+                    statistic: 63
+                    updated_at: '2024-06-26T14:00:41'
+                    avg_price: 6.205
+                    sum_price: 390.93
+                    special: 1
+                  - id: 198
+                    good_id: 47
+                    name: AK-47 | 血腥运动 (久经沙场)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0c29969b21adecb23496eJphDZTLc
+                    group: 步枪
+                    statistic: 62
+                    updated_at: '2024-06-26T14:53:36'
+                    avg_price: 634.727
+                    sum_price: 39353.1
+                    special: 2
+                  - id: 466
+                    good_id: 11474
+                    name: 奥西瑞斯 | 精锐分子
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5ee6ebff5e602753fc830721fwakBQvk02
+                    group: 探员
+                    statistic: 62
+                    updated_at: '2024-06-26T14:35:53'
+                    avg_price: 21.785
+                    sum_price: 1350.65
+                    special: 1
+                  - id: 68
+                    good_id: 235
+                    name: AWP | 二西莫夫 (久经沙场)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0c227aa49f1109b1e2342qFwi6740
+                    group: 步枪
+                    statistic: 61
+                    updated_at: '2024-06-26T14:59:17'
+                    avg_price: 881.721
+                    sum_price: 53785
+                    special: 2
+                  - id: 132
+                    good_id: 14182
+                    name: 印花 | Tyloo （全息） | 2021年斯德哥尔摩锦标赛
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/6171fcb387d5df2d01a13a2eMvVO4JWb03
+                    group: 印花
+                    statistic: 60
+                    updated_at: '2024-06-26T14:37:21'
+                    avg_price: 134.961
+                    sum_price: 8097.65
+                    special: 1
+                  - id: 477
+                    good_id: 13519
+                    name: 精锐捕兽者索尔曼 | 游击队
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/614a98fc2d683e9660defa8bFxu0dY5H03
+                    group: 探员
+                    statistic: 60
+                    updated_at: '2024-06-26T14:49:23'
+                    avg_price: 101.045
+                    sum_price: 6062.71
+                    special: 1
+                  - id: 492
+                    good_id: 16285
+                    name: 印花 | 无限三角（全息）
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5a3aeb7a4847e6366a144zy6OdZpE04
+                    group: 印花
+                    statistic: 60
+                    updated_at: '2024-06-26T14:52:06'
+                    avg_price: 13.436
+                    sum_price: 806.16
+                    special: 1
+                  - id: 241
+                    good_id: 1222
+                    name: M4A1 消音型 | 女火神之炽焰 (久经沙场)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0b77346072b755754d756WULNBKgd
+                    group: 步枪
+                    statistic: 59
+                    updated_at: '2024-06-26T14:58:45'
+                    avg_price: 157.355
+                    sum_price: 9283.97
+                    special: 2
+                  - id: 468
+                    good_id: 11488
+                    name: 沙哈马特教授 | 精锐分子
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5ee6ebca143cfa2dfc9ab34cPdyzpiWi02
+                    group: 探员
+                    statistic: 59
+                    updated_at: '2024-06-26T14:57:37'
+                    avg_price: 18.659
+                    sum_price: 1100.88
+                    special: 1
+                  - id: 49
+                    good_id: 12456
+                    name: 沙漠之鹰 | 印花集 (崭新出厂)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5f2cdf9b2786fdc5d7c9fedflDzy6QJ402
+                    group: 手枪
+                    statistic: 57
+                    updated_at: '2024-06-26T14:37:40'
+                    avg_price: 595.005
+                    sum_price: 33915.3
+                    special: 2
+                  - id: 219
+                    good_id: 150
+                    name: AK-47 | 火神 (久经沙场)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0c3457f9d2aa1e80a638bwZiBsCum
+                    group: 步枪
+                    statistic: 57
+                    updated_at: '2024-06-26T14:56:12'
+                    avg_price: 1579
+                    sum_price: 90003
+                    special: 2
+                  - id: 315
+                    good_id: 8490
+                    name: 沙漠之鹰 | 红色代号 (久经沙场)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5b64169a96dee4b71b01adaaOZR4VMLc
+                    group: 手枪
+                    statistic: 56
+                    updated_at: '2024-06-26T14:52:56'
+                    avg_price: 118.573
+                    sum_price: 6640.09
+                    special: 2
+                  - id: 328
+                    good_id: 9814
+                    name: AWP | 黑色魅影 (略有磨损)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5c09b2be143cfaa3ac63cdf2rX5BdeIM
+                    group: 步枪
+                    statistic: 56
+                    updated_at: '2024-06-26T14:36:37'
+                    avg_price: 164.262
+                    sum_price: 9198.68
+                    special: 2
+                  - id: 318
+                    good_id: 8507
+                    name: M4A1 消音型 | 梦魇 (略有磨损)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5b6415bd7f9d2afbb21d6e48VW7e3a0d
+                    group: 步枪
+                    statistic: 55
+                    updated_at: '2024-06-26T14:58:21'
+                    avg_price: 107.176
+                    sum_price: 5894.7
+                    special: 2
+                  - id: 13
+                    good_id: 8640
+                    name: 熊刀（★）
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5b66b9718b7427aff0311121f56ipiRl
+                    group: 匕首
+                    statistic: 53
+                    updated_at: '2024-06-26T14:45:50'
+                    avg_price: 1839.3
+                    sum_price: 97482.8
+                    special: 2
+                  - id: 267
+                    good_id: 6569
+                    name: USP 消音版 | 黑色魅影 (久经沙场)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0955a69b21a6a8a3cae31LXdr53oS
+                    group: 手枪
+                    statistic: 53
+                    updated_at: '2024-06-26T14:47:42'
+                    avg_price: 76.25
+                    sum_price: 4041.23
+                    special: 2
+                  - id: 452
+                    good_id: 11415
+                    name: “两次”麦考伊 | 美国空军战术空中管制部队
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5dfae2cf2786fdc5d3f48d95Np3hu14y02
+                    group: 探员
+                    statistic: 53
+                    updated_at: '2024-06-26T14:57:42'
+                    avg_price: 22.825
+                    sum_price: 1209.7
+                    special: 1
+                  - id: 465
+                    good_id: 11471
+                    name: 黑狼 | 军刀
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5ee6e99b143cfa0a653f0d4ax4O2RMbe02
+                    group: 探员
+                    statistic: 53
+                    updated_at: '2024-06-26T14:44:01'
+                    avg_price: 22.859
+                    sum_price: 1211.54
+                    special: 1
+                  - id: 252
+                    good_id: 1255
+                    name: M4A1 消音型 | 暴怒野兽 (久经沙场)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0b759ee4c0f7a658787d30PuA8WJJ
+                    group: 步枪
+                    statistic: 52
+                    updated_at: '2024-06-26T14:47:47'
+                    avg_price: 122.506
+                    sum_price: 6370.3
+                    special: 2
+                  - id: 335
+                    good_id: 10547
+                    name: M4A4 | 皇帝 (略有磨损)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5c89e2b28b7427af9ca10943BCqiQQ2p02
+                    group: 步枪
+                    statistic: 52
+                    updated_at: '2024-06-26T14:47:20'
+                    avg_price: 237.823
+                    sum_price: 12366.8
+                    special: 2
+                  - id: 461
+                    good_id: 11454
+                    name: 迈克·赛弗斯 | 联邦调查局（FBI）狙击手
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5ee6eac82786fdc5991d605atqkhxZxm02
+                    group: 探员
+                    statistic: 52
+                    updated_at: '2024-06-26T14:57:39'
+                    avg_price: 27.15
+                    sum_price: 1411.8
+                    special: 1
+                  - id: 548
+                    good_id: 16301
+                    name: 印花 | 飘雪（闪耀）
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5a5723b6d312248e04368jLjIGhq504
+                    group: 印花
+                    statistic: 52
+                    updated_at: '2024-06-26T14:35:41'
+                    avg_price: 9.717
+                    sum_price: 505.27
+                    special: 1
+                  - id: 67
+                    good_id: 292
+                    name: AWP | 红线 (久经沙场)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0c1b1143cfa42419c0bbegmRseUGH
+                    group: 步枪
+                    statistic: 51
+                    updated_at: '2024-06-26T14:56:35'
+                    avg_price: 287.741
+                    sum_price: 14674.8
+                    special: 2
+                  - id: 279
+                    good_id: 7228
+                    name: 爪子刀（★） | 多普勒 (崭新出厂)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5bcd9c1b96dee4c2fd94586dIrazo9y0
+                    group: 匕首
+                    statistic: 51
+                    updated_at: '2024-06-26T14:44:52'
+                    avg_price: 11920.3
+                    sum_price: 607935
+                    special: 2
+                  - id: 385
+                    good_id: 13270
+                    name: USP 消音版 | 倒吊人 (略有磨损)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/6090b59e8b742756396b74f8VgJOETlU03
+                    group: 手枪
+                    statistic: 51
+                    updated_at: '2024-06-26T14:52:32'
+                    avg_price: 105.766
+                    sum_price: 5394.08
+                    special: 2
+                  - id: 220
+                    good_id: 151
+                    name: AK-47 | 火神 (略有磨损)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0c346143cfa52524a816cHxTElkeD
+                    group: 步枪
+                    statistic: 50
+                    updated_at: '2024-06-26T14:45:10'
+                    avg_price: 3142.96
+                    sum_price: 157148
+                    special: 2
+                  - id: 97
+                    good_id: 16596
+                    name: 印花 | Natus Vincere（全息）| 2023年巴黎锦标赛
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/645447ea4efdc963dfd7327cWDjD5UOU04
+                    group: 印花
+                    statistic: 48
+                    updated_at: '2024-06-26T13:35:33'
+                    avg_price: 216.973
+                    sum_price: 10414.7
+                    special: 1
+                  - id: 432
+                    good_id: 19607
+                    name: AWP | 镀铬大炮 (久经沙场)
+                    img: >-
+                      https://market.fp.ps.netease.com/file/65c2ee1a7bfccc7b881d1b0dkbXKo7Nd05
+                    group: 步枪
+                    statistic: 48
+                    updated_at: '2024-06-26T14:57:43'
+                    avg_price: 288.127
+                    sum_price: 13830.1
+                    special: 2
+                  - id: 462
+                    good_id: 11457
+                    name: 弹弓 | 凤凰战士
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5ee6eb972786fdc5991d618fvPD5oK5X02
+                    group: 探员
+                    statistic: 48
+                    updated_at: '2024-06-26T14:44:02'
+                    avg_price: 19.613
+                    sum_price: 941.43
+                    special: 1
+                  - id: 509
+                    good_id: 20185
+                    name: 印花 | Eternal Fire（全息）| 2024年哥本哈根锦标赛
+                    img: >-
+                      https://market.fp.ps.netease.com/file/65fb99ab274eff50f6f835f2l6XqMgoW05
+                    group: 印花
+                    statistic: 48
+                    updated_at: '2024-06-26T14:54:48'
+                    avg_price: 18.136
+                    sum_price: 870.54
+                    special: 1
+                  - id: 396
+                    good_id: 13575
+                    name: AK-47 | 抽象派 1337 (久经沙场)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/614a9ca663d7939bffd51ab4kpYMpmcF03
+                    group: 步枪
+                    statistic: 47
+                    updated_at: '2024-06-26T14:44:19'
+                    avg_price: 108.487
+                    sum_price: 5098.89
+                    special: 2
+                  - id: 458
+                    good_id: 11437
+                    name: “医生”罗曼诺夫 | 军刀
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5ee6e8c26f0494b37f410150WB5zy5tt02
+                    group: 探员
+                    statistic: 46
+                    updated_at: '2024-06-26T14:55:00'
+                    avg_price: 37.405
+                    sum_price: 1720.62
+                    special: 1
+                  - id: 79
+                    good_id: 13605
+                    name: 中尉雷克斯·克里奇 | 海豹蛙人
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/614a9d4b16b6d473368514f6LYhuqk0203
+                    group: 探员
+                    statistic: 45
+                    updated_at: '2024-06-26T14:59:14'
+                    avg_price: 44.288
+                    sum_price: 1992.98
+                    special: 1
+                  - id: 256
+                    good_id: 1274
+                    name: M4A1 消音型 | 机械工业 (略有磨损)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0b74846072b75a60c36d3deXxpZsh
+                    group: 步枪
+                    statistic: 45
+                    updated_at: '2024-06-26T14:18:09'
+                    avg_price: 393.9
+                    sum_price: 17725.5
+                    special: 2
+                  - id: 354
+                    good_id: 12446
+                    name: AK-47 | 阿努比斯军团 (崭新出厂)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5f2cd628143cfae2929f82c4TMiu8leL02
+                    group: 步枪
+                    statistic: 44
+                    updated_at: '2024-06-26T14:55:29'
+                    avg_price: 97.547
+                    sum_price: 4292.09
+                    special: 2
+          headers: {}
+          x-apifox-name: 成功
+      security: []
+      x-apifox-folder: 接口详情/5️⃣ 实时成交数据（暂停更新）
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4711104/apis/api-187131821-run
+components:
+  schemas: {}
+  securitySchemes: {}
+servers:
+  - url: https://api.csqaq.com
+    description: 正式环境
+security: []
+
+```

@@ -1,0 +1,322 @@
+# 获取单件热门系列饰品详情
+
+## OpenAPI Specification
+
+```yaml
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /api/v1/info/get_series_detail:
+    get:
+      summary: 获取单件热门系列饰品详情
+      deprecated: false
+      description: >-
+        🥇 获取对应单件热门饰品系列的详情数据，需用series_id进行请求，series_id获取接口为
+        [获取热门系列饰品列表](http://docs.csqaq.com/api-187131803)
+      operationId: _______api_v1_info_get_series_detail_get
+      tags:
+        - 接口详情/3️⃣ 涨跌/热门排行
+        - api
+      parameters:
+        - name: series_id
+          in: query
+          description: 系列id，从【获取热门系列饰品列表】接口获取
+          required: true
+          example: 1
+          schema:
+            title: Series Id
+            type: integer
+        - name: ApiToken
+          in: header
+          description: 用户请求令牌（请自行申请）
+          required: true
+          example: '{{APITOKEN}}'
+          schema:
+            type: string
+            default: '{{APITOKEN}}'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    title: 响应状态码
+                  msg:
+                    type: string
+                    title: 响应信息
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          title: 饰品good_id
+                        buff_sell_price:
+                          type: integer
+                          title: buff在售价
+                        name:
+                          type: string
+                          title: 饰品中文名
+                        buff_buy_price:
+                          type: integer
+                          title: buff求购价
+                        buff_sell_num:
+                          type: integer
+                          title: buff在售数量
+                        quality_id:
+                          type: integer
+                          title: 饰品类别id
+                          enum:
+                            - 516
+                            - 517
+                            - 518
+                            - 519
+                            - 520
+                          x-apifox-enum:
+                            - value: 516
+                              name: ''
+                              description: 普通
+                            - value: 517
+                              name: ''
+                              description: 纪念品
+                            - value: 518
+                              name: ''
+                              description: StatTrak™
+                            - value: 519
+                              name: ''
+                              description: ★
+                            - value: 520
+                              name: ''
+                              description: ★ StatTrak™
+                        exterior_id:
+                          type: integer
+                          title: 饰品磨损id
+                          enum:
+                            - 510
+                            - 511
+                            - 512
+                            - 513
+                            - 514
+                            - 515
+                          x-apifox-enum:
+                            - value: 510
+                              name: ''
+                              description: 崭新出厂
+                            - value: 511
+                              name: ''
+                              description: 略有磨损
+                            - value: 512
+                              name: ''
+                              description: 久经沙场
+                            - value: 513
+                              name: ''
+                              description: 破损不堪
+                            - value: 514
+                              name: ''
+                              description: 战痕累累
+                            - value: 515
+                              name: ''
+                              description: 无涂装
+                        rarity_id:
+                          type: integer
+                          title: 饰品品质id
+                          enum:
+                            - 595
+                            - 596
+                            - 597
+                            - 598
+                          x-apifox-enum:
+                            - value: 595
+                              name: ''
+                              description: 高级
+                            - value: 596
+                              name: ''
+                              description: 奇异
+                            - value: 597
+                              name: ''
+                              description: 卓越
+                            - value: 598
+                              name: ''
+                              description: 非凡
+                        sell_price_1:
+                          type: number
+                          title: 近1日售价涨跌幅
+                        sell_price_7:
+                          type: integer
+                          title: 近7日售价涨跌幅
+                        sell_price_15:
+                          type: number
+                          title: 近15日售价涨跌幅
+                        sell_price_30:
+                          type: number
+                          title: 近30日售价涨跌幅
+                        sell_price_90:
+                          type: integer
+                          title: 近90日售价涨跌幅
+                        sell_price_180:
+                          type: integer
+                          title: 近180日售价涨跌幅
+                        sell_price_rate_1:
+                          type: number
+                          title: 近1日售价涨跌比率
+                        sell_price_rate_7:
+                          type: number
+                          title: 近7日售价涨跌比率
+                        sell_price_rate_15:
+                          type: number
+                          title: 近15日售价涨跌比率
+                        sell_price_rate_30:
+                          type: number
+                          title: 近30日售价涨跌比率
+                        sell_price_rate_90:
+                          type: number
+                          title: 近90日售价涨跌比率
+                        sell_price_rate_180:
+                          type: number
+                          title: 近180日售价涨跌比率
+                      required:
+                        - id
+                        - buff_sell_price
+                        - name
+                        - buff_buy_price
+                        - buff_sell_num
+                        - quality_id
+                        - exterior_id
+                        - rarity_id
+                        - sell_price_1
+                        - sell_price_7
+                        - sell_price_15
+                        - sell_price_30
+                        - sell_price_90
+                        - sell_price_180
+                        - sell_price_rate_1
+                        - sell_price_rate_7
+                        - sell_price_rate_15
+                        - sell_price_rate_30
+                        - sell_price_rate_90
+                        - sell_price_rate_180
+                      x-apifox-orders:
+                        - id
+                        - buff_sell_price
+                        - name
+                        - buff_buy_price
+                        - buff_sell_num
+                        - quality_id
+                        - exterior_id
+                        - rarity_id
+                        - sell_price_1
+                        - sell_price_7
+                        - sell_price_15
+                        - sell_price_30
+                        - sell_price_90
+                        - sell_price_180
+                        - sell_price_rate_1
+                        - sell_price_rate_7
+                        - sell_price_rate_15
+                        - sell_price_rate_30
+                        - sell_price_rate_90
+                        - sell_price_rate_180
+                      x-apifox-ignore-properties: []
+                    title: 响应数据
+                required:
+                  - code
+                  - msg
+                  - data
+                x-apifox-orders:
+                  - code
+                  - msg
+                  - data
+                x-apifox-ignore-properties: []
+              example:
+                code: 200
+                msg: Success
+                data:
+                  - id: 7868
+                    buff_sell_price: 7399
+                    name: M9 刺刀（★ StatTrak™）
+                    buff_buy_price: 7030
+                    buff_sell_num: 30
+                    quality_id: 520
+                    exterior_id: 515
+                    rarity_id: 588
+                    sell_price_1: -39.5
+                    sell_price_7: -141
+                    sell_price_15: -149.5
+                    sell_price_30: -259.5
+                    sell_price_90: -489
+                    sell_price_180: 849
+                    sell_price_rate_1: -0.53
+                    sell_price_rate_7: -1.87
+                    sell_price_rate_15: -1.98
+                    sell_price_rate_30: -3.39
+                    sell_price_rate_90: -6.2
+                    sell_price_rate_180: 12.96
+          headers: {}
+          x-apifox-name: 成功
+        '422':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          headers: {}
+          x-apifox-name: Validation Error
+      security: []
+      x-apifox-folder: 接口详情/3️⃣ 涨跌/热门排行
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4711104/apis/api-187131804-run
+components:
+  schemas:
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      x-apifox-orders:
+        - detail
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ValidationError:
+      title: ValidationError
+      required:
+        - loc
+        - msg
+        - type
+      type: object
+      properties:
+        loc:
+          title: Location
+          type: array
+          items:
+            type: string
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      x-apifox-orders:
+        - loc
+        - msg
+        - type
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers:
+  - url: https://api.csqaq.com
+    description: 正式环境
+security: []
+
+```

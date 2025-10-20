@@ -1,0 +1,296 @@
+# 获取饰品的ID信息
+
+## OpenAPI Specification
+
+```yaml
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /api/v1/info/get_good_id:
+    post:
+      summary: 获取饰品的ID信息
+      deprecated: false
+      description: |
+        🥇 获取本站所记录的饰品的库表ID信息，用于请求其他接口时所需的good_id
+
+
+        :::tip[]
+        search 参数支持中文和英文名称的模糊搜索
+        :::
+      operationId: __good_id___api_v1_info_get_good_id_post
+      tags:
+        - 接口详情/2️⃣ 饰品详情
+        - api
+      parameters:
+        - name: ApiToken
+          in: header
+          description: 用户请求令牌（请自行申请）
+          required: true
+          example: '{{APITOKEN}}'
+          schema:
+            type: string
+            default: '{{APITOKEN}}'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-apifox-refs: {}
+              x-apifox-orders:
+                - page_index
+                - page_size
+                - search
+              properties:
+                page_index:
+                  title: Page Index
+                  minimum: 1
+                  type: integer
+                  description: 查询页码
+                page_size:
+                  title: Page Size
+                  maximum: 500
+                  minimum: 1
+                  type: integer
+                  description: 每页的记录数
+                search:
+                  title: Search
+                  type: string
+                  description: 模糊搜索（支持中文和英文名称）
+              required:
+                - page_index
+                - page_size
+              x-apifox-ignore-properties: []
+            example:
+              page_index: 1
+              page_size: 20
+              search: 蝴蝶刀
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    title: 响应码
+                  msg:
+                    type: string
+                    title: 响应信息
+                  data:
+                    type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          '6796':
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                title: 站内物品ID
+                              name:
+                                type: string
+                                title: 饰品中文名称
+                              market_hash_name:
+                                type: string
+                                title: 饰品英文名称
+                            required:
+                              - id
+                              - name
+                              - market_hash_name
+                            x-apifox-orders:
+                              - id
+                              - name
+                              - market_hash_name
+                            title: 站内物品ID
+                            x-apifox-ignore-properties: []
+                        required:
+                          - '6796'
+                        x-apifox-orders:
+                          - '6796'
+                        title: 响应数据
+                        x-apifox-ignore-properties: []
+                      page_index:
+                        type: integer
+                        title: 当前页码数
+                      page_size:
+                        type: integer
+                        title: 每页的记录数
+                      total:
+                        type: integer
+                        title: 总数
+                    required:
+                      - data
+                      - page_index
+                      - page_size
+                      - total
+                    x-apifox-orders:
+                      - data
+                      - page_index
+                      - page_size
+                      - total
+                    title: 响应数据
+                    x-apifox-ignore-properties: []
+                required:
+                  - code
+                  - msg
+                  - data
+                x-apifox-orders:
+                  - code
+                  - msg
+                  - data
+                x-apifox-ignore-properties: []
+              example:
+                code: 200
+                msg: Success
+                data:
+                  data:
+                    '6796':
+                      id: 6796
+                      name: 蝴蝶刀（★）
+                      market_hash_name: ★ Butterfly Knife
+                    '6797':
+                      id: 6797
+                      name: 蝴蝶刀（★） | 蓝钢 (战痕累累)
+                      market_hash_name: ★ Butterfly Knife | Blue Steel (Battle-Scarred)
+                    '6798':
+                      id: 6798
+                      name: 蝴蝶刀（★） | 蓝钢 (崭新出厂)
+                      market_hash_name: ★ Butterfly Knife | Blue Steel (Factory New)
+                    '6799':
+                      id: 6799
+                      name: 蝴蝶刀（★） | 蓝钢 (久经沙场)
+                      market_hash_name: ★ Butterfly Knife | Blue Steel (Field-Tested)
+                    '6800':
+                      id: 6800
+                      name: 蝴蝶刀（★） | 蓝钢 (略有磨损)
+                      market_hash_name: ★ Butterfly Knife | Blue Steel (Minimal Wear)
+                    '6801':
+                      id: 6801
+                      name: 蝴蝶刀（★） | 蓝钢 (破损不堪)
+                      market_hash_name: ★ Butterfly Knife | Blue Steel (Well-Worn)
+                    '6802':
+                      id: 6802
+                      name: 蝴蝶刀（★） | 北方森林 (战痕累累)
+                      market_hash_name: ★ Butterfly Knife | Boreal Forest (Battle-Scarred)
+                    '6803':
+                      id: 6803
+                      name: 蝴蝶刀（★） | 北方森林 (崭新出厂)
+                      market_hash_name: ★ Butterfly Knife | Boreal Forest (Factory New)
+                    '6804':
+                      id: 6804
+                      name: 蝴蝶刀（★） | 北方森林 (久经沙场)
+                      market_hash_name: ★ Butterfly Knife | Boreal Forest (Field-Tested)
+                    '6805':
+                      id: 6805
+                      name: 蝴蝶刀（★） | 北方森林 (略有磨损)
+                      market_hash_name: ★ Butterfly Knife | Boreal Forest (Minimal Wear)
+                    '6806':
+                      id: 6806
+                      name: 蝴蝶刀（★） | 北方森林 (破损不堪)
+                      market_hash_name: ★ Butterfly Knife | Boreal Forest (Well-Worn)
+                    '6807':
+                      id: 6807
+                      name: 蝴蝶刀（★） | 表面淬火 (战痕累累)
+                      market_hash_name: ★ Butterfly Knife | Case Hardened (Battle-Scarred)
+                    '6808':
+                      id: 6808
+                      name: 蝴蝶刀（★） | 表面淬火 (崭新出厂)
+                      market_hash_name: ★ Butterfly Knife | Case Hardened (Factory New)
+                    '6809':
+                      id: 6809
+                      name: 蝴蝶刀（★） | 表面淬火 (久经沙场)
+                      market_hash_name: ★ Butterfly Knife | Case Hardened (Field-Tested)
+                    '6810':
+                      id: 6810
+                      name: 蝴蝶刀（★） | 表面淬火 (略有磨损)
+                      market_hash_name: ★ Butterfly Knife | Case Hardened (Minimal Wear)
+                    '6811':
+                      id: 6811
+                      name: 蝴蝶刀（★） | 表面淬火 (破损不堪)
+                      market_hash_name: ★ Butterfly Knife | Case Hardened (Well-Worn)
+                    '6812':
+                      id: 6812
+                      name: 蝴蝶刀（★） | 深红之网 (战痕累累)
+                      market_hash_name: ★ Butterfly Knife | Crimson Web (Battle-Scarred)
+                    '6813':
+                      id: 6813
+                      name: 蝴蝶刀（★） | 深红之网 (久经沙场)
+                      market_hash_name: ★ Butterfly Knife | Crimson Web (Field-Tested)
+                    '6814':
+                      id: 6814
+                      name: 蝴蝶刀（★） | 深红之网 (略有磨损)
+                      market_hash_name: ★ Butterfly Knife | Crimson Web (Minimal Wear)
+                    '6815':
+                      id: 6815
+                      name: 蝴蝶刀（★） | 深红之网 (破损不堪)
+                      market_hash_name: ★ Butterfly Knife | Crimson Web (Well-Worn)
+                  page_index: 1
+                  page_size: 20
+                  total: 198
+          headers: {}
+          x-apifox-name: 成功
+        '422':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          headers: {}
+          x-apifox-name: Validation Error
+      security: []
+      x-apifox-folder: 接口详情/2️⃣ 饰品详情
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4711104/apis/api-187131777-run
+components:
+  schemas:
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      x-apifox-orders:
+        - detail
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ValidationError:
+      title: ValidationError
+      required:
+        - loc
+        - msg
+        - type
+      type: object
+      properties:
+        loc:
+          title: Location
+          type: array
+          items:
+            type: string
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      x-apifox-orders:
+        - loc
+        - msg
+        - type
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers:
+  - url: https://api.csqaq.com
+    description: 正式环境
+security: []
+
+```

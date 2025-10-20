@@ -1,0 +1,131 @@
+# 获取所有收藏品列表数据
+
+## OpenAPI Specification
+
+```yaml
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /api/v1/info/container_data_info:
+    post:
+      summary: 获取所有收藏品列表数据
+      deprecated: false
+      description: >-
+        🥇 获取游戏内所有的武器箱、收藏品总览数据（对应网站页面 [CSQAQ-收藏品总览](https://csqaq.com/container)
+        ）
+      operationId: ________api_v1_info_container_data_info_post
+      tags:
+        - 接口详情/7️⃣ 武器箱数据
+        - api
+      parameters:
+        - name: ApiToken
+          in: header
+          description: 用户请求令牌（请自行申请）
+          required: true
+          example: '{{APITOKEN}}'
+          schema:
+            type: string
+            default: '{{APITOKEN}}'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    title: 响应状态码
+                  msg:
+                    type: string
+                    title: 响应信息
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          title: 收藏品id
+                        img:
+                          type: string
+                          title: 收藏品图片
+                        name:
+                          type: string
+                          title: 收藏品名称
+                        comment:
+                          type: string
+                          title: 备注
+                          description: 包含大行动、稀有度、直售等信息
+                        created_at:
+                          type: string
+                          title: 上线时间
+                          description: 指游戏内的更新上线时间
+                      required:
+                        - id
+                        - img
+                        - name
+                        - comment
+                        - created_at
+                      x-apifox-orders:
+                        - id
+                        - img
+                        - name
+                        - comment
+                        - created_at
+                    title: 响应数据
+                required:
+                  - code
+                  - msg
+                  - data
+                x-apifox-orders:
+                  - code
+                  - msg
+                  - data
+              example:
+                code: 200
+                msg: Success
+                data:
+                  - id: 1
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fe246fb758acf3db7dc6fzK9qCbh3
+                    name: 命悬一线武器箱
+                    comment: 稀有掉落
+                    created_at: '2018-02-15T00:00:00'
+                  - id: 2
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/63e5a2e6779f248773656374kAHJNEoE04
+                    name: 变革武器箱
+                    comment: 常规掉落
+                    created_at: '2023-02-10T00:00:00'
+                  - id: 3
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5a9fd45169b21ae4e2268192XHxJ5hrs
+                    name: 幻彩 3 号武器箱
+                    comment: 稀有掉落
+                    created_at: '2016-04-27T00:00:00'
+                  - id: 4
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5e90379396dee4be2144f099oXeiZg9a02
+                    name: 行李仓库收藏品
+                    comment: 突围大行动
+                    created_at: '2014-07-01T00:00:00'
+          headers: {}
+          x-apifox-name: 成功
+      security: []
+      x-apifox-folder: 接口详情/7️⃣ 武器箱数据
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4711104/apis/api-187131826-run
+components:
+  schemas: {}
+  securitySchemes: {}
+servers:
+  - url: https://api.csqaq.com
+    description: 正式环境
+security: []
+
+```

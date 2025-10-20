@@ -1,0 +1,257 @@
+# 获取库存监控最新动态
+
+## OpenAPI Specification
+
+```yaml
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /api/v1/monitor/get_task_trends:
+    post:
+      summary: 获取库存监控最新动态
+      deprecated: false
+      description: >-
+        🥇 获取本站Steam库存监控的库存变动动态（对应网站页面 [CSQAQ-库存变动监控](https://csqaq.com/monitor)
+        ）
+      operationId: ____________api_v1_monitor_get_task_trends_post
+      tags:
+        - 接口详情/6️⃣ 库存监控
+        - api
+      parameters:
+        - name: ApiToken
+          in: header
+          description: 用户请求令牌（请自行申请）
+          required: true
+          example: '{{APITOKEN}}'
+          schema:
+            type: string
+            default: '{{APITOKEN}}'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                page_index:
+                  title: 查询页码数
+                  minimum: 1
+                  type: integer
+                page_size:
+                  title: 每页的记录数
+                  maximum: 5000
+                  type: integer
+                search:
+                  title: 饰品good_id
+                  type: string
+                  description: 需从【获取饰品的ID信息】接口获取，示例："6796"
+              x-apifox-refs: {}
+              x-apifox-orders:
+                - page_index
+                - page_size
+                - search
+              required:
+                - page_index
+                - page_size
+              x-apifox-ignore-properties: []
+            example:
+              page_index: 1
+              page_size: 100
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    title: 响应状态码
+                  msg:
+                    type: string
+                    title: 响应信息
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          title: task_id
+                          description: 库存监控任务的id
+                        steam_name:
+                          type: string
+                          title: steam用户名
+                        steam_id:
+                          type: string
+                          title: steam平台饰品id
+                        avatar:
+                          type: string
+                          title: steam头像
+                        market_name:
+                          type: string
+                          title: 饰品中文名称
+                        tradable:
+                          type: integer
+                          title: 是否可交易
+                          description: ' 0-禁止 1-允许'
+                          enum:
+                            - 0
+                            - 1
+                          x-apifox-enum:
+                            - value: 0
+                              name: ''
+                              description: 禁止
+                            - value: 1
+                              name: ''
+                              description: 允许
+                        type:
+                          type: integer
+                          description: 0 默认库存 1 买入 2 卖出 3 存入 4 取出 5 cd恢复 6 取出/恢复 7 卖出/存入
+                          title: 条目类型
+                        created_at:
+                          type: string
+                          title: 更新时间
+                        icon_url:
+                          type: string
+                          title: 饰品图片
+                        good_id:
+                          type: integer
+                          title: 饰品good_id
+                      required:
+                        - id
+                        - steam_name
+                        - steam_id
+                        - avatar
+                        - market_name
+                        - tradable
+                        - type
+                        - created_at
+                        - icon_url
+                        - good_id
+                      x-apifox-orders:
+                        - id
+                        - steam_name
+                        - steam_id
+                        - avatar
+                        - market_name
+                        - tradable
+                        - type
+                        - created_at
+                        - icon_url
+                        - good_id
+                      x-apifox-ignore-properties: []
+                    title: 响应数据
+                required:
+                  - code
+                  - msg
+                  - data
+                x-apifox-orders:
+                  - code
+                  - msg
+                  - data
+                x-apifox-ignore-properties: []
+              example:
+                code: 200
+                msg: Success
+                data:
+                  - id: 900
+                    steam_name: 鱼蛋仔🐟
+                    steam_id: '76561198156781024'
+                    avatar: >-
+                      https://avatars.cloudflare.steamstatic.com/3a186fdc9ad2eb86ccd0f84faa562069573af188_full.jpg
+                    market_name: M4A4 | 合纵 (崭新出厂)
+                    tradable: 1
+                    type: 5
+                    created_at: '2024-06-26T16:20:49'
+                    icon_url: >-
+                      -9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpou-6kejhnwMzFJTwW09-5lYyCg_77PYTdn2xZ_Ishju2Tp4rx3QzgqkU-Nz3wdYaXcwFsaF6Brlm7w7q7gpG6tJ3OmnRgpGB8suMD0T7F
+                    good_id: 13373
+                  - id: 900
+                    steam_name: 鱼蛋仔🐟
+                    steam_id: '76561198156781024'
+                    avatar: >-
+                      https://avatars.cloudflare.steamstatic.com/3a186fdc9ad2eb86ccd0f84faa562069573af188_full.jpg
+                    market_name: 折刀（★） | 多普勒 (崭新出厂)
+                    tradable: 1
+                    type: 5
+                    created_at: '2024-06-26T16:20:49'
+                    icon_url: >-
+                      -9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf1OrYYiR95t21n4uFnvHxDLrcqW9e-NV9j_v-5YT0m1HglB81NDG3Oo-WIAc3ZwnWqwLokL--h5e0uZScwXMy6XQmsXmPnkSw0BwebrNngfCACQLJCQUjPAE
+                    good_id: 10475
+                  - id: 1869
+                    steam_name: VitoCorleone
+                    steam_id: '76561199073414820'
+                    avatar: >-
+                      https://avatars.akamai.steamstatic.com/a41619d906dfd42287779cf9f98e14766fe98200_full.jpg
+                    market_name: 印花 | FURIA（全息）| 2024年哥本哈根锦标赛
+                    tradable: 1
+                    type: 5
+                    created_at: '2024-06-26T16:20:41'
+                    icon_url: >-
+                      -9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXQ9QVcJY8gulReXESCF7b5mMnGQVRLLQtbufSgKFNlhqqfIm4XvojlzYPbkvX3N--Iw2gHuZYk07zFp9-n3la1qEJofSmtc2CBkePK
+                    good_id: 20223
+          headers: {}
+          x-apifox-name: 成功
+        '422':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          headers: {}
+          x-apifox-name: Validation Error
+      security: []
+      x-apifox-folder: 接口详情/6️⃣ 库存监控
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4711104/apis/api-187131809-run
+components:
+  schemas:
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      x-apifox-orders:
+        - detail
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ValidationError:
+      title: ValidationError
+      required:
+        - loc
+        - msg
+        - type
+      type: object
+      properties:
+        loc:
+          title: Location
+          type: array
+          items:
+            type: string
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      x-apifox-orders:
+        - loc
+        - msg
+        - type
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers:
+  - url: https://api.csqaq.com
+    description: 正式环境
+security: []
+
+```

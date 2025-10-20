@@ -1,0 +1,228 @@
+# 获取武器箱开箱历史数据
+
+## OpenAPI Specification
+
+```yaml
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /api/v1/stat/case/chart:
+    post:
+      summary: 获取武器箱开箱历史数据
+      deprecated: false
+      description: >-
+        🥇 获取对应单件武器箱的每日开箱数的历史数据，需用case_id进行请求，case_id获取接口为
+        [获取武器箱开箱数据](http://docs.csqaq.com/api-187131788)
+      operationId: __case_______api_v1_stat_case_chart_post
+      tags:
+        - 接口详情/7️⃣ 武器箱数据
+        - api
+      parameters:
+        - name: ApiToken
+          in: header
+          description: 用户请求令牌（请自行申请）
+          required: true
+          example: '{{APITOKEN}}'
+          schema:
+            type: string
+            default: '{{APITOKEN}}'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetCaseChartReq'
+            example:
+              case_id: 41
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    title: 响应状态码
+                  msg:
+                    type: string
+                    title: 响应信息
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        daily:
+                          type: integer
+                          title: 每日开箱数量
+                        date:
+                          type: string
+                          title: 所属日期
+                      required:
+                        - daily
+                        - date
+                      x-apifox-orders:
+                        - daily
+                        - date
+                      x-apifox-ignore-properties: []
+                    title: 响应数据
+                required:
+                  - code
+                  - msg
+                  - data
+                x-apifox-orders:
+                  - code
+                  - msg
+                  - data
+                x-apifox-ignore-properties: []
+              example:
+                code: 200
+                msg: Success
+                data:
+                  - daily: 173940
+                    date: '2024-05-26'
+                  - daily: 109037
+                    date: '2024-05-27'
+                  - daily: 181728
+                    date: '2024-05-28'
+                  - daily: 153171
+                    date: '2024-05-29'
+                  - daily: 119421
+                    date: '2024-05-30'
+                  - daily: 147978
+                    date: '2024-05-31'
+                  - daily: 114229
+                    date: '2024-06-01'
+                  - daily: 101248
+                    date: '2024-06-02'
+                  - daily: 134998
+                    date: '2024-06-03'
+                  - daily: 132402
+                    date: '2024-06-04'
+                  - daily: 101248
+                    date: '2024-06-05'
+                  - daily: 101248
+                    date: '2024-06-05'
+                  - daily: 101248
+                    date: '2024-06-06'
+                  - daily: 101248
+                    date: '2024-06-06'
+                  - daily: 109037
+                    date: '2024-06-07'
+                  - daily: 109037
+                    date: '2024-06-07'
+                  - daily: 28557
+                    date: '2024-06-08'
+                  - daily: 51922
+                    date: '2024-06-09'
+                  - daily: 51922
+                    date: '2024-06-10'
+                  - daily: 51922
+                    date: '2024-06-11'
+                  - daily: 85672
+                    date: '2024-06-12'
+                  - daily: 70095
+                    date: '2024-06-13'
+                  - daily: 59710
+                    date: '2024-06-14'
+                  - daily: 77883
+                    date: '2024-06-15'
+                  - daily: 57114
+                    date: '2024-06-16'
+                  - daily: 49326
+                    date: '2024-06-17'
+                  - daily: 33749
+                    date: '2024-06-18'
+                  - daily: 67499
+                    date: '2024-06-19'
+                  - daily: 67499
+                    date: '2024-06-20'
+                  - daily: 46730
+                    date: '2024-06-21'
+                  - daily: 54518
+                    date: '2024-06-22'
+                  - daily: 54518
+                    date: '2024-06-23'
+                  - daily: 36345
+                    date: '2024-06-24'
+                  - daily: 64903
+                    date: '2024-06-25'
+                  - daily: 51922
+                    date: '2024-06-26'
+          headers: {}
+          x-apifox-name: 成功
+        '422':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          headers: {}
+          x-apifox-name: Validation Error
+      security: []
+      x-apifox-folder: 接口详情/7️⃣ 武器箱数据
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4711104/apis/api-187131799-run
+components:
+  schemas:
+    GetCaseChartReq:
+      title: GetCaseChartReq
+      required:
+        - case_id
+      type: object
+      properties:
+        case_id:
+          title: 武器箱id
+          type: integer
+      x-apifox-orders:
+        - case_id
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      x-apifox-orders:
+        - detail
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ValidationError:
+      title: ValidationError
+      required:
+        - loc
+        - msg
+        - type
+      type: object
+      properties:
+        loc:
+          title: Location
+          type: array
+          items:
+            type: string
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      x-apifox-orders:
+        - loc
+        - msg
+        - type
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers:
+  - url: https://api.csqaq.com
+    description: 正式环境
+security: []
+
+```

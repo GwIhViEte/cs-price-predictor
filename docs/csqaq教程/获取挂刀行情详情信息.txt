@@ -1,0 +1,436 @@
+# 获取挂刀行情详情信息
+
+## OpenAPI Specification
+
+```yaml
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /api/v1/info/exchange_detail:
+    post:
+      summary: 获取挂刀行情详情信息
+      deprecated: false
+      description: >+
+        🥇 获取交易平台和Steam市场余额兑换行情数据（对应网站页面
+        [CSQAQ-挂刀行情详情](https://csqaq.com/exchange) ）
+
+
+        所述示例为 --> 从BUFF和YYYP平台购买饰品，到 Steam市场卖给最高求购，得到Steam余额
+
+
+        传参示意图：
+
+
+
+        :::highlight red 
+
+        获取Steam余额 res = 0
+
+        <Card>
+
+        Steam挂底价 sort_by = 0
+
+        Steam丢求购 sort_by = 1
+
+        </Card>
+
+        :::
+
+
+
+        :::highlight red 
+
+        获取平台余额 res = 1
+
+        <Card>
+
+        Steam挂底价购买 buy = 0
+
+        <Card>
+            平台挂底价出售 sort_by = 0
+        平台丢求购出售 sort_by = 1
+
+        </Card>
+
+
+        </Card>
+
+        <Card>
+
+        Steam求购购买 buy = 1
+            <Card>
+            平台挂底价出售 sort_by = 0
+        平台丢求购出售 sort_by = 1
+
+        </Card>
+
+        </Card>
+
+        :::
+
+
+
+      operationId: ___________api_v1_info_exchange_detail_post
+      tags:
+        - 接口详情/4️⃣ 挂刀行情数据
+        - api
+      parameters:
+        - name: ApiToken
+          in: header
+          description: 用户请求令牌（请自行申请）
+          required: true
+          example: '{{APITOKEN}}'
+          schema:
+            type: string
+            default: '{{APITOKEN}}'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                page_index:
+                  title: 当前页码数
+                  minimum: 1
+                  type: integer
+                res:
+                  type: integer
+                  title: 获取结果
+                  description: 挂刀或者反向挂刀
+                  enum:
+                    - 0
+                    - 1
+                  x-apifox-enum:
+                    - value: 0
+                      name: ''
+                      description: Steam余额（挂刀）
+                    - value: 1
+                      name: ''
+                      description: 平台余额（反向挂刀）
+                platforms:
+                  type: string
+                  title: 平台选择
+                  enum:
+                    - BUFF-YYYP
+                    - BUFF
+                    - YYYP
+                  x-apifox-enum:
+                    - value: BUFF-YYYP
+                      name: ''
+                      description: BUFF和悠悠有品
+                    - value: BUFF
+                      name: ''
+                      description: 仅BUFF
+                    - value: YYYP
+                      name: ''
+                      description: 仅悠悠有品
+                sort_by:
+                  type: integer
+                  title: 出售方案选择
+                  enum:
+                    - 0
+                    - 1
+                  x-apifox-enum:
+                    - value: 0
+                      name: ''
+                      description: 在售价首先（steam挂底价出售）
+                    - value: 1
+                      name: ''
+                      description: 求购价优先（steam丢求购出售）
+                min_price:
+                  title: 价格区间最小值
+                  type: number
+                  description: 默认为1
+                max_price:
+                  title: 价格区间最大值
+                  type: number
+                  description: 默认为5000
+                text:
+                  type: string
+                  title: 搜索关键字
+                  description: 支持饰品名称关键字过滤
+                turnover:
+                  type: integer
+                  title: steam日成交量
+                  description: 筛选大于等于该日成交量
+                  minimum: 0
+                buy:
+                  type: integer
+                  title: 购买方案选择
+                  enum:
+                    - 0
+                    - 1
+                  x-apifox-enum:
+                    - value: 0
+                      name: ''
+                      description: 在售价首先（从steam在售底价购买）
+                    - value: 1
+                      name: ''
+                      description: 求购价优先（从steam挂求购购买）
+              x-apifox-refs: {}
+              x-apifox-orders:
+                - page_index
+                - res
+                - platforms
+                - sort_by
+                - min_price
+                - max_price
+                - text
+                - turnover
+                - buy
+              required:
+                - page_index
+                - res
+                - platforms
+                - sort_by
+              x-apifox-ignore-properties: []
+            example:
+              page_index: 1
+              res: 0
+              platforms: BUFF-YYYP
+              sort_by: 1
+              min_price: 1
+              max_price: 5000
+              turnover: 10
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    title: 响应状态码
+                  msg:
+                    type: string
+                    title: 响应信息
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          title: 饰品id
+                        buff_id:
+                          type: integer
+                          title: buff平台饰品id
+                        buff_sell_price:
+                          type: integer
+                          title: buff在售价
+                        buff_sell_num:
+                          type: integer
+                          title: buff在售数量
+                        buff_buy_price:
+                          type: integer
+                          title: buff求购价
+                        buff_buy_num:
+                          type: integer
+                          title: buff求购数量
+                        steam_sell_price:
+                          type: number
+                          title: steam在售价
+                        steam_sell_num:
+                          type: integer
+                          title: steam在售数量
+                        steam_buy_price:
+                          type: number
+                          title: steam求购价
+                        steam_buy_num:
+                          type: integer
+                          title: steam求购数量
+                        market_hash_name:
+                          type: string
+                          title: steam市场名称
+                        name:
+                          type: string
+                          title: 饰品中文名称
+                        img:
+                          type: string
+                          title: 饰品图片
+                        yyyp_id:
+                          type: integer
+                          title: yyyp平台饰品id
+                        yyyp_sell_price:
+                          type: number
+                          title: yyyp在售价
+                        yyyp_sell_num:
+                          type: integer
+                          title: yyyp在售数量
+                        yyyp_buy_price:
+                          type: number
+                          title: yyyp求购价
+                        yyyp_buy_num:
+                          type: integer
+                          title: yyyp求购数量
+                        max_price:
+                          type: number
+                          title: 平台价格最大值
+                        turnover_number:
+                          type: number
+                          title: Steam当日成交量
+                      required:
+                        - id
+                        - buff_id
+                        - buff_sell_price
+                        - buff_sell_num
+                        - buff_buy_price
+                        - buff_buy_num
+                        - steam_sell_price
+                        - steam_sell_num
+                        - steam_buy_price
+                        - steam_buy_num
+                        - market_hash_name
+                        - name
+                        - img
+                        - yyyp_id
+                        - yyyp_sell_price
+                        - yyyp_sell_num
+                        - yyyp_buy_price
+                        - yyyp_buy_num
+                        - max_price
+                        - turnover_number
+                      x-apifox-orders:
+                        - id
+                        - buff_id
+                        - buff_sell_price
+                        - buff_sell_num
+                        - buff_buy_price
+                        - buff_buy_num
+                        - steam_sell_price
+                        - steam_sell_num
+                        - steam_buy_price
+                        - steam_buy_num
+                        - market_hash_name
+                        - name
+                        - img
+                        - yyyp_id
+                        - yyyp_sell_price
+                        - yyyp_sell_num
+                        - yyyp_buy_price
+                        - yyyp_buy_num
+                        - max_price
+                        - turnover_number
+                      x-apifox-ignore-properties: []
+                    title: 响应数据
+                required:
+                  - code
+                  - msg
+                  - data
+                x-apifox-orders:
+                  - code
+                  - msg
+                  - data
+                x-apifox-ignore-properties: []
+              example:
+                code: 200
+                msg: Success
+                data:
+                  - id: 1597
+                    buff_id: 35650
+                    buff_sell_price: 3.5
+                    buff_sell_num: 278
+                    buff_buy_price: 3.7
+                    buff_buy_num: 37
+                    steam_sell_price: 5.29
+                    steam_sell_num: 130
+                    steam_buy_price: 5.25
+                    steam_buy_num: 16867
+                    market_hash_name: MP9 | Deadly Poison (Minimal Wear)
+                    name: MP9 | 致命毒药 (略有磨损)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5aa0ac456f0494e747d9f03cu1SihtdK
+                    yyyp_id: 866
+                    yyyp_sell_price: 4.18
+                    yyyp_sell_num: 52
+                    yyyp_buy_price: 3.7
+                    yyyp_buy_num: 6
+                    max_price: 1.5
+                    turnover_number: 61
+                  - id: 11216
+                    buff_id: 773684
+                    buff_sell_price: 27.99
+                    buff_sell_num: 64
+                    buff_buy_price: 25.4
+                    buff_buy_num: 6
+                    steam_sell_price: 43.32
+                    steam_sell_num: 56
+                    steam_buy_price: 41.07
+                    steam_buy_num: 9673
+                    market_hash_name: MP9 | Hydra (Battle-Scarred)
+                    name: MP9 | 九头蛇 (战痕累累)
+                    img: >-
+                      https://g.fp.ps.netease.com/market/file/5daa2e765e6027a7e3a93a4fE5WFDQZH02
+                    yyyp_id: 49617
+                    yyyp_sell_price: 35
+                    yyyp_sell_num: 6
+                    yyyp_buy_price: 27.2
+                    yyyp_buy_num: 8
+                    max_price: 1.46731
+                    turnover_number: 9
+          headers: {}
+          x-apifox-name: 成功
+        '422':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          headers: {}
+          x-apifox-name: Validation Error
+      security: []
+      x-apifox-folder: 接口详情/4️⃣ 挂刀行情数据
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4711104/apis/api-187131823-run
+components:
+  schemas:
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      x-apifox-orders:
+        - detail
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ValidationError:
+      title: ValidationError
+      required:
+        - loc
+        - msg
+        - type
+      type: object
+      properties:
+        loc:
+          title: Location
+          type: array
+          items:
+            type: string
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      x-apifox-orders:
+        - loc
+        - msg
+        - type
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers:
+  - url: https://api.csqaq.com
+    description: 正式环境
+security: []
+
+```

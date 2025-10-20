@@ -1,0 +1,400 @@
+# 获取单件饰品图表数据
+
+## OpenAPI Specification
+
+```yaml
+openapi: 3.0.1
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+paths:
+  /api/v1/info/chart:
+    post:
+      summary: 获取单件饰品图表数据
+      deprecated: false
+      description: >-
+        🥇
+        获取单件饰品的多平台、各周期的图表数据（包括BUFF、悠悠有品、Steam平台的出售价、求购价、短租租金、长租租金、短租收益率、长租收益率、在售数量、求购数量、在租数量、日成交量、租赁过户价）
+
+
+        该接口需用饰品good_id进行请求，good_id获取接口为
+        [获取饰品的ID信息](http://docs.csqaq.com/api-187131777)
+
+
+
+        :::highlight blue
+
+        📢注意：该接口请求周期超3个月时，接口返回数据会自动调整数据的粒度，如需查询全量的完整数据，请使用
+        [获取单件饰品全量图表数据](http://docs.csqaq.com/api-187131782) 接口
+      operationId: __good_____api_v1_info_chart_post
+      tags:
+        - 接口详情/2️⃣ 饰品详情
+        - api
+      parameters:
+        - name: ApiToken
+          in: header
+          description: 用户请求令牌（请自行申请）
+          required: true
+          example: '{{APITOKEN}}'
+          schema:
+            type: string
+            default: '{{APITOKEN}}'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                good_id:
+                  type: integer
+                  title: 饰品good_id
+                key:
+                  type: string
+                  title: 待查询的数据类型
+                  description: |-
+                    ----------以下不限platform----------
+                    sell_price                 出售价
+                    buy_price                求购价
+                    sell_num                 在售数量
+                    buy_num                求购数量
+
+                    ----------以下仅限platform=2--------
+                    lease_num              在租数量
+                    short_lease_price    短租租金
+                    long_lease_price     长租租金
+                    lease_annual           短租收益率
+                    long_lease_annual  长租收益率
+                    transfer_price         租赁过户价
+
+                    ----------以下仅限platform=3--------
+                    turnover_number   日成交量
+                  enum:
+                    - sell_price
+                    - buy_price
+                    - short_lease_price
+                    - long_lease_price
+                    - lease_annual
+                    - long_lease_annual
+                    - sell_num
+                    - buy_num
+                    - lease_num
+                    - turnover_number
+                    - transfer_price
+                  x-apifox-enum:
+                    - name: ''
+                      value: sell_price
+                      description: 出售价
+                    - name: ''
+                      value: buy_price
+                      description: 求购价
+                    - name: ''
+                      value: short_lease_price
+                      description: 短租租金
+                    - name: ''
+                      value: long_lease_price
+                      description: 长租租金
+                    - name: ''
+                      value: lease_annual
+                      description: 短租收益率
+                    - name: ''
+                      value: long_lease_annual
+                      description: 长租收益率
+                    - name: ''
+                      value: sell_num
+                      description: 在售数量
+                    - name: ''
+                      value: buy_num
+                      description: 求购数量
+                    - name: ''
+                      value: lease_num
+                      description: 在租数量
+                    - name: ''
+                      value: turnover_number
+                      description: 日成交量
+                    - name: ''
+                      value: transfer_price
+                      description: 租赁过户价
+                platform:
+                  type: integer
+                  title: 对应平台
+                  description: 1-BUFF    2-悠悠有品    3-Steam
+                  enum:
+                    - 1
+                    - 2
+                    - 3
+                  x-apifox-enum:
+                    - name: ''
+                      value: 1
+                      description: BUFF
+                    - name: ''
+                      value: 2
+                      description: 悠悠有品
+                    - name: ''
+                      value: 3
+                      description: Steam
+                period:
+                  type: integer
+                  title: 查询周期
+                  enum:
+                    - 7
+                    - 15
+                    - 30
+                    - 90
+                    - 180
+                    - 365
+                    - 1095
+                  description: |-
+                    7  - 近7天
+                    15  - 近15天
+                    30  - 近1个月
+                    90  - 近3个月
+                    180  - 近6个月
+                    365  - 近1年
+                    1095  - 近3年
+                  x-apifox-enum:
+                    - name: ''
+                      value: 7
+                      description: 近7天
+                    - name: ''
+                      value: 15
+                      description: 近15天
+                    - name: ''
+                      value: 30
+                      description: 近30天
+                    - name: ''
+                      value: 90
+                      description: 近3个月
+                    - name: ''
+                      value: 180
+                      description: 近6个月
+                    - name: ''
+                      value: 365
+                      description: 近1年
+                    - name: ''
+                      value: 1095
+                      description: 近3年
+                style:
+                  type: string
+                  title: 款式
+                  description: |-
+                    默认为all_style
+                    当 platform=1 查询多普勒系列时，允许传
+                    Phase1 P1系列
+                    Phase2 P2系列
+                    Phase3 P3系列
+                    Phase4 P4系列
+                    Sapphire 蓝宝石
+                    Ruby 红宝石
+                    Black Pearl 黑珍珠
+                    Emerald 绿宝石
+                  enum:
+                    - all_style
+                    - Phase1
+                    - Phase2
+                    - Phase3
+                    - Phase4
+                    - Sapphire
+                    - Ruby
+                    - Black Pearl
+                    - Emerald
+                  x-apifox-enum:
+                    - name: ''
+                      value: all_style
+                      description: 默认
+                    - name: ''
+                      value: Phase1
+                      description: P1系列
+                    - name: ''
+                      value: Phase2
+                      description: P2系列
+                    - name: ''
+                      value: Phase3
+                      description: P3系列
+                    - name: ''
+                      value: Phase4
+                      description: P4系列
+                    - name: ''
+                      value: Sapphire
+                      description: 蓝宝石
+                    - name: ''
+                      value: Ruby
+                      description: 红宝石
+                    - name: ''
+                      value: Black Pearl
+                      description: 黑珍珠
+                    - name: ''
+                      value: Emerald
+                      description: 绿宝石
+              x-apifox-refs: {}
+              x-apifox-orders:
+                - good_id
+                - key
+                - platform
+                - period
+                - style
+              required:
+                - good_id
+                - key
+                - platform
+                - period
+                - style
+              x-apifox-ignore-properties: []
+            example:
+              good_id: '7310'
+              key: sell_price
+              platform: 1
+              period: '1095'
+              style: all_style
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    title: 响应状态码
+                  msg:
+                    type: string
+                    title: 响应信息
+                  data:
+                    type: object
+                    properties:
+                      timestamp:
+                        type: array
+                        items:
+                          type: integer
+                        title: 数据时间戳列表
+                      num_data:
+                        type: array
+                        items:
+                          oneOf:
+                            - type: 'null'
+                            - type: integer
+                        title: 在售数量列表
+                        description: 仅key为sell_price时会和main_data返回
+                      main_data:
+                        type: array
+                        items:
+                          oneOf:
+                            - type: integer
+                            - type: number
+                        title: 数据结果列表
+                    required:
+                      - timestamp
+                      - num_data
+                      - main_data
+                    x-apifox-orders:
+                      - timestamp
+                      - num_data
+                      - main_data
+                    title: 响应数据
+                    x-apifox-ignore-properties: []
+                required:
+                  - code
+                  - msg
+                  - data
+                x-apifox-orders:
+                  - code
+                  - msg
+                  - data
+                x-apifox-ignore-properties: []
+              example:
+                code: 200
+                msg: Success
+                data:
+                  timestamp:
+                    - 1718726899000
+                    - 1718813206000
+                    - 1718899881000
+                    - 1718986249000
+                    - 1719072245000
+                    - 1719158565000
+                    - 1719246055000
+                    - 1719332716000
+                    - 1719418558000
+                    - 1719504254000
+                  num_data:
+                    - 1222
+                    - 1227
+                    - 1231
+                    - 1222
+                    - 1230
+                    - 1223
+                    - 1203
+                    - 1151
+                    - 1156
+                  main_data:
+                    - 8350
+                    - 8350
+                    - 8349.5
+                    - 8399
+                    - 8398.5
+                    - 8399.5
+                    - 8399
+                    - 8500
+                    - 8550
+          headers: {}
+          x-apifox-name: 成功
+        '422':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          headers: {}
+          x-apifox-name: Validation Error
+      security: []
+      x-apifox-folder: 接口详情/2️⃣ 饰品详情
+      x-apifox-status: released
+      x-run-in-apifox: https://app.apifox.com/web/project/4711104/apis/api-187131781-run
+components:
+  schemas:
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      x-apifox-orders:
+        - detail
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+    ValidationError:
+      title: ValidationError
+      required:
+        - loc
+        - msg
+        - type
+      type: object
+      properties:
+        loc:
+          title: Location
+          type: array
+          items:
+            type: string
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      x-apifox-orders:
+        - loc
+        - msg
+        - type
+      x-apifox-ignore-properties: []
+      x-apifox-folder: ''
+  securitySchemes: {}
+servers:
+  - url: https://api.csqaq.com
+    description: 正式环境
+security: []
+
+```
