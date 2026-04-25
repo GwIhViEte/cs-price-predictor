@@ -1,0 +1,5 @@
+node_modules/
+.env
+.playwright-mcp/
+cs-price-refactor-*.png
+header-badges-removed.png

@@ -4,53 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CS饰品价格预测系统</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%2317211d'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-family='Arial' font-size='20' font-weight='800' fill='white'%3ECS%3C/text%3E%3C/svg%3E">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>CS饰品价格预测系统</h1>
-            <p>基于AI大模型的智能价格分析</p>
+    <div class="app-shell">
+        <header class="topbar">
+            <div class="brand">
+                <span class="brand-mark" aria-hidden="true">CS</span>
+                <div>
+                    <h1>CS饰品价格预测系统</h1>
+                    <p>价格、供需与AI判断集中看板</p>
+                </div>
+            </div>
         </header>
 
-        <main>
-            <section class="search-section">
-                <div class="search-box">
-                    <input type="text" id="itemSearch" placeholder="输入饰品名称进行搜索..." />
-                    <button id="searchBtn">搜索</button>
+        <main class="workspace">
+            <section class="tool-panel search-panel" aria-labelledby="searchTitle">
+                <div class="section-heading">
+                    <p class="eyebrow">Market lookup</p>
+                    <h2 id="searchTitle">饰品检索</h2>
                 </div>
-    
-                <div class="item-selector" id="itemSelector" style="display: none;">
-                    <label for="itemDropdown">选择具体饰品：</label>
-                    <select id="itemDropdown">
-                        <option value="">请选择...</option>
-                    </select>
-                    <button id="selectItemBtn">查看价格</button>
+
+                <div class="search-box">
+                    <input type="text" id="itemSearch" placeholder="输入饰品名称或关键词" autocomplete="off">
+                    <button id="searchBtn" type="button">搜索</button>
+                </div>
+
+                <div class="notice" id="stateBanner" role="status" aria-live="polite" hidden></div>
+
+                <div class="item-selector" id="itemSelector" hidden>
+                    <label for="itemDropdown">候选饰品</label>
+                    <div class="selector-row">
+                        <select id="itemDropdown">
+                            <option value="">请选择具体饰品</option>
+                        </select>
+                        <button id="selectItemBtn" type="button" disabled>查看价格</button>
+                    </div>
                 </div>
             </section>
 
-            <section class="results-section">
-                <div class="price-data-card" id="priceDataCard" style="display: none;">
-                    <h2>价格数据</h2>
-                    <div class="price-info">
-                        <div class="current-price">
-                            <span class="label">当前价格:</span>
-                            <span class="price" id="currentPrice">-</span>
+            <section class="market-layout" aria-label="市场分析">
+                <article class="tool-panel price-data-card" id="priceDataCard" hidden>
+                    <div class="asset-summary">
+                        <div class="asset-media" id="itemImageFrame" hidden>
+                            <img id="itemImage" alt="">
                         </div>
-                        <div class="price-change">
-                            <span class="label">7日涨跌幅:</span>
-                            <span class="change" id="priceChange">-</span>
+                        <div class="asset-copy">
+                            <p class="eyebrow" id="itemType">Selected asset</p>
+                            <h2 id="itemName">价格数据</h2>
+                            <p id="itemMeta">选择饰品后显示实时市场快照</p>
                         </div>
                     </div>
 
-                    <div class="price-chart" id="priceChart">
+                    <div class="headline-metrics">
+                        <div class="headline-metric">
+                            <span class="label">BUFF当前售价</span>
+                            <strong class="price" id="currentPrice">-</strong>
                         </div>
-                    <div class="sales-chart" id="salesChartContainer" style="display: none;">
+                        <div class="headline-metric">
+                            <span class="label">7日涨跌幅</span>
+                            <strong class="change" id="priceChange">-</strong>
+                        </div>
+                    </div>
+
+                    <div class="metric-grid" id="priceChart"></div>
+
+                    <div class="sales-chart" id="salesChartContainer" hidden>
                         <div class="chart-header">
-                            <h4>供需趋势 (30天)</h4>
+                            <div>
+                                <p class="eyebrow">30 days</p>
+                                <h3>供需趋势</h3>
+                            </div>
                             <div class="platform-selector">
-                                <label for="salesPlatformSelector">平台选择:</label>
+                                <label for="salesPlatformSelector">平台</label>
                                 <select id="salesPlatformSelector">
                                     <option value="1">BUFF</option>
                                     <option value="2">悠悠有品</option>
@@ -58,37 +86,41 @@
                                 </select>
                             </div>
                         </div>
-                        <div id="salesChart" style="width: 100%; height: 250px;"></div>
+                        <div id="salesChart" class="chart-canvas" aria-label="供需趋势图"></div>
                     </div>
-                </div>
+                </article>
 
-                <div class="prediction-card" id="predictionCard" style="display: none;">
-                    <h2>AI价格预测</h2>
+                <article class="tool-panel prediction-card" id="predictionCard" hidden>
+                    <div class="section-heading">
+                        <p class="eyebrow">AI outlook</p>
+                        <h2>AI价格预测</h2>
+                    </div>
                     <div class="prediction-content">
-                        <div class="loading" id="loadingSpinner" style="display: none;">
-                            <div class="spinner"></div>
-                            <p>AI正在分析价格数据...</p>
+                        <div class="loading" id="loadingSpinner" hidden>
+                            <div class="spinner" aria-hidden="true"></div>
+                            <p>AI正在分析价格数据</p>
                         </div>
-                        <div class="prediction-result" id="predictionResult"></div>
+                        <div class="prediction-result" id="predictionResult" hidden></div>
                     </div>
-                    <button id="predictBtn" class="predict-button">开始预测</button>
-                </div>
+                    <button id="predictBtn" class="predict-button" type="button">开始预测</button>
+                </article>
             </section>
-            
-            <section class="recommendations">
-                <h2>热门饰品</h2>
-                <div class="item-grid" id="hotItems">
-                    </div>
+
+            <section class="tool-panel recommendations" aria-labelledby="seriesTitle">
+                <div class="section-heading">
+                    <p class="eyebrow">Hot series</p>
+                    <h2 id="seriesTitle">热门系列</h2>
+                </div>
+                <div class="item-grid" id="hotItems"></div>
             </section>
         </main>
 
         <footer>
-            <p>© 2025 CS饰品价格预测系统</p>
-            <p>数据来源: CSQAQ | 分析引擎: OPENAI</p>
+            <p>数据来源: CSQAQ | 分析引擎: OpenAI</p>
             <p>本站仅供学习交流使用，所有数据及分析仅供参考，不构成任何投资建议</p>
         </footer>
     </div>
 
-    <script src="script.js"></script>
+    <script type="module" src="js/main.mjs"></script>
 </body>
 </html>

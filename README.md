@@ -14,7 +14,7 @@
 
 - **后端**: Node.js + Express
 - **前端**: HTML5 + CSS3 + JavaScript
-- **API**: CSQAQ API + OpenAI API
+- **API**: CSQAQ API + OpenAI Responses API
 - **部署**: 支持本地部署和云服务器部署
 
 ## 🛠️ 安装部署
@@ -36,6 +36,17 @@ cp .env.example .env
 # 编辑 .env 文件，填入你的API密钥
 ```
 
+主要配置：
+
+```env
+CSQAQ_API_BASE_URL=https://api.csqaq.com/api/v1
+CSQAQ_API_TOKEN=your_csqaq_api_token_here
+OPENAI_API_BASE_URL=https://api.openai.com/v1
+OPENAI_API_KEY=your_openai_api_key_here
+OPENAI_MODEL=gpt-4.1-mini
+PORT=3000
+```
+
 ### 4. 启动服务
 ```bash
 # 开发模式
@@ -43,6 +54,9 @@ npm run dev
 
 # 生产模式
 npm start
+
+# 运行回归测试
+npm test
 ```
 
 ### 5. 访问应用
@@ -82,6 +96,13 @@ npm start
 ### 6. 投资建议
 
 ## 🔧 API接口说明
+后端会把本站接口适配到 CSQAQ 官方文档中的上游接口：
+
+- `GET /search/suggest`
+- `GET /info/good`
+- `POST /info/chart`
+- `POST /info/get_series_list`
+
 ### 搜索饰品
 ```code
 GET /api/search-item?query=饰品名称
@@ -94,9 +115,26 @@ GET /api/price-data/:itemId
 ```code
 GET /api/hot-items
 ```
+
+该接口为了兼容旧前端路径仍叫 `hot-items`，当前展示内容来自 CSQAQ 的热门系列数据。
+
 ### AI价格预测
 ```code
 POST /api/predict-price
+```
+
+后端会将预测请求转发到 OpenAI Responses API：`POST {OPENAI_API_BASE_URL}/responses`。
+
+## 🧱 项目结构
+
+```text
+server.js              # 服务启动入口
+src/app.js             # Express 应用组装
+src/config.js          # 环境变量和默认配置
+src/routes/            # 本站 API 路由
+src/services/          # CSQAQ、OpenAI、限流、Prompt 逻辑
+public/js/             # 前端模块化脚本
+test/                  # node:test 回归测试
 ```
 ## 🎯 特色功能
 ### 1. 智能搜索
