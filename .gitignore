@@ -3,3 +3,5 @@ node_modules/
 .playwright-mcp/
 cs-price-refactor-*.png
 header-badges-removed.png
+.spec-workflow/
+.omx/
